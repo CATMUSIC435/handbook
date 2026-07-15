@@ -1,0 +1,158 @@
+[
+  {
+    "id": "wf-sales",
+    "name": "Quy trình Bán Hàng",
+    "nodes": [
+      {
+        "id": "1",
+        "type": "custom",
+        "position": { "x": 250, "y": 50 },
+        "data": { 
+          "label": "Tìm Kiếm & Tiếp Cận", 
+          "icon": "Search",
+          "description": "Tiếp cận khách hàng qua các kênh MKT, Telesale, hoặc giới thiệu.",
+          "tasks": [
+            "Xác định chân dung khách hàng",
+            "Gọi điện giới thiệu dự án cơ bản",
+            "Xin lịch hẹn gặp mặt hoặc gửi tài liệu"
+          ],
+          "documents": ["Brochure Tổng Quan", "Script Telesale"]
+        }
+      },
+      {
+        "id": "2",
+        "type": "custom",
+        "position": { "x": 250, "y": 200 },
+        "data": { 
+          "label": "Tư Vấn & Khảo Sát", 
+          "icon": "Coffee",
+          "description": "Gặp mặt, tìm hiểu nhu cầu chi tiết và tư vấn các dòng sản phẩm phù hợp.",
+          "tasks": [
+            "Phân tích nhu cầu (tài chính, sở thích, gia đình)",
+            "Giới thiệu chi tiết tiện ích, mặt bằng",
+            "Dẫn khách tham quan nhà mẫu/sa bàn"
+          ],
+          "documents": ["Flyer Tiện Ích", "Bản Đồ Mặt Bằng", "Video Sa Bàn"]
+        }
+      },
+      {
+        "id": "3",
+        "type": "custom",
+        "position": { "x": 50, "y": 350 },
+        "data": { 
+          "label": "Báo Giá & Cọc", 
+          "icon": "Percent",
+          "description": "Báo giá chi tiết, phân tích dòng tiền và tiến hành đặt cọc giữ chỗ.",
+          "tasks": [
+            "Lên bảng tính dòng tiền vay ngân hàng",
+            "Thuyết trình các chính sách chiết khấu",
+            "Hướng dẫn khách hàng ký giấy đặt cọc"
+          ],
+          "documents": ["Bảng Giá", "Chính Sách Bán Hàng", "Form Đặt Cọc"]
+        }
+      },
+      {
+        "id": "4",
+        "type": "custom",
+        "position": { "x": 450, "y": 350 },
+        "data": { 
+          "label": "Xử Lý Từ Chối", 
+          "icon": "ShieldAlert",
+          "description": "Giải quyết các băn khoăn của khách hàng về giá, pháp lý, vị trí...",
+          "tasks": [
+            "Lắng nghe và đồng cảm",
+            "Đưa ra dẫn chứng/số liệu thuyết phục",
+            "Chuyển hướng tập trung vào giá trị sinh lời"
+          ],
+          "documents": ["Bộ Q&A Pháp Lý", "So Sánh Dự Án Lân Cận"]
+        }
+      },
+      {
+        "id": "5",
+        "type": "custom",
+        "position": { "x": 250, "y": 500 },
+        "data": { 
+          "label": "Ký HĐMB", 
+          "icon": "PenTool",
+          "description": "Hướng dẫn khách hàng hoàn thiện hồ sơ và ký Hợp đồng Mua bán.",
+          "tasks": [
+            "Chuẩn bị hồ sơ pháp lý của khách hàng",
+            "Làm việc với admin để ra HĐMB",
+            "Hỗ trợ giải ngân ngân hàng (nếu có)"
+          ],
+          "documents": ["Checklist Hồ Sơ", "Mẫu HĐMB", "Thủ tục Ngân hàng"]
+        }
+      },
+      {
+        "id": "6",
+        "type": "custom",
+        "position": { "x": 250, "y": 650 },
+        "data": { 
+          "label": "Chăm Sóc Hậu Mãi", 
+          "icon": "HeartHandshake",
+          "description": "Cập nhật tiến độ dự án, hỗ trợ nhận nhà và duy trì mối quan hệ.",
+          "tasks": [
+            "Gửi ảnh tiến độ dự án hàng tháng",
+            "Gửi quà sinh nhật/lễ tết",
+            "Hỗ trợ các thủ tục nhận bàn giao nhà"
+          ],
+          "documents": ["Báo cáo tiến độ", "Quy trình Bàn giao"]
+        }
+      }
+    ],
+    "edges": [
+      { "id": "e1-2", "source": "1", "target": "2", "animated": true },
+      { "id": "e2-3", "source": "2", "target": "3", "animated": true },
+      { "id": "e2-4", "source": "2", "target": "4", "animated": true, "label": "Khách phân vân" },
+      { "id": "e4-3", "source": "4", "target": "3", "animated": true, "label": "Chốt thành công" },
+      { "id": "e3-5", "source": "3", "target": "5", "animated": true },
+      { "id": "e5-6", "source": "5", "target": "6", "animated": true }
+    ]
+  },
+  {
+    "id": "wf-handover",
+    "name": "Quy trình Bàn Giao",
+    "nodes": [
+      {
+        "id": "1",
+        "type": "custom",
+        "position": { "x": 250, "y": 50 },
+        "data": { 
+          "label": "Gửi Thông Báo", 
+          "icon": "Bell",
+          "description": "Gửi thư mời nhận bàn giao nhà trước 15 ngày.",
+          "tasks": ["Xác nhận lịch hẹn với KH"],
+          "documents": ["Thư mời bàn giao"]
+        }
+      },
+      {
+        "id": "2",
+        "type": "custom",
+        "position": { "x": 250, "y": 200 },
+        "data": { 
+          "label": "Kiểm Tra Thực Tế", 
+          "icon": "Search",
+          "description": "Cùng khách hàng kiểm tra tình trạng căn hộ.",
+          "tasks": ["Kiểm tra nội thất", "Kiểm tra điện nước"],
+          "documents": ["Biên bản kiểm tra"]
+        }
+      },
+      {
+        "id": "3",
+        "type": "custom",
+        "position": { "x": 250, "y": 350 },
+        "data": { 
+          "label": "Ký Biên Bản", 
+          "icon": "PenTool",
+          "description": "Ký biên bản bàn giao và trao chìa khóa.",
+          "tasks": ["Thu phí bảo trì", "Bàn giao chìa khóa"],
+          "documents": ["Biên bản bàn giao"]
+        }
+      }
+    ],
+    "edges": [
+      { "id": "e1-2", "source": "1", "target": "2", "animated": true },
+      { "id": "e2-3", "source": "2", "target": "3", "animated": true }
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "scenes": [
+    { "id": "toan-du-an", "name": "Toàn dự án", "img": "/assets/images/img-3d/anh-du-an-fenica-view-tu-tren-cao.jpg" },
+    { "id": "sanh", "name": "Sảnh Đón", "img": "/assets/images/img-3d/sanh-fenica.webp" },
+    { "id": "ho-boi", "name": "Hồ bơi Resort", "img": "/assets/images/img-3d/ho-boi-fenica.webp" },
+    { "id": "cong-vien", "name": "Công viên trung tâm", "img": "/assets/images/img-3d/khuon-vien-anh-du-an-fenica.jpg" },
+    { "id": "sky-garden", "name": "Sky Garden", "img": "/assets/images/img-3d/dinh-thap-fenica.webp" },
+    { "id": "gym", "name": "Phòng Gym", "img": "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" },
+    { "id": "nha-mau", "name": "Nhà mẫu", "img": "/assets/images/img-3d/anh-du-an-fenica-can-ho.jpg" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "projectDetails": [
+    { "icon": "Building", "label": "Chủ đầu tư", "value": "Tập đoàn Đất Xanh" },
+    { "icon": "Layers", "label": "Đơn vị phát triển", "value": "DXMD Vietnam" },
+    { "icon": "Info", "label": "Quy mô", "value": "2.4 ha" },
+    { "icon": "Trees", "label": "Mật độ xây dựng", "value": "28%" },
+    { "icon": "Building", "label": "Loại hình", "value": "Căn hộ cao cấp, Shophouse" },
+    { "icon": "Calendar", "label": "Bàn giao dự kiến", "value": "Quý 4/2026" }
+  ]
+}

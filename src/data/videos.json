@@ -1,0 +1,54 @@
+{
+  "categories": ["Tất cả", "TVC"],
+  "videos": [
+    { 
+      "id": 1, 
+      "title": "Video giới thiệu dự án Fenica 1", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/YGxvWwaIdN8/hqdefault.jpg",
+      "videoId": "YGxvWwaIdN8"
+    },
+    { 
+      "id": 2, 
+      "title": "Video giới thiệu dự án Fenica 2", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/Ei7SBKtUbl8/hqdefault.jpg",
+      "videoId": "Ei7SBKtUbl8" 
+    },
+    { 
+      "id": 3, 
+      "title": "Video giới thiệu dự án Fenica 3", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/YK90MfeXkvA/hqdefault.jpg",
+      "videoId": "YK90MfeXkvA" 
+    },
+    { 
+      "id": 4, 
+      "title": "Video giới thiệu dự án Fenica 4", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/oq1kr1-mFIo/hqdefault.jpg",
+      "videoId": "oq1kr1-mFIo" 
+    },
+    { 
+      "id": 5, 
+      "title": "Video giới thiệu dự án Fenica 5", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/OP-ISjIHRiU/hqdefault.jpg",
+      "videoId": "OP-ISjIHRiU" 
+    },
+    { 
+      "id": 6, 
+      "title": "Video giới thiệu dự án Fenica 6", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/EK7ZaeHrCEw/hqdefault.jpg",
+      "videoId": "EK7ZaeHrCEw" 
+    },
+    { 
+      "id": 7, 
+      "title": "Video giới thiệu dự án Fenica 7", 
+      "category": "TVC", 
+      "thumbnail": "https://img.youtube.com/vi/XrA_FbJdqpo/hqdefault.jpg",
+      "videoId": "XrA_FbJdqpo" 
+    }
+  ]
+}

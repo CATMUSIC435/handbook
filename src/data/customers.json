@@ -1,0 +1,44 @@
+[
+  {
+    "id": "KH001",
+    "name": "Nguyễn Văn Tuấn",
+    "phone": "0909 123 456",
+    "email": "tuan.nguyen@email.com",
+    "interestLevel": "hot",
+    "transactionStatus": "deposited",
+    "budget": "3 - 4 Tỷ",
+    "targetUnit": "2PN - View Hồ Bơi",
+    "history": [
+      { "id": 1, "date": "2026-07-14 09:00", "type": "meeting", "content": "Khách lên xem sa bàn và đi nhà mẫu. Rất ưng layout căn 2PN góc." },
+      { "id": 2, "date": "2026-07-12 15:30", "type": "call", "content": "Tư vấn sơ bộ qua điện thoại, gửi bảng giá dự kiến." },
+      { "id": 3, "date": "2026-07-10 10:00", "type": "note", "content": "Khách hàng từ chiến dịch Facebook Ads tháng 7." }
+    ],
+    "notes": "Khách thích tầng trung (10-15), kỵ số 13. Vợ làm giáo viên, chồng làm IT. Sẵn tài chính 50%, cần vay 50%."
+  },
+  {
+    "id": "KH002",
+    "name": "Trần Thị Mai",
+    "phone": "0988 789 012",
+    "email": "mai.tran@email.com",
+    "interestLevel": "warm",
+    "transactionStatus": "consulting",
+    "budget": "Khoảng 2.5 Tỷ",
+    "targetUnit": "1PN hoặc Studio",
+    "history": [
+      { "id": 1, "date": "2026-07-13 14:00", "type": "message", "content": "Nhắn tin qua Zalo hỏi về chính sách thanh toán." }
+    ],
+    "notes": "Mua để đầu tư cho thuê. Quan tâm tỷ suất lợi nhuận."
+  },
+  {
+    "id": "KH003",
+    "name": "Lê Hoàng Hải",
+    "phone": "0933 456 789",
+    "email": "hai.le@email.com",
+    "interestLevel": "cold",
+    "transactionStatus": "new",
+    "budget": "Trên 5 Tỷ",
+    "targetUnit": "3PN",
+    "history": [],
+    "notes": "Khách hàng cũ từ dự án trước. Đã gửi thông tin nhưng chưa phản hồi."
+  }
+]

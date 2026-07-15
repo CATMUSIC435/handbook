@@ -1,0 +1,35 @@
+{
+  "tabs": [
+    { "id": "title-1", "type": "title", "label": "Dự Án" },
+    { "id": "intro", "label": "Giới Thiệu", "icon": "Home", "path": "/" },
+    { "id": "location", "label": "Vị Trí", "icon": "Map", "path": "/location" },
+    { "id": "amenities", "label": "Tiện Ích", "icon": "Coffee", "path": "/amenities" },
+    { "id": "masterplan", "label": "Mặt Bằng", "icon": "Building2", "path": "/masterplan" },
+    
+    { "id": "title-2", "type": "title", "label": "Trải Nghiệm" },
+    { "id": "panorama", "label": "Sa bàn 360", "icon": "Camera", "path": "/panorama" },
+    { "id": "gallery", "label": "Thư Viện Ảnh", "icon": "ImageIcon", "path": "/gallery" },
+    { "id": "video", "label": "Video", "icon": "Video", "path": "/video" },
+    
+    { "id": "title-3", "type": "title", "label": "Khách Hàng" },
+    { "id": "sales", "label": "Chính Sách", "icon": "Percent", "path": "/sales" },
+    { "id": "documents", "label": "Tài Liệu", "icon": "FolderOpen", "path": "/documents" },
+    { "id": "faq", "label": "Hỏi Đáp", "icon": "HelpCircle", "path": "/faq" },
+    { "id": "news", "label": "Tin Tức", "icon": "Newspaper", "path": "/news" },
+    
+    { "id": "divider-1", "type": "divider" },
+    { "id": "favorites", "label": "Yêu Thích", "icon": "Heart", "path": "/favorites" },
+    { "id": "notifications", "label": "Thông Báo", "icon": "Bell", "path": "/notifications" },
+    { "id": "ai", "label": "Trợ Lý AI", "icon": "Bot", "path": "/ai" },
+    { "id": "settings", "label": "Cài Đặt", "icon": "Settings", "path": "/settings" }
+  ],
+  "salesTabs": [
+    { "id": "filter", "label": "Bộ Lọc", "icon": "Search", "path": "/filter" },
+    { "id": "calculator", "label": "Tính Vay", "icon": "Calculator", "path": "/calculator" },
+    { "id": "calendar", "label": "Lịch Hẹn", "icon": "Calendar", "path": "/calendar" },
+    { "id": "notes", "label": "Ghi Chú", "icon": "StickyNote", "path": "/notes" },
+    { "id": "workflow", "label": "Quy Trình", "icon": "Waypoints", "path": "/workflow" },
+    { "id": "crm", "label": "Hồ Sơ", "icon": "Users", "path": "/crm" },
+    { "id": "quiz", "label": "Thi Test", "icon": "GraduationCap", "path": "/quiz" }
+  ]
+}

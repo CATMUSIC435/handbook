@@ -1,0 +1,90 @@
+[
+  {
+    "id": "pttt1",
+    "title": "01: PTTT CHUẨN",
+    "badge": "Chiết khấu lên đến 2%",
+    "description": "Thanh toán nhẹ nhàng với 15 đợt (1%/đợt) kéo dài đến lúc nhận nhà.",
+    "icon": "Percent",
+    "color": "text-blue-600",
+    "bg": "bg-blue-50",
+    "delay": 0.1,
+    "timeline": [
+      { "step": "XNĐK", "amount": "30 Triệu", "time": "" },
+      { "step": "Đợt 1 (Ký HĐMB)", "amount": "10%", "time": "7 ngày (Bao gồm XNĐK)" },
+      { "step": "Đợt 2", "amount": "10%", "time": "T + 60 ngày (Lũy kế 20%)" },
+      { "step": "Đợt 3", "amount": "10%", "time": "T + 120 ngày (Lũy kế 30%)" },
+      { "step": "Đợt 4 đến Đợt 18", "amount": "1%/Đợt", "time": "15 đợt - 30 ngày/đợt" },
+      { "step": "Bàn giao nhà", "amount": "50% + 2% PBT", "time": "Dự kiến Tháng 3/2026" },
+      { "step": "Cấp GCN", "amount": "5%", "time": "Theo thông báo CĐT" }
+    ]
+  },
+  {
+    "id": "pttt2",
+    "title": "02: PTTT 30% ĐẾN KHI NHẬN NHÀ",
+    "badge": "Số lượng giới hạn: 50 suất",
+    "description": "Chỉ thanh toán 30% ban đầu, sau đó 0 ĐỒNG cho đến khi nhận bàn giao nhà.",
+    "icon": "CalendarClock",
+    "color": "text-emerald-600",
+    "bg": "bg-emerald-50",
+    "delay": 0.2,
+    "timeline": [
+      { "step": "XNĐK", "amount": "30 Triệu", "time": "" },
+      { "step": "Đợt 1 (Ký HĐMB)", "amount": "20%", "time": "7 ngày (Bao gồm XNĐK)" },
+      { "step": "Đợt 2", "amount": "10%", "time": "T + 60 ngày (Lũy kế 30%)" },
+      { "step": "Thanh toán 0 đồng", "amount": "0%", "time": "Giãn tiến độ hoàn toàn" },
+      { "step": "Bàn giao nhà", "amount": "65% + 2% PBT", "time": "Dự kiến Tháng 3/2026" },
+      { "step": "Cấp GCN", "amount": "5%", "time": "Theo thông báo CĐT" }
+    ]
+  },
+  {
+    "id": "pttt3",
+    "title": "03: PTTT BẰNG TIỀN LƯƠNG",
+    "badge": "Số lượng giới hạn: 50 suất",
+    "description": "Sở hữu nhà dễ dàng với số tiền thanh toán hàng tháng chỉ bằng tháng lương.",
+    "icon": "BadgeDollarSign",
+    "color": "text-amber-600",
+    "bg": "bg-amber-50",
+    "delay": 0.3,
+    "timeline": [
+      { "step": "XNĐK", "amount": "30 Triệu", "time": "" },
+      { "step": "Đợt 1 (Ký HĐMB)", "amount": "10%", "time": "7 ngày (Bao gồm XNĐK)" },
+      { "step": "Đợt 2", "amount": "10%", "time": "T + 30 ngày (Lũy kế 20%)" },
+      { "step": "Đợt 3 đến Đợt 20", "amount": "6 Triệu/Đợt", "time": "18 đợt - 30 ngày/đợt" },
+      { "step": "Bàn giao nhà", "amount": "Đủ 95% + 2% PBT", "time": "Dự kiến Tháng 3/2026" },
+      { "step": "Cấp GCN", "amount": "5%", "time": "Theo thông báo CĐT" }
+    ]
+  },
+  {
+    "id": "pttt4",
+    "title": "04: PTTT VAY NGÂN HÀNG",
+    "badge": "Vay 49% hoặc 70%",
+    "description": "Giải pháp đòn bẩy tài chính tối ưu, phù hợp với dòng tiền đa dạng của khách hàng.",
+    "icon": "Landmark",
+    "color": "text-purple-600",
+    "bg": "bg-purple-50",
+    "delay": 0.4,
+    "options": [
+      {
+        "name": "GÓI VAY 49%",
+        "timeline": [
+          { "step": "XNĐK", "amount": "30 Triệu", "time": "" },
+          { "step": "Đợt 1 (Ký HĐMB)", "amount": "21%", "time": "7 ngày (Bao gồm XNĐK)" },
+          { "step": "Đợt 2 (T+30 ngày)", "amount": "49%", "time": "Ngân hàng giải ngân (Lũy kế 70%)" },
+          { "step": "Bàn giao nhà", "amount": "25% + 2% PBT", "time": "Dự kiến Tháng 3/2026" },
+          { "step": "Cấp GCN", "amount": "5%", "time": "Theo thông báo CĐT" }
+        ]
+      },
+      {
+        "name": "GÓI VAY 70%",
+        "timeline": [
+          { "step": "XNĐK", "amount": "30 Triệu", "time": "" },
+          { "step": "Đợt 1 (Ký HĐMB)", "amount": "10%", "time": "7 ngày (Bao gồm XNĐK)" },
+          { "step": "Đợt 2 & 3", "amount": "5% & 3%", "time": "T+30 & T+60 (Lũy kế 18%)" },
+          { "step": "Đợt 4 (T+90 ngày)", "amount": "3% + 49% Vay", "time": "Ngân hàng giải ngân (Lũy kế 70%)" },
+          { "step": "Bàn giao", "amount": "9% + 16% Vay + 2% PBT", "time": "Ngân hàng & KH đóng" },
+          { "step": "Cấp GCN", "amount": "5% Vay", "time": "Ngân hàng giải ngân" }
+        ]
+      }
+    ]
+  }
+]

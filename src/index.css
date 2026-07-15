@@ -1,0 +1,176 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #d4ae6f; /* Fenica Gold */
+  --color-primary-hover: #c39b5b;
+  --color-secondary: #0ea5e9; /* Sky */
+  --color-accent: #f59e0b; /* Amber/Gold */
+  --color-background: #f8fafc; /* Slate 50 */
+  --color-surface: #ffffff;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-slate-900 font-sans antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-500;
+  }
+}
+
+/* Quick Dark Mode Implementation via CSS Filter */
+html.dark {
+  background-color: #020617; /* slate-950 */
+}
+html.dark body {
+  filter: invert(1) hue-rotate(180deg);
+}
+/* Re-invert images, videos, and specific colorful elements to keep their original colors */
+html.dark img,
+html.dark video,
+html.dark iframe,
+html.dark .revert-dark {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* UI Utilities */
+.glass {
+  @apply bg-white/80 backdrop-blur-lg border border-white/40 shadow-xl shadow-slate-200/50;
+}
+.glass-dark {
+  @apply bg-slate-900/80 backdrop-blur-lg border border-white/10 shadow-xl shadow-black/50;
+}
+.glass-panel {
+  @apply bg-white/90 backdrop-blur-md border border-slate-100 shadow-sm rounded-3xl;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth Transitions */
+.transition-smooth {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+/* Custom React Big Calendar Styles */
+.calendar-container .rbc-calendar {
+  font-family: inherit;
+}
+.calendar-container .rbc-toolbar {
+  margin-bottom: 24px;
+}
+.calendar-container .rbc-toolbar button {
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+}
+.calendar-container .rbc-toolbar button:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+.calendar-container .rbc-toolbar button:active,
+.calendar-container .rbc-toolbar button.rbc-active,
+.calendar-container .rbc-toolbar button.rbc-active:hover {
+  background-color: #1d4ed8;
+  color: white;
+  border-color: #1d4ed8;
+  box-shadow: 0 4px 6px -1px rgb(29 78 216 / 0.3);
+}
+.calendar-container .rbc-header {
+  padding: 16px 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+  font-size: 13px;
+  border-bottom: 1px solid #f1f5f9;
+  border-left: none;
+}
+.calendar-container .rbc-month-view,
+.calendar-container .rbc-time-view,
+.calendar-container .rbc-agenda-view {
+  border: none;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 25px -2px rgb(0 0 0 / 0.03);
+  background-color: white;
+}
+.calendar-container .rbc-month-row {
+  border-top: 1px solid #f1f5f9;
+}
+.calendar-container .rbc-day-bg {
+  border-left: 1px solid #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+.calendar-container .rbc-day-bg:hover {
+  background-color: #f8fafc;
+  cursor: pointer;
+}
+.calendar-container .rbc-today {
+  background-color: #fffbeb; /* amber-50 */
+}
+.calendar-container .rbc-event {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  border-radius: 8px !important;
+  padding: 4px 8px !important;
+  margin-top: 2px;
+}
+.calendar-container .rbc-event:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgb(0 0 0 / 0.15);
+}
+.calendar-container .rbc-event:focus {
+  outline: 2px solid #f59e0b;
+}
+
+/* React Datepicker Customizations */
+.react-datepicker-popper {
+  z-index: 9999 !important;
+}
+.react-datepicker {
+  font-family: inherit !important;
+  border-radius: 12px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+.react-datepicker__header {
+  background-color: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__time-list-item--selected {
+  background-color: #1d4ed8 !important;
+  color: white !important;
+}

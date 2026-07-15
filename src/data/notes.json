@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "customer": "Anh Tuấn (Khách VIP)",
+    "phone": "0909 123 456",
+    "unit": "A-1205",
+    "interest": "Rất thích view hồ bơi nội khu, hướng Đông Nam mát mẻ. Đang phân vân về tài chính.",
+    "callbackDate": "2026-07-20",
+    "status": "hot"
+  },
+  {
+    "id": 2,
+    "customer": "Chị Mai",
+    "phone": "0988 789 012",
+    "unit": "B-2003",
+    "interest": "Mua đầu tư, muốn chọn căn diện tích nhỏ dễ ra hàng. Đã nhận báo giá.",
+    "callbackDate": "2026-07-16",
+    "status": "warm"
+  }
+]

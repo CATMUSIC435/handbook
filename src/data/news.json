@@ -1,0 +1,53 @@
+{
+  "categories": ["Tất cả", "Nội bộ", "Báo chí", "Tiến độ", "Chính sách"],
+  "newsArticles": [
+    {
+      "id": 1,
+      "title": "Lễ ra quân dự án Fenica: Sẵn sàng bứt phá năm 2026",
+      "category": "Nội bộ",
+      "date": "12/07/2026",
+      "excerpt": "Sự kiện ra quân thu hút hơn 1,000 chuyên viên kinh doanh từ các đại lý phân phối chiến lược, đánh dấu bước chạy đà hoàn hảo cho dự án tâm điểm.",
+      "image": "https://images.unsplash.com/photo-1540317580384-e5d43616b9aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": 2,
+      "title": "VnExpress: \"Fenica - Định chuẩn sống mới tại phía Đông\"",
+      "category": "Báo chí",
+      "date": "10/07/2026",
+      "excerpt": "Được vinh danh tại hạng mục Thiết kế cảnh quan xuất sắc nhất, Fenica đang trở thành hiện tượng thu hút giới đầu tư sành sỏi.",
+      "image": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": 3,
+      "title": "Cập nhật tiến độ tháng 7: Hoàn thành móng cọc Block A",
+      "category": "Tiến độ",
+      "date": "05/07/2026",
+      "excerpt": "Với nỗ lực thi công 3 ca liên tục, nhà thầu đã vượt tiến độ đề ra 15 ngày, chính thức hoàn thành toàn bộ phần móng Block A.",
+      "image": "https://images.unsplash.com/photo-1541888087643-4ce4999f7d23?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": 4,
+      "title": "Công bố chính sách ưu đãi \"Booking Sớm - Đặc Quyền Lớn\"",
+      "category": "Chính sách",
+      "date": "01/07/2026",
+      "excerpt": "Chương trình ưu đãi cực khủng dành cho 50 khách hàng đầu tiên: Chiết khấu thẳng 2%, tặng gói nội thất 50 triệu và miễn phí quản lý.",
+      "image": "/assets/images/sanh-fenica.webp"
+    },
+    {
+      "id": 5,
+      "title": "CafeF đánh giá tiềm năng tăng giá của khu vực quanh Fenica",
+      "category": "Báo chí",
+      "date": "28/06/2026",
+      "excerpt": "Hạ tầng giao thông khu vực đang được đẩy mạnh với tuyến Metro và vành đai mới, tạo đòn bẩy thép cho giá trị bất động sản.",
+      "image": "https://images.unsplash.com/photo-1444653614773-995cb1ef9efa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": 6,
+      "title": "Ký kết hợp tác chiến lược với 3 ngân hàng lớn",
+      "category": "Nội bộ",
+      "date": "20/06/2026",
+      "excerpt": "Chủ đầu tư chính thức ký kết với Vietcombank, Techcombank và MBBank để mang đến gói tài chính ân hạn gốc lãi 18 tháng cho khách hàng.",
+      "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    }
+  ]
+}

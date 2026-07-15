@@ -1,0 +1,426 @@
+{
+  "categories": [
+    "Tất cả",
+    "Phối cảnh 3D",
+    "Tiện ích",
+    "Mặt Bằng 3D",
+    "Nhà mẫu 1PN",
+    "Nhà mẫu 2PN"
+  ],
+  "galleryImages": [
+    {
+      "id": 1,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-anh-tong-the.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica anh tong the"
+    },
+    {
+      "id": 2,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-can-ho.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica can ho"
+    },
+    {
+      "id": 3,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-goc-nhin-ho-boi.jpg",
+      "category": "Tiện ích",
+      "title": "anh du an fenica goc nhin ho boi"
+    },
+    {
+      "id": 4,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-huong-tu-metro.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica huong tu metro"
+    },
+    {
+      "id": 5,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-khoi-de.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica khoi de"
+    },
+    {
+      "id": 6,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-khung-canh-ho-boi.jpg",
+      "category": "Tiện ích",
+      "title": "anh du an fenica khung canh ho boi"
+    },
+    {
+      "id": 7,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-moi-nhat.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica moi nhat"
+    },
+    {
+      "id": 8,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-phong-ngu.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica phong ngu"
+    },
+    {
+      "id": 9,
+      "src": "/assets/images/img-3d/anh-du-an-fenica-view-tu-tren-cao.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "anh du an fenica view tu tren cao"
+    },
+    {
+      "id": 10,
+      "src": "/assets/images/img-3d/ho-boi-fenica.webp",
+      "category": "Tiện ích",
+      "title": "ho boi fenica"
+    },
+    {
+      "id": 11,
+      "src": "/assets/images/img-3d/khuon-vien-anh-du-an-fenica.jpg",
+      "category": "Phối cảnh 3D",
+      "title": "khuon vien anh du an fenica"
+    },
+    {
+      "id": 12,
+      "src": "/assets/images/img-3d/nha-tre-fenica.webp",
+      "category": "Tiện ích",
+      "title": "nha tre fenica"
+    },
+    {
+      "id": 13,
+      "src": "/assets/images/img-3d/sanh-fenica.webp",
+      "category": "Tiện ích",
+      "title": "sanh fenica"
+    },
+    {
+      "id": 14,
+      "src": "/assets/images/room3d/1pn+.png",
+      "category": "Mặt Bằng 3D",
+      "title": "Mặt Bằng 1"
+    },
+    {
+      "id": 15,
+      "src": "/assets/images/room3d/1pn+goc.png",
+      "category": "Mặt Bằng 3D",
+      "title": "Mặt Bằng 2"
+    },
+    {
+      "id": 16,
+      "src": "/assets/images/room3d/1pn.png",
+      "category": "Mặt Bằng 3D",
+      "title": "Mặt Bằng 3"
+    },
+    {
+      "id": 17,
+      "src": "/assets/images/room3d/2pn-v2.png",
+      "category": "Mặt Bằng 3D",
+      "title": "Mặt Bằng 4"
+    },
+    {
+      "id": 18,
+      "src": "/assets/images/room3d/2pn.png",
+      "category": "Mặt Bằng 3D",
+      "title": "Mặt Bằng 5"
+    },
+    {
+      "id": 19,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01713-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 1"
+    },
+    {
+      "id": 20,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01716-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 2"
+    },
+    {
+      "id": 21,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01725-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 3"
+    },
+    {
+      "id": 22,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01755-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 4"
+    },
+    {
+      "id": 23,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01761-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 5"
+    },
+    {
+      "id": 24,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01767-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 6"
+    },
+    {
+      "id": 25,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01773-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 7"
+    },
+    {
+      "id": 26,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01782-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 8"
+    },
+    {
+      "id": 27,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01788-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 9"
+    },
+    {
+      "id": 28,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01791-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 10"
+    },
+    {
+      "id": 29,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01794-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 11"
+    },
+    {
+      "id": 30,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01809-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 12"
+    },
+    {
+      "id": 31,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01833.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 13"
+    },
+    {
+      "id": 32,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01840.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 14"
+    },
+    {
+      "id": 33,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01842.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 15"
+    },
+    {
+      "id": 34,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01844.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 16"
+    },
+    {
+      "id": 35,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01846.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 17"
+    },
+    {
+      "id": 36,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01848.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 18"
+    },
+    {
+      "id": 37,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01850.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 19"
+    },
+    {
+      "id": 38,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01867.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 20"
+    },
+    {
+      "id": 39,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01872-hdr.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 21"
+    },
+    {
+      "id": 40,
+      "src": "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc02033.jpg",
+      "category": "Nhà mẫu 1PN",
+      "title": "Góc nhìn 1PN 22"
+    },
+    {
+      "id": 41,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01867.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 1"
+    },
+    {
+      "id": 42,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01872-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 2"
+    },
+    {
+      "id": 43,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01880-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 3"
+    },
+    {
+      "id": 44,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01883-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 4"
+    },
+    {
+      "id": 45,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01895-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 5"
+    },
+    {
+      "id": 46,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01898-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 6"
+    },
+    {
+      "id": 47,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01905-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 7"
+    },
+    {
+      "id": 48,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01910-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 8"
+    },
+    {
+      "id": 49,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01919-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 9"
+    },
+    {
+      "id": 50,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01922-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 10"
+    },
+    {
+      "id": 51,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01937-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 11"
+    },
+    {
+      "id": 52,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01946-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 12"
+    },
+    {
+      "id": 53,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01949-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 13"
+    },
+    {
+      "id": 54,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01952-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 14"
+    },
+    {
+      "id": 55,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01955-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 15"
+    },
+    {
+      "id": 56,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01961-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 16"
+    },
+    {
+      "id": 57,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01973-hdr.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 17"
+    },
+    {
+      "id": 58,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01979.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 18"
+    },
+    {
+      "id": 59,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01980.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 19"
+    },
+    {
+      "id": 60,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01982.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 20"
+    },
+    {
+      "id": 61,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01991.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 21"
+    },
+    {
+      "id": 62,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01994.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 22"
+    },
+    {
+      "id": 63,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02000.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 23"
+    },
+    {
+      "id": 64,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02006.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 24"
+    },
+    {
+      "id": 65,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02009.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 25"
+    },
+    {
+      "id": 66,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02013.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 26"
+    },
+    {
+      "id": 67,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02022.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 27"
+    },
+    {
+      "id": 68,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02026.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 28"
+    },
+    {
+      "id": 69,
+      "src": "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc02027.jpg",
+      "category": "Nhà mẫu 2PN",
+      "title": "Góc nhìn 2PN 29"
+    }
+  ]
+}

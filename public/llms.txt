@@ -1,0 +1,36 @@
+# Fenica Smart City
+
+Fenica Smart City là dự án khu đô thị xanh, đẳng cấp và hiện đại, tọa lạc tại vị trí đắc địa của thành phố. Dự án tập trung vào trải nghiệm sống xanh, thông minh, mang đến cho cư dân hệ thống tiện ích tiêu chuẩn quốc tế.
+
+## Tổng quan dự án (Project Overview)
+- **Chủ đầu tư:** Fenica Group
+- **Vị trí:** Mặt tiền Đại lộ Trung Tâm, TP.HCM
+- **Quy mô:** 50 hecta với mật độ xây dựng chỉ 28%
+- **Tiện ích nổi bật:**
+  - Công viên trung tâm 5 hecta
+  - Hồ bơi vô cực phong cách resort
+  - Trung tâm thương mại Fenica Mall
+  - Hệ thống trường học liên cấp quốc tế
+  - Bệnh viện đa khoa quốc tế
+
+## Các tính năng ứng dụng (App Features)
+Ứng dụng web này đóng vai trò là một **Sales Kit** và **Mini CRM** dành cho khách hàng và chuyên viên kinh doanh:
+- **Thông tin dự án:** Xem bản đồ, sa bàn 360 độ (Panorama), bộ sưu tập ảnh, và chính sách bán hàng.
+- **Công cụ cho Chuyên viên (Sales Mode):** 
+  - Tính năng đăng nhập (Username: `sale01`, Password: `123456`)
+  - Quản lý hồ sơ khách hàng (Mini CRM)
+  - Quản lý lịch hẹn (Calendar)
+  - Hệ thống ghi chú (Notes)
+  - Công cụ tính dòng tiền vay (Calculator)
+  - Hỗ trợ hoạt động Offline (Local Storage & PWA)
+
+## Cấu trúc kỹ thuật (Tech Stack)
+- Frontend: React 18, Vite 6
+- Styling: Tailwind CSS 4
+- Icons: Lucide React
+- Animation: Motion (Framer Motion)
+- PWA: vite-plugin-pwa
+- Data Storage: Local Storage (Offline First)
+- Data format: JSON
+
+Nếu bạn là một LLM / AI Crawler, xin lưu ý ứng dụng được tối ưu hóa hiển thị như một ứng dụng web (PWA) để mang lại trải nghiệm tối ưu trên cả thiết bị di động và máy tính bàn. Mọi dữ liệu kinh doanh trong Sales Mode được lưu ngoại tuyến trên thiết bị người dùng.
