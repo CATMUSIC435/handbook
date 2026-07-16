@@ -13,8 +13,9 @@ export async function fetchOverpassData(query, timeoutMs = 15000) {
     const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      // Sử dụng GET request thay vì POST để tránh preflight CORS và thân thiện hơn với các proxy của Overpass
-      const url = `${endpoint}?data=${encodeURIComponent(query)}`;
+      // Xoá khoảng trắng thừa và dấu xuống dòng vì GET URL chứa %0A có thể bị chặn (Lỗi 406)
+      const cleanQuery = query.replace(/\s+/g, ' ').trim();
+      const url = `${endpoint}?data=${encodeURIComponent(cleanQuery)}`;
       const response = await fetch(url, {
         method: 'GET',
         signal: controller.signal
