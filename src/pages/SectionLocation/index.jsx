@@ -132,18 +132,18 @@ export default function SectionLocation() {
         <div className="flex-1 relative bg-white shadow-xl overflow-hidden border border-slate-200">
           
           {/* Toggle buttons */}
-          <div className="absolute top-4 left-16 flex flex-col sm:flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md">
+          <div className="absolute top-4 left-16 flex flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md max-w-[calc(100vw-80px)] overflow-x-auto">
             <button
               onClick={() => setMapMode("interactive")}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-md ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
-              <Map size={16} /> Bản đồ tương tác
+              <Map size={16} /> <span className="hidden sm:inline">Bản đồ tương tác</span><span className="sm:hidden">Tương tác</span>
             </button>
             <button
               onClick={() => setMapMode("svg")}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-md ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
-              <ImageIcon size={16} /> Bản đồ đồ họa
+              <ImageIcon size={16} /> <span className="hidden sm:inline">Bản đồ đồ họa</span><span className="sm:hidden">Đồ họa</span>
             </button>
           </div>
 

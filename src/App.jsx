@@ -88,6 +88,8 @@ function App() {
   // PWA Install state
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstallBtn, setShowInstallBtn] = useState(false);
+  const [isIosPrompt, setIsIosPrompt] = useState(false);
+  const [showIosInstructions, setShowIosInstructions] = useState(false);
 
   useEffect(() => {
     const handler = (e) => {
@@ -96,10 +98,29 @@ function App() {
       setShowInstallBtn(true);
     };
     window.addEventListener("beforeinstallprompt", handler);
+
+    // iOS detection
+    const isIos = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+    const isStandalone = () => {
+      return ('standalone' in window.navigator) && (window.navigator.standalone);
+    };
+
+    if (isIos() && !isStandalone()) {
+      setShowInstallBtn(true);
+      setIsIosPrompt(true);
+    }
+
     return () => window.removeEventListener("beforeinstallprompt", handler);
   }, []);
 
   const handleInstallClick = async () => {
+    if (isIosPrompt) {
+      setShowIosInstructions(true);
+      return;
+    }
     if (deferredPrompt) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
@@ -258,10 +279,65 @@ function App() {
           >
             <button
               onClick={handleInstallClick}
-              className="flex items-center gap-2 bg-primary text-white px-5 py-3 font-bold shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all"
+              className="flex items-center gap-2 bg-primary text-white px-5 py-3 font-bold shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all rounded-md"
             >
-              <Download size={20} />
+              <Download size={20} /> <span className="hidden sm:inline">Cài đặt Ứng dụng</span>
             </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* iOS Install Instructions Modal */}
+      <AnimatePresence>
+        {showIosInstructions && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-end justify-center sm:items-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 50 }}
+              className="w-full max-w-sm bg-white p-6 shadow-2xl relative rounded-t-3xl sm:rounded-3xl"
+            >
+              <button
+                onClick={() => setShowIosInstructions(false)}
+                className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-900 bg-slate-100 rounded-full"
+              >
+                <X size={16} />
+              </button>
+              <div className="text-center">
+                <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Download size={32} />
+                </div>
+                <h3 className="font-bold text-xl mb-2 text-slate-900">Cài đặt trên iPhone/iPad</h3>
+                <p className="text-slate-600 mb-6 text-sm">
+                  Để cài đặt ứng dụng vào màn hình chính, vui lòng làm theo các bước sau:
+                </p>
+                <div className="flex flex-col gap-4 text-left">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">1</div>
+                    <p className="text-sm text-slate-700 pt-1.5">Nhấn vào biểu tượng <b>Chia sẻ (Share)</b> ở thanh công cụ dưới cùng của trình duyệt Safari.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">2</div>
+                    <p className="text-sm text-slate-700 pt-1.5">Chọn <b>Thêm vào MH chính (Add to Home Screen)</b>.</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">3</div>
+                    <p className="text-sm text-slate-700 pt-1.5">Nhấn <b>Thêm (Add)</b> ở góc trên bên phải.</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowIosInstructions(false)}
+                  className="w-full mt-8 py-3 bg-slate-900 text-white font-bold rounded-xl"
+                >
+                  Đã hiểu
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -17,7 +17,7 @@ export default function MapToolbar({
   if (mapMode !== "interactive") return null;
 
   return (
-    <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col sm:flex-row gap-2 z-[400]">
+    <div className="hidden md:flex absolute top-4 right-4 sm:top-6 sm:right-6 flex-col sm:flex-row gap-2 z-[400]">
       <div className="relative">
         <button
           onClick={() => setShowStyleMenu(!showStyleMenu)}
