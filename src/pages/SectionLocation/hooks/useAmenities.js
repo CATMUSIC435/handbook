@@ -89,12 +89,6 @@ export function useAmenities(centerPosition) {
       const finalLocations = uniqueMapped.slice(0, 80);
       setDynamicAmenities(finalLocations);
       
-      // DUMP JSON CHO USER COPY
-      console.log("=========================================");
-      console.log("🔥 ĐÃ TẢI XONG DỮ LIỆU 20KM! BẠN HÃY COPY ĐOẠN JSON DƯỚI ĐÂY BỎ VÀO FILE amenities.json 🔥");
-      console.log(JSON.stringify(finalLocations, null, 2));
-      console.log("=========================================");
-      
     } catch (err) {
       console.error("Lỗi khi tải dữ liệu Overpass:", err);
     } finally {

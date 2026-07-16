@@ -42,59 +42,95 @@
     }
   ],
   "locations": [
-    { 
-      "icon": "School", 
-      "name": "Trường học Quốc tế", 
-      "time": "5 phút", 
-      "dist": "2 km", 
-      "lat": 10.942, 
-      "lng": 106.752,
-      "description": "Hệ thống giáo dục chuẩn quốc tế với cơ sở vật chất hiện đại, đáp ứng nhu cầu học tập của con em cư dân."
+    {
+      "icon": "School",
+      "name": "Làng Đại Học Quốc Gia TP.HCM",
+      "time": "15 phút",
+      "dist": "10.2 km",
+      "lat": 10.87588,
+      "lng": 106.79975,
+      "description": "Khu tổ hợp giáo dục đại học lớn nhất khu vực phía Nam."
     },
-    { 
-      "icon": "MapPin", 
-      "name": "Bệnh viện Đa khoa", 
-      "time": "10 phút", 
-      "dist": "4 km", 
-      "lat": 10.938, 
-      "lng": 106.741,
-      "description": "Bệnh viện đa khoa tuyến trung tâm với đội ngũ y bác sĩ giàu kinh nghiệm, trực cấp cứu 24/7."
+    {
+      "icon": "School",
+      "name": "Trường mầm non quốc tế Montessori",
+      "time": "5 phút",
+      "dist": "2.1 km",
+      "lat": 10.93210,
+      "lng": 106.73500,
+      "description": "Cơ sở giáo dục mầm non chất lượng cao."
     },
-    { 
-      "icon": "ShoppingBag", 
-      "name": "Trung tâm thương mại", 
-      "time": "15 phút", 
-      "dist": "6 km", 
-      "lat": 10.952, 
-      "lng": 106.738,
-      "description": "Tổ hợp mua sắm, giải trí và ẩm thực sầm uất bậc nhất khu vực, quy tụ hàng trăm thương hiệu nổi tiếng."
+    {
+      "icon": "MapPin",
+      "name": "Bệnh viện Đa khoa Quốc tế Hoàn Mỹ",
+      "time": "12 phút",
+      "dist": "8.5 km",
+      "lat": 10.89052,
+      "lng": 106.76210,
+      "description": "Cơ sở y tế khám chữa bệnh tiêu chuẩn quốc tế."
     },
-    { 
-      "icon": "Plane", 
-      "name": "Sân bay Quốc tế", 
-      "time": "30 phút", 
-      "dist": "20 km", 
-      "lat": 10.817, 
-      "lng": 106.666,
-      "description": "Cảng hàng không quốc tế lớn nhất miền Nam, kết nối trực tiếp đến các thành phố lớn trên thế giới."
+    {
+      "icon": "MapPin",
+      "name": "Bệnh viện Ung Bướu (Cơ sở 2)",
+      "time": "18 phút",
+      "dist": "12.3 km",
+      "lat": 10.86432,
+      "lng": 106.81591,
+      "description": "Bệnh viện tuyến trung ương chuyên khoa ung bướu."
     },
-    { 
-      "icon": "Car", 
-      "name": "Cao tốc Long Thành", 
-      "time": "15 phút", 
-      "dist": "8 km", 
-      "lat": 10.865, 
-      "lng": 106.790,
-      "description": "Tuyến giao thông huyết mạch kết nối nhanh chóng với các tỉnh miền Đông Nam Bộ và sân bay quốc tế Long Thành tương lai."
+    {
+      "icon": "ShoppingBag",
+      "name": "Vincom Plaza Dĩ An",
+      "time": "10 phút",
+      "dist": "7.4 km",
+      "lat": 10.91023,
+      "lng": 106.76000,
+      "description": "Trung tâm thương mại lớn nhất khu vực Dĩ An."
     },
-    { 
-      "icon": "Train", 
-      "name": "Tuyến Metro số 1", 
-      "time": "10 phút", 
-      "dist": "5 km", 
-      "lat": 10.880, 
-      "lng": 106.780,
-      "description": "Hệ thống tàu điện ngầm hiện đại, giúp cư dân di chuyển vào trung tâm thành phố chỉ trong chớp mắt mà không lo kẹt xe."
+    {
+      "icon": "ShoppingBag",
+      "name": "Siêu thị GO! Dĩ An",
+      "time": "8 phút",
+      "dist": "6.2 km",
+      "lat": 10.91677,
+      "lng": 106.78201,
+      "description": "Đại siêu thị mua sắm, ẩm thực và giải trí."
+    },
+    {
+      "icon": "ShoppingBag",
+      "name": "Khu chợ truyền thống Dĩ An",
+      "time": "6 phút",
+      "dist": "4.5 km",
+      "lat": 10.92550,
+      "lng": 106.77200,
+      "description": "Khu chợ buôn bán sầm uất lâu đời."
+    },
+    {
+      "icon": "Plane",
+      "name": "Bến xe Miền Đông mới",
+      "time": "20 phút",
+      "dist": "14.1 km",
+      "lat": 10.86552,
+      "lng": 106.81222,
+      "description": "Trung tâm trung chuyển hành khách liên tỉnh."
+    },
+    {
+      "icon": "MapPin",
+      "name": "Khu du lịch Suối Tiên",
+      "time": "22 phút",
+      "dist": "15.5 km",
+      "lat": 10.86311,
+      "lng": 106.80123,
+      "description": "Khu vui chơi giải trí văn hoá tâm linh."
+    },
+    {
+      "icon": "MapPin",
+      "name": "Khu công nghiệp Sóng Thần",
+      "time": "15 phút",
+      "dist": "9.8 km",
+      "lat": 10.90211,
+      "lng": 106.75111,
+      "description": "Khu công nghiệp trọng điểm."
     }
   ]
 }
