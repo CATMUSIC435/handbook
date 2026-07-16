@@ -174,3 +174,68 @@ html.dark .revert-dark {
   background-color: #1d4ed8 !important;
   color: white !important;
 }
+
+/* Animated Map Shapes */
+.animated-map-shape {
+  animation: pulse-shape 2s infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(212, 174, 111, 0.6));
+}
+
+@keyframes pulse-shape {
+  from {
+    fill-opacity: 0.2;
+    stroke-opacity: 0.7;
+  }
+  to {
+    fill-opacity: 0.5;
+    stroke-opacity: 1;
+  }
+}
+
+/* Center leaflet bottom left controls (Drawing Toolbar) */
+.leaflet-bottom.leaflet-left {
+  bottom: 50% !important;
+  transform: translateY(50%) !important;
+}
+
+/* Project Marker Animation */
+.project-marker-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+}
+
+.project-marker-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #f59e0b;
+  border-radius: 50%;
+  animation: custom-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.75;
+}
+
+.project-marker-core {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  background-color: #d4ae6f;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+@keyframes custom-ping {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}

@@ -42,11 +42,59 @@
     }
   ],
   "locations": [
-    { "icon": "School", "name": "Trường học Quốc tế", "time": "5 phút", "dist": "2 km", "lat": 10.895, "lng": 106.780 },
-    { "icon": "MapPin", "name": "Bệnh viện Đa khoa", "time": "10 phút", "dist": "4 km", "lat": 10.885, "lng": 106.770 },
-    { "icon": "ShoppingBag", "name": "Trung tâm thương mại", "time": "15 phút", "dist": "6 km", "lat": 10.890, "lng": 106.785 },
-    { "icon": "Plane", "name": "Sân bay Quốc tế", "time": "30 phút", "dist": "20 km", "lat": 10.817, "lng": 106.666 },
-    { "icon": "Car", "name": "Cao tốc Long Thành", "time": "15 phút", "dist": "8 km", "lat": 10.865, "lng": 106.790 },
-    { "icon": "Train", "name": "Tuyến Metro số 1", "time": "10 phút", "dist": "5 km", "lat": 10.880, "lng": 106.780 }
+    { 
+      "icon": "School", 
+      "name": "Trường học Quốc tế", 
+      "time": "5 phút", 
+      "dist": "2 km", 
+      "lat": 10.942, 
+      "lng": 106.752,
+      "description": "Hệ thống giáo dục chuẩn quốc tế với cơ sở vật chất hiện đại, đáp ứng nhu cầu học tập của con em cư dân."
+    },
+    { 
+      "icon": "MapPin", 
+      "name": "Bệnh viện Đa khoa", 
+      "time": "10 phút", 
+      "dist": "4 km", 
+      "lat": 10.938, 
+      "lng": 106.741,
+      "description": "Bệnh viện đa khoa tuyến trung tâm với đội ngũ y bác sĩ giàu kinh nghiệm, trực cấp cứu 24/7."
+    },
+    { 
+      "icon": "ShoppingBag", 
+      "name": "Trung tâm thương mại", 
+      "time": "15 phút", 
+      "dist": "6 km", 
+      "lat": 10.952, 
+      "lng": 106.738,
+      "description": "Tổ hợp mua sắm, giải trí và ẩm thực sầm uất bậc nhất khu vực, quy tụ hàng trăm thương hiệu nổi tiếng."
+    },
+    { 
+      "icon": "Plane", 
+      "name": "Sân bay Quốc tế", 
+      "time": "30 phút", 
+      "dist": "20 km", 
+      "lat": 10.817, 
+      "lng": 106.666,
+      "description": "Cảng hàng không quốc tế lớn nhất miền Nam, kết nối trực tiếp đến các thành phố lớn trên thế giới."
+    },
+    { 
+      "icon": "Car", 
+      "name": "Cao tốc Long Thành", 
+      "time": "15 phút", 
+      "dist": "8 km", 
+      "lat": 10.865, 
+      "lng": 106.790,
+      "description": "Tuyến giao thông huyết mạch kết nối nhanh chóng với các tỉnh miền Đông Nam Bộ và sân bay quốc tế Long Thành tương lai."
+    },
+    { 
+      "icon": "Train", 
+      "name": "Tuyến Metro số 1", 
+      "time": "10 phút", 
+      "dist": "5 km", 
+      "lat": 10.880, 
+      "lng": 106.780,
+      "description": "Hệ thống tàu điện ngầm hiện đại, giúp cư dân di chuyển vào trung tâm thành phố chỉ trong chớp mắt mà không lo kẹt xe."
+    }
   ]
 }

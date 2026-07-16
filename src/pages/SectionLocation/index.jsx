@@ -1,27 +1,26 @@
-import { useState } from "react";
-import { motion } from "motion/react";
-import {
-  MapPin,
-  Navigation,
-  School,
-  ShoppingBag,
-  Plane,
-  Train,
-  Car,
-  Map,
-  Image as ImageIcon,
-} from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
+import React, { useRef, useState } from "react";
 import L from "leaflet";
-import { renderToString } from "react-dom/server";
-import amenitiesData from "../../data/amenities.json";
-import { Button } from "../../components/ui/Button";
+import { Map, Image as ImageIcon, Navigation } from "lucide-react";
+import osmtogeojson from 'osmtogeojson';
+import "leaflet/dist/leaflet.css";
+import "leaflet-draw/dist/leaflet.draw.css";
 
 // Fix leaflet default icon issue
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+
+// Hooks
+import { useAmenities } from "./hooks/useAmenities";
+import { useMapDraw } from "./hooks/useMapDraw";
+import { useOverpass } from "./hooks/useOverpass";
+
+// Components
+import InteractiveMap from "./components/InteractiveMap";
+import MapToolbar from "./components/MapToolbar";
+import AmenitiesSidebar from "./components/AmenitiesSidebar";
+import PropertySidebar from "./components/PropertySidebar";
+import OverpassModal from "./components/OverpassModal";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -30,91 +29,182 @@ L.Icon.Default.mergeOptions({
   shadowUrl,
 });
 
-const iconMap = { School, MapPin, ShoppingBag, Plane, Car, Train };
-
 export default function SectionLocation() {
-  const [mapMode, setMapMode] = useState("interactive");
+  const centerPosition = [10.946522643033038, 106.74770128793497];
+  const featureGroupRef = useRef();
+  const fileInputRef = useRef();
 
-  const amenities = amenitiesData.locations.map((loc) => ({
-    ...loc,
-    icon: iconMap[loc.icon] || MapPin,
-  }));
+  // State for menus
+  const [showStyleMenu, setShowStyleMenu] = useState(false);
+  const [showCurvedLines, setShowCurvedLines] = useState(false);
 
-  const centerPosition = [10.893113, 106.778848];
+  // Custom Hooks
+  const {
+    dynamicAmenities,
+    isLoadingAmenities,
+    searchRadius,
+    setSearchRadius,
+    showAmenities,
+    setShowAmenities,
+    fetchNearbyAmenities,
+    amenitiesToUse,
+    groupedAmenities
+  } = useAmenities(centerPosition);
+
+  const {
+    mapMode, setMapMode,
+    drawnItems, setDrawnItems,
+    selectedLayer, setSelectedLayer,
+    drawStyle, setDrawStyle,
+    sidebarData, setSidebarData,
+    handleSidebarChange,
+    handleDrawStyleChange,
+    saveDrawings,
+    exportGeoJSON,
+    exportImage
+  } = useMapDraw();
+
+  const {
+    showOverpassModal, setShowOverpassModal,
+    overpassQuery, setOverpassQuery,
+    isOverpassLoading,
+    handleRunOverpassQuery
+  } = useOverpass(setDrawnItems, drawStyle);
+
+  const handleImportJSON = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        try {
+          const applyStyles = (geojson) => {
+            if (geojson && geojson.features) {
+              geojson.features.forEach(f => {
+                f.properties = f.properties || {};
+                if (!f.properties.style) {
+                  f.properties.style = { ...drawStyle, className: 'animated-map-shape' };
+                }
+              });
+            }
+            return geojson;
+          };
+
+          const json = JSON.parse(event.target.result);
+          if (json && json.type === 'FeatureCollection') {
+            setDrawnItems(applyStyles(json));
+          } else if (json && json.elements) {
+            const geojson = osmtogeojson(json);
+            if (geojson && geojson.type === 'FeatureCollection') {
+              setDrawnItems(applyStyles(geojson));
+            } else {
+              alert("Không thể chuyển đổi dữ liệu OSM sang GeoJSON.");
+            }
+          } else {
+            alert("File JSON không hợp lệ hoặc không đúng định dạng GeoJSON/OSM JSON.");
+          }
+        } catch (error) {
+          alert("Lỗi khi đọc file JSON.");
+        }
+      };
+      reader.readAsText(file);
+    }
+    e.target.value = null;
+  };
+
+  const projectIcon = L.divIcon({
+    className: "custom-project-icon",
+    html: `
+      <div class="project-marker-container">
+        <div class="project-marker-ping"></div>
+        <div class="project-marker-core"></div>
+      </div>
+    `,
+    iconSize: [48, 48],
+    iconAnchor: [24, 24],
+    popupAnchor: [0, -24],
+  });
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <div className="flex-1 flex">
         {/* Map Area */}
         <div className="flex-1 relative bg-white shadow-xl overflow-hidden border border-slate-200">
+          
           {/* Toggle buttons */}
-          <div className="absolute top-4 left-4 sm:top-6 sm:left-6 flex flex-col sm:flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400]">
+          <div className="absolute top-4 left-16 flex flex-col sm:flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md">
             <button
               onClick={() => setMapMode("interactive")}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-md ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <Map size={16} /> Bản đồ tương tác
             </button>
             <button
               onClick={() => setMapMode("svg")}
-              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-2 px-4 py-2 text-sm font-medium transition-colors rounded-md ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <ImageIcon size={16} /> Bản đồ đồ họa
             </button>
           </div>
 
-          {mapMode === "interactive" ? (
-            <MapContainer
-              center={centerPosition}
-              zoom={13}
-              style={{ height: "100%", width: "100%", zIndex: 0 }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          <MapToolbar
+            mapMode={mapMode}
+            showStyleMenu={showStyleMenu}
+            setShowStyleMenu={setShowStyleMenu}
+            drawStyle={drawStyle}
+            handleDrawStyleChange={handleDrawStyleChange}
+            setShowOverpassModal={setShowOverpassModal}
+            fileInputRef={fileInputRef}
+            exportGeoJSON={() => exportGeoJSON(featureGroupRef)}
+            exportImage={exportImage}
+          />
+
+          <input 
+            type="file" 
+            accept=".json,application/json" 
+            ref={fileInputRef} 
+            onChange={handleImportJSON} 
+            className="hidden" 
+          />
+
+          <div className="absolute left-4 top-24 bottom-6 w-80 z-[400] flex flex-col pointer-events-none">
+            <div className="pointer-events-auto h-full flex flex-col">
+              <AmenitiesSidebar
+                mapMode={mapMode}
+                selectedLayer={selectedLayer}
+                fetchNearbyAmenities={fetchNearbyAmenities}
+                isLoadingAmenities={isLoadingAmenities}
+                searchRadius={searchRadius}
+                setSearchRadius={setSearchRadius}
+                showAmenities={showAmenities}
+                setShowAmenities={setShowAmenities}
+                showCurvedLines={showCurvedLines}
+                setShowCurvedLines={setShowCurvedLines}
+                groupedAmenities={groupedAmenities}
               />
+              
+              <PropertySidebar
+                selectedLayer={selectedLayer}
+                setSelectedLayer={setSelectedLayer}
+                sidebarData={sidebarData}
+                handleSidebarChange={handleSidebarChange}
+              />
+            </div>
+          </div>
 
-              {/* Main Project Marker */}
-              <Marker position={centerPosition}>
-                <Popup>
-                  <div className="font-bold text-lg">Dự án Fenica</div>
-                  <div className="text-sm text-slate-500">Vị trí trung tâm</div>
-                </Popup>
-              </Marker>
+          <InteractiveMap 
+            mapMode={mapMode}
+            centerPosition={centerPosition}
+            showAmenities={showAmenities}
+            amenitiesToUse={amenitiesToUse}
+            drawnItems={drawnItems}
+            featureGroupRef={featureGroupRef}
+            drawStyle={drawStyle}
+            setSelectedLayer={setSelectedLayer}
+            projectIcon={projectIcon}
+            showCurvedLines={showCurvedLines}
+          />
 
-              {/* Amenities Markers */}
-              {amenities.map((item, index) => {
-                if (!item.lat || !item.lng) return null;
-
-                const IconCmp = item.icon;
-                const iconHtml = renderToString(<IconCmp size={20} />);
-                const customIcon = L.divIcon({
-                  className: "custom-leaflet-icon",
-                  html: `<div style="background-color: white; border-radius: 50%; padding: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: #d4ae6f;">${iconHtml}</div>`,
-                  iconSize: [36, 36],
-                  iconAnchor: [18, 18],
-                  popupAnchor: [0, -18],
-                });
-
-                return (
-                  <Marker
-                    key={index}
-                    position={[item.lat, item.lng]}
-                    icon={customIcon}
-                  >
-                    <Popup>
-                      <div className="font-semibold text-slate-900">
-                        {item.name}
-                      </div>
-                      <div className="text-sm text-slate-500">
-                        {item.dist} • {item.time}
-                      </div>
-                    </Popup>
-                  </Marker>
-                );
-              })}
-            </MapContainer>
-          ) : (
+          {mapMode === "svg" && (
             <div className="w-full h-full bg-slate-50 flex items-center justify-center relative">
               <img
                 src="/assets/images/vi-tri.svg"
@@ -131,12 +221,55 @@ export default function SectionLocation() {
           )}
 
           <div className="absolute bottom-6 right-6 flex gap-4 z-[400]">
-            <button className="bg-white p-3 shadow-lg text-slate-700 hover:text-[#d4ae6f] transition-colors">
+            <button 
+              onClick={() => saveDrawings(featureGroupRef)}
+              className="bg-white p-3 shadow-lg text-slate-700 hover:text-green-600 transition-colors rounded-full"
+              title="Lưu lại nét vẽ"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+            </button>
+            <button 
+              onClick={() => {
+                if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                      const { latitude, longitude } = position.coords;
+                      const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${centerPosition[0]},${centerPosition[1]}`;
+                      window.open(url, '_blank');
+                    },
+                    (error) => {
+                      console.error("Lỗi lấy vị trí:", error);
+                      alert("Không thể lấy vị trí hiện tại của bạn. Vui lòng cho phép truy cập vị trí trong trình duyệt.");
+                    }
+                  );
+                } else {
+                  alert("Trình duyệt của bạn không hỗ trợ định vị.");
+                }
+              }}
+              className="bg-white p-3 shadow-lg text-slate-700 hover:text-[#d4ae6f] transition-colors rounded-full"
+              title="Chỉ đường đến dự án"
+            >
               <Navigation size={24} />
             </button>
           </div>
         </div>
+
+        <PropertySidebar
+          selectedLayer={selectedLayer}
+          setSelectedLayer={setSelectedLayer}
+          sidebarData={sidebarData}
+          handleSidebarChange={handleSidebarChange}
+        />
       </div>
+
+      <OverpassModal
+        showOverpassModal={showOverpassModal}
+        setShowOverpassModal={setShowOverpassModal}
+        overpassQuery={overpassQuery}
+        setOverpassQuery={setOverpassQuery}
+        isOverpassLoading={isOverpassLoading}
+        handleRunOverpassQuery={handleRunOverpassQuery}
+      />
     </div>
   );
 }
