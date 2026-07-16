@@ -127,7 +127,8 @@ export default function InteractiveMap({
   featureGroupRef,
   drawStyle,
   setSelectedLayer,
-  projectIcon
+  projectIcon,
+  showCurvedLines
 }) {
   // Setup drawn items to layer when changed
   useEffect(() => {

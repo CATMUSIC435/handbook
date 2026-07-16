@@ -10,6 +10,8 @@ export default function AmenitiesSidebar({
   setSearchRadius, 
   showAmenities, 
   setShowAmenities, 
+  showCurvedLines,
+  setShowCurvedLines,
   groupedAmenities 
 }) {
   if (mapMode !== "interactive" || selectedLayer) return null;
