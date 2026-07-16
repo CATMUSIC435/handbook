@@ -233,7 +233,7 @@ function App() {
             exit={{ opacity: 0, y: 50 }}
             className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40"
           >
-            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 px-2 py-2 flex items-center gap-1 shadow-2xl shadow-slate-900/50 max-w-[85vw] overflow-x-auto hide-scrollbar">
+            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 px-2 py-2 flex items-center gap-1 sm:gap-2 shadow-2xl shadow-slate-900/50 max-w-[95vw] sm:max-w-[85vw] overflow-x-auto hide-scrollbar rounded-[2rem]">
               {SALES_TABS.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = location.pathname === tab.path;
@@ -241,7 +241,7 @@ function App() {
                   <button
                     key={tab.id}
                     onClick={() => navigate(tab.path)}
-                    className={`flex items-center gap-2 px-4 py-2.5 font-bold text-sm transition-all duration-300 whitespace-nowrap shrink-0 ${
+                    className={`flex items-center justify-center gap-2 p-3 sm:px-4 sm:py-2.5 font-bold text-sm transition-all duration-300 whitespace-nowrap shrink-0 rounded-2xl ${
                       isActive
                         ? "bg-primary text-slate-900 shadow-lg shadow-primary/30 border border-[#d4ae6f]"
                         : "text-slate-400 hover:text-white hover:bg-white/10 border border-transparent"
