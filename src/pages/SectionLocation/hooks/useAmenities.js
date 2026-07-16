@@ -21,7 +21,7 @@ const iconMap = { School, MapPin, ShoppingBag, Plane, Car, Train };
 export function useAmenities(centerPosition) {
   const [dynamicAmenities, setDynamicAmenities] = useState([]);
   const [isLoadingAmenities, setIsLoadingAmenities] = useState(false);
-  const [searchRadius, setSearchRadius] = useState(3000);
+  const [searchRadius, setSearchRadius] = useState(20000);
   const [showAmenities, setShowAmenities] = useState(true);
 
   const fetchNearbyAmenities = useCallback(async () => {
@@ -30,7 +30,7 @@ export function useAmenities(centerPosition) {
     try {
       const radius = searchRadius;
       const query = `
-        [out:json][timeout:15];
+        [out:json][timeout:25];
         (
           nwr["amenity"~"school|university|hospital|clinic|marketplace"](around:${radius},${centerPosition[0]},${centerPosition[1]});
           nwr["shop"~"supermarket|mall"](around:${radius},${centerPosition[0]},${centerPosition[1]});
@@ -42,7 +42,7 @@ export function useAmenities(centerPosition) {
         out center;
       `;
       
-      const data = await fetchOverpassData(query, 15000);
+      const data = await fetchOverpassData(query, 25000);
       
       const centerLatLng = L.latLng(centerPosition[0], centerPosition[1]);
       
@@ -86,7 +86,15 @@ export function useAmenities(centerPosition) {
         }
       });
       
-      setDynamicAmenities(uniqueMapped.slice(0, 30));
+      const finalLocations = uniqueMapped.slice(0, 80);
+      setDynamicAmenities(finalLocations);
+      
+      // DUMP JSON CHO USER COPY
+      console.log("=========================================");
+      console.log("🔥 ĐÃ TẢI XONG DỮ LIỆU 20KM! BẠN HÃY COPY ĐOẠN JSON DƯỚI ĐÂY BỎ VÀO FILE amenities.json 🔥");
+      console.log(JSON.stringify(finalLocations, null, 2));
+      console.log("=========================================");
+      
     } catch (err) {
       console.error("Lỗi khi tải dữ liệu Overpass:", err);
     } finally {
