@@ -5,7 +5,7 @@ export default function PropertySidebar({ selectedLayer, setSelectedLayer, sideb
   if (!selectedLayer) return null;
 
   return (
-    <div className="w-80 bg-white border-l border-slate-200 shadow-2xl z-[500] flex flex-col h-full animate-in slide-in-from-right duration-300 relative">
+    <div className="absolute right-0 top-0 bottom-0 w-80 bg-white border-l border-slate-200 shadow-2xl z-[500] flex flex-col h-full animate-in slide-in-from-right duration-300">
        <div className="p-4 border-b border-slate-100 flex justify-between items-center">
           <h3 className="font-bold text-slate-800">Thông tin vùng chọn</h3>
           <button onClick={() => setSelectedLayer(null)} className="text-slate-400 hover:text-slate-600 transition-colors">

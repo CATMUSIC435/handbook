@@ -24,10 +24,13 @@ export function useAmenities(centerPosition) {
 
   const fetchNearbyAmenities = useCallback(async () => {
     setIsLoadingAmenities(true);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    
     try {
       const radius = searchRadius;
       const query = `
-        [out:json];
+        [out:json][timeout:10];
         (
           nwr["amenity"~"school|university|hospital|clinic|marketplace"](around:${radius},${centerPosition[0]},${centerPosition[1]});
           nwr["shop"~"supermarket|mall"](around:${radius},${centerPosition[0]},${centerPosition[1]});
@@ -43,8 +46,10 @@ export function useAmenities(centerPosition) {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: 'data=' + encodeURIComponent(query)
+        body: 'data=' + encodeURIComponent(query),
+        signal: controller.signal
       });
+      clearTimeout(timeoutId);
       
       if (!response.ok) {
         throw new Error("HTTP error " + response.status);
@@ -100,7 +105,7 @@ export function useAmenities(centerPosition) {
     } finally {
       setIsLoadingAmenities(false);
     }
-  }, [searchRadius, centerPosition]);
+  }, [searchRadius, centerPosition[0], centerPosition[1]]);
 
   useEffect(() => {
     fetchNearbyAmenities();

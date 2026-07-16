@@ -239,3 +239,61 @@ html.dark .revert-dark {
     opacity: 0;
   }
 }
+
+/* Animated Curve */
+.animated-curve {
+  animation: moveDash 3s linear infinite;
+}
+
+@keyframes moveDash {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Custom Leaflet Layers Control */
+.leaflet-control-layers {
+  border: none !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(8px);
+  font-family: inherit !important;
+  color: #1e293b !important;
+  overflow: hidden;
+}
+
+.leaflet-control-layers-expanded {
+  padding: 12px 16px !important;
+}
+
+.leaflet-control-layers-list {
+  margin: 0 !important;
+}
+
+.leaflet-control-layers label {
+  margin-bottom: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  color: #475569 !important;
+}
+
+.leaflet-control-layers label:last-child {
+  margin-bottom: 0 !important;
+}
+
+.leaflet-control-layers label:hover {
+  color: #d4ae6f !important;
+}
+
+.leaflet-control-layers input[type="radio"] {
+  accent-color: #d4ae6f !important;
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 8px 0 0 !important;
+  cursor: pointer !important;
+}

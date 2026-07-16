@@ -29,8 +29,9 @@ L.Icon.Default.mergeOptions({
   shadowUrl,
 });
 
+const centerPosition = [10.946522643033038, 106.74770128793497];
+
 export default function SectionLocation() {
-  const centerPosition = [10.946522643033038, 106.74770128793497];
   const featureGroupRef = useRef();
   const fileInputRef = useRef();
 
@@ -166,30 +167,26 @@ export default function SectionLocation() {
             className="hidden" 
           />
 
-          <div className="absolute left-4 top-24 bottom-6 w-80 z-[400] flex flex-col pointer-events-none">
-            <div className="pointer-events-auto h-full flex flex-col">
-              <AmenitiesSidebar
-                mapMode={mapMode}
-                selectedLayer={selectedLayer}
-                fetchNearbyAmenities={fetchNearbyAmenities}
-                isLoadingAmenities={isLoadingAmenities}
-                searchRadius={searchRadius}
-                setSearchRadius={setSearchRadius}
-                showAmenities={showAmenities}
-                setShowAmenities={setShowAmenities}
-                showCurvedLines={showCurvedLines}
-                setShowCurvedLines={setShowCurvedLines}
-                groupedAmenities={groupedAmenities}
-              />
-              
-              <PropertySidebar
-                selectedLayer={selectedLayer}
-                setSelectedLayer={setSelectedLayer}
-                sidebarData={sidebarData}
-                handleSidebarChange={handleSidebarChange}
-              />
-            </div>
-          </div>
+          <AmenitiesSidebar
+            mapMode={mapMode}
+            selectedLayer={selectedLayer}
+            fetchNearbyAmenities={fetchNearbyAmenities}
+            isLoadingAmenities={isLoadingAmenities}
+            searchRadius={searchRadius}
+            setSearchRadius={setSearchRadius}
+            showAmenities={showAmenities}
+            setShowAmenities={setShowAmenities}
+            showCurvedLines={showCurvedLines}
+            setShowCurvedLines={setShowCurvedLines}
+            groupedAmenities={groupedAmenities}
+          />
+          
+          <PropertySidebar
+            selectedLayer={selectedLayer}
+            setSelectedLayer={setSelectedLayer}
+            sidebarData={sidebarData}
+            handleSidebarChange={handleSidebarChange}
+          />
 
           <InteractiveMap 
             mapMode={mapMode}

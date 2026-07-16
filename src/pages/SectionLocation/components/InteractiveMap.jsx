@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, FeatureGroup, Polyline, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, FeatureGroup, Polyline, useMap, LayersControl } from "react-leaflet";
 import L from "leaflet";
 import "leaflet-draw";
 import { renderToString } from "react-dom/server";
@@ -169,6 +169,33 @@ export default function InteractiveMap({
         zoom={13}
         style={{ height: "100%", width: "100%", zIndex: 0 }}
       >
+        <LayersControl position="bottomleft">
+          <LayersControl.BaseLayer checked name="Bản đồ tiêu chuẩn">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Bản đồ vệ tinh (Satellite)">
+            <TileLayer
+              attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Bản đồ sáng (Light Mode)">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+            />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name="Bản đồ tối (Dark Mode)">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            />
+          </LayersControl.BaseLayer>
+        </LayersControl>
+
         <FeatureGroup ref={featureGroupRef}>
           <DrawTools 
             featureGroupRef={featureGroupRef} 
@@ -176,11 +203,6 @@ export default function InteractiveMap({
             setSelectedLayer={setSelectedLayer} 
           />
         </FeatureGroup>
-        
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
         
         {/* Main Project Marker */}
         <Marker position={centerPosition}>
