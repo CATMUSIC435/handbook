@@ -1,5 +1,6 @@
 import { useState } from "react";
 import osmtogeojson from "osmtogeojson";
+import { fetchOverpassData } from "../../../utils/overpassUtils";
 
 export function useOverpass(setDrawnItems, drawStyle) {
   const [showOverpassModal, setShowOverpassModal] = useState(false);
@@ -10,19 +11,8 @@ export function useOverpass(setDrawnItems, drawStyle) {
     if (!overpassQuery.trim()) return;
     setIsOverpassLoading(true);
     try {
-      const response = await fetch('https://overpass-api.de/api/interpreter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'data=' + encodeURIComponent(overpassQuery)
-      });
+      const data = await fetchOverpassData(overpassQuery, 30000); // 30s timeout cho custom query
       
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-      
-      const data = await response.json();
       const applyStyles = (geojson) => {
         if (geojson && geojson.features) {
           geojson.features.forEach(f => {

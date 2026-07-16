@@ -14,6 +14,8 @@ import {
   TreePine,
 } from "lucide-react";
 
+import { fetchOverpassData } from "../../../utils/overpassUtils";
+
 const iconMap = { School, MapPin, ShoppingBag, Plane, Car, Train };
 
 export function useAmenities(centerPosition) {
@@ -24,13 +26,11 @@ export function useAmenities(centerPosition) {
 
   const fetchNearbyAmenities = useCallback(async () => {
     setIsLoadingAmenities(true);
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000);
     
     try {
       const radius = searchRadius;
       const query = `
-        [out:json][timeout:10];
+        [out:json][timeout:15];
         (
           nwr["amenity"~"school|university|hospital|clinic|marketplace"](around:${radius},${centerPosition[0]},${centerPosition[1]});
           nwr["shop"~"supermarket|mall"](around:${radius},${centerPosition[0]},${centerPosition[1]});
@@ -41,21 +41,8 @@ export function useAmenities(centerPosition) {
         );
         out center;
       `;
-      const response = await fetch('https://overpass-api.de/api/interpreter', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'data=' + encodeURIComponent(query),
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
       
-      if (!response.ok) {
-        throw new Error("HTTP error " + response.status);
-      }
-      
-      const data = await response.json();
+      const data = await fetchOverpassData(query, 15000);
       
       const centerLatLng = L.latLng(centerPosition[0], centerPosition[1]);
       
