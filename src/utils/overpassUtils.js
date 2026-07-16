@@ -1,8 +1,8 @@
 const OVERPASS_ENDPOINTS = [
-  '/api/overpass',
-  '/api/overpass-lz4',
-  '/api/overpass-z',
-  '/api/overpass-kumi'
+  'https://overpass-api.de/api/interpreter',
+  'https://lz4.overpass-api.de/api/interpreter',
+  'https://z.overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter'
 ];
 
 export async function fetchOverpassData(query, timeoutMs = 15000) {
@@ -13,12 +13,10 @@ export async function fetchOverpassData(query, timeoutMs = 15000) {
     const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'data=' + encodeURIComponent(query),
+      // Sử dụng GET request thay vì POST để tránh preflight CORS và thân thiện hơn với các proxy của Overpass
+      const url = `${endpoint}?data=${encodeURIComponent(query)}`;
+      const response = await fetch(url, {
+        method: 'GET',
         signal: controller.signal
       });
 
