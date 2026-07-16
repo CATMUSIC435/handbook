@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   FileText,
   FileSpreadsheet,
@@ -8,6 +8,8 @@ import {
   FileBox,
   FileArchive,
   Search,
+  X,
+  Maximize
 } from "lucide-react";
 import documentsData from "../../data/documents.json";
 import { Input } from "../../components/ui/Input";
@@ -23,6 +25,7 @@ const IconMap = {
 
 export default function SectionDocuments() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [viewingDoc, setViewingDoc] = useState(null);
 
   const filteredDocs = documentsData.filter(
     (doc) =>
@@ -31,7 +34,7 @@ export default function SectionDocuments() {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50 overflow-y-auto">
+    <div className="min-h-screen bg-slate-50 overflow-y-auto relative">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-start gap-6">
         <div className="max-w-sm w-full">
           <Input
@@ -69,7 +72,7 @@ export default function SectionDocuments() {
                 {/* Title & Icon */}
                 <div className="col-span-6 md:col-span-5 flex items-center gap-4">
                   <div
-                    className={`w-12 h-12 ${doc.bg} flex flex-shrink-0 items-center justify-center`}
+                    className={`w-12 h-12 ${doc.bg} flex flex-shrink-0 items-center justify-center rounded-xl`}
                   >
                     <Icon className={doc.color} size={24} />
                   </div>
@@ -85,7 +88,7 @@ export default function SectionDocuments() {
 
                 {/* Version */}
                 <div className="hidden md:flex col-span-2 items-center">
-                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-semibold">
+                  <span className="px-3 py-1 bg-slate-100 text-slate-600 text-sm font-semibold rounded-full">
                     {doc.version}
                   </span>
                 </div>
@@ -103,40 +106,28 @@ export default function SectionDocuments() {
                     className="hidden sm:flex"
                     size="sm"
                     onClick={() => {
-                      if (
-                        doc.id === 1 ||
-                        doc.title.toLowerCase().includes("brochure")
-                      ) {
-                        window.open(
-                          "https://fenica.vn/vr-360-virtual.html#/brochure",
-                          "_blank",
-                        );
+                      if (doc.id === 1 || doc.title.toLowerCase().includes("brochure")) {
+                        setViewingDoc({ ...doc, url: "https://fenica.vn/vr-360-virtual.html#/brochure" });
                       } else {
-                        alert("Tính năng đang được cập nhật!");
+                        alert("Tài liệu này chưa có bản xem trước!");
                       }
                     }}
                   >
-                    Preview
+                    Xem trực tiếp
                   </Button>
                   <Button
                     variant="primary"
                     icon={Download}
                     size="sm"
                     onClick={() => {
-                      if (
-                        doc.id === 1 ||
-                        doc.title.toLowerCase().includes("brochure")
-                      ) {
-                        window.open(
-                          "https://fenica.vn/vr-360-virtual.html#/brochure",
-                          "_blank",
-                        );
+                      if (doc.id === 1 || doc.title.toLowerCase().includes("brochure")) {
+                        window.open("https://fenica.vn/vr-360-virtual.html#/brochure", "_blank");
                       } else {
                         alert("Tính năng đang được cập nhật!");
                       }
                     }}
                   >
-                    <span className="hidden sm:inline">Download</span>
+                    <span className="hidden sm:inline">Tải về</span>
                   </Button>
                 </div>
               </motion.div>
@@ -153,6 +144,59 @@ export default function SectionDocuments() {
           )}
         </div>
       </Card>
+
+      {/* Document Viewer Modal */}
+      <AnimatePresence>
+        {viewingDoc && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-slate-900/90 backdrop-blur-sm flex flex-col"
+          >
+            {/* Header Modal */}
+            <div className="flex items-center justify-between p-4 bg-slate-900 text-white border-b border-slate-800 shrink-0">
+              <div className="flex items-center gap-3">
+                <div className={`w-10 h-10 ${viewingDoc.bg} rounded-lg flex items-center justify-center`}>
+                  <FileText className={viewingDoc.color} size={20} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-lg">{viewingDoc.title}</h3>
+                  <div className="text-slate-400 text-xs uppercase tracking-wider">{viewingDoc.type} • Phiên bản {viewingDoc.version}</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => window.open(viewingDoc.url, "_blank")}
+                  className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-full transition-colors flex items-center gap-2"
+                  title="Mở toàn màn hình trong tab mới"
+                >
+                  <Maximize size={20} />
+                  <span className="hidden sm:inline text-sm font-semibold">Mở Tab mới</span>
+                </button>
+                <div className="w-px h-6 bg-slate-700 hidden sm:block mx-1"></div>
+                <button
+                  onClick={() => setViewingDoc(null)}
+                  className="w-10 h-10 bg-slate-800 flex items-center justify-center text-slate-300 hover:text-white hover:bg-rose-500 rounded-full transition-all shadow-md"
+                  title="Đóng (Esc)"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+            </div>
+            
+            {/* Iframe Content */}
+            <div className="flex-1 w-full h-full bg-slate-800 relative">
+              <iframe
+                src={viewingDoc.url}
+                className="w-full h-full absolute inset-0 border-none"
+                title={viewingDoc.title}
+                allowFullScreen
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -32,12 +32,12 @@ export function useAmenities(centerPosition) {
       const query = `
         [out:json][timeout:25];
         (
-          nwr["amenity"~"school|university|hospital|clinic|marketplace"](around:${radius},${centerPosition[0]},${centerPosition[1]});
-          nwr["shop"~"supermarket|mall"](around:${radius},${centerPosition[0]},${centerPosition[1]});
-          nwr["tourism"~"attraction|theme_park|museum|resort|hotel"](around:${radius},${centerPosition[0]},${centerPosition[1]});
-          nwr["landuse"="industrial"](around:${radius},${centerPosition[0]},${centerPosition[1]});
-          nwr["leisure"="park"](around:${radius},${centerPosition[0]},${centerPosition[1]});
-          nwr["aeroway"="aerodrome"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["amenity"~"school|university|hospital|clinic|marketplace"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["shop"~"supermarket|mall"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["tourism"~"attraction|theme_park|museum|resort|hotel"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["landuse"="industrial"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["leisure"="park"](around:${radius},${centerPosition[0]},${centerPosition[1]});
+          node["aeroway"="aerodrome"](around:${radius},${centerPosition[0]},${centerPosition[1]});
         );
         out center;
       `;
@@ -89,6 +89,34 @@ export function useAmenities(centerPosition) {
       const finalLocations = uniqueMapped.slice(0, 80);
       setDynamicAmenities(finalLocations);
       
+      // XUẤT RA CONSOLE ĐỂ LẤY DỮ LIỆU
+      const jsonFriendlyData = finalLocations.map((item, id) => {
+        let iconStr = "MapPin";
+        if (item.icon === School) iconStr = "School";
+        else if (item.icon === ShoppingBag) iconStr = "ShoppingBag";
+        else if (item.icon === Plane) iconStr = "Plane";
+        else if (item.icon === Train) iconStr = "Train";
+        else if (item.icon === Car) iconStr = "Car";
+        else if (item.icon === Map) iconStr = "Map";
+        else if (item.icon === Factory) iconStr = "Factory";
+        else if (item.icon === Hotel) iconStr = "Hotel";
+        else if (item.icon === TreePine) iconStr = "TreePine";
+
+        return {
+          id: id + 1,
+          name: item.name,
+          lat: item.lat,
+          lng: item.lng,
+          dist: item.dist,
+          time: item.time,
+          icon: iconStr,
+          type: item.type
+        };
+      });
+      // console.log("========== DỮ LIỆU JSON ĐỂ COPY ==========");
+      // console.log(JSON.stringify({ locations: jsonFriendlyData }, null, 2));
+      // console.log("==========================================");
+      
     } catch (err) {
       console.error("Lỗi khi tải dữ liệu Overpass:", err);
     } finally {
@@ -100,7 +128,13 @@ export function useAmenities(centerPosition) {
     fetchNearbyAmenities();
   }, [fetchNearbyAmenities]);
 
-  const amenitiesToUse = dynamicAmenities.length > 0 ? dynamicAmenities : amenitiesData.locations.map((loc) => {
+  // Lọc dữ liệu tĩnh theo bán kính (searchRadius tính bằng mét, loc.dist tính bằng km)
+  const filteredStaticData = amenitiesData.locations.filter(loc => {
+    const distVal = parseFloat(loc.dist.replace(" km", "").trim());
+    return (distVal * 1000) <= searchRadius;
+  });
+
+  const amenitiesToUse = dynamicAmenities.length > 0 ? dynamicAmenities : filteredStaticData.map((loc) => {
     let type = "Khác";
     if (loc.icon === 'School') type = "Giáo dục";
     else if (loc.icon === 'ShoppingBag') type = "Mua sắm";

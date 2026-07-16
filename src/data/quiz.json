@@ -1,302 +1,449 @@
 [
   {
-    "id": 1,
-    "question": "Dự án Fenica có tổng cộng bao nhiêu căn hộ?",
-    "options": [
-      "A. 500 căn hộ",
-      "B. 579 căn hộ",
-      "C. 650 căn hộ",
-      "D. 700 căn hộ"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Theo quy mô dự án, Fenica có tổng cộng 579 căn hộ phân bổ trên 2 block cao 22 tầng."
+    "topicId": "tong-quan",
+    "topicName": "Tổng quan dự án Fenica",
+    "description": "Kiến thức chung về quy mô, thiết kế, tiện ích, không gian sống.",
+    "icon": "Building",
+    "color": "bg-blue-500",
+    "questions": [
+      {
+        "id": 1,
+        "question": "Dự án Fenica có tổng cộng bao nhiêu căn hộ?",
+        "options": [
+          "A. 500 căn hộ",
+          "B. 579 căn hộ",
+          "C. 650 căn hộ",
+          "D. 700 căn hộ"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Theo quy mô dự án, Fenica có tổng cộng 579 căn hộ phân bổ trên 2 block cao 22 tầng."
+      },
+      {
+        "id": 2,
+        "question": "Thời hạn sở hữu căn hộ tại dự án Fenica đối với người nước ngoài là bao lâu?",
+        "options": [
+          "A. Sở hữu lâu dài",
+          "B. 30 năm",
+          "C. 50 năm (có thể gia hạn)",
+          "D. 70 năm"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Theo quy định pháp luật Việt Nam, người nước ngoài được sở hữu 50 năm (có thể gia hạn), còn công dân Việt Nam là sở hữu lâu dài."
+      },
+      {
+        "id": 3,
+        "question": "Mỗi block tại dự án có bao nhiêu thang máy?",
+        "options": [
+          "A. 2 thang khách, 1 thang hàng",
+          "B. 3 thang khách, 1 thang hàng",
+          "C. 4 thang khách",
+          "D. 3 thang khách, 2 thang hàng"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Mỗi tháp được trang bị 3 thang máy khách và 1 thang hàng (kiêm thang PCCC) rộng hơn dùng để vận chuyển."
+      },
+      {
+        "id": 4,
+        "question": "Phí bảo trì khi mua căn hộ được tính như thế nào?",
+        "options": [
+          "A. 1% giá bán trước VAT",
+          "B. 2% giá bán trước VAT",
+          "C. 2% giá bán sau VAT",
+          "D. 5% giá bán trước VAT"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Kinh phí bảo trì theo quy định là 2% tính trên giá bán căn hộ chưa bao gồm thuế GTGT (VAT)."
+      },
+      {
+        "id": 5,
+        "question": "Thời gian bàn giao nhà dự kiến của dự án Fenica là khi nào?",
+        "options": [
+          "A. Quý 4/2026",
+          "B. Quý 1/2027",
+          "C. Quý 4/2027",
+          "D. Quý 2/2028"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Theo lộ trình, dự án sẽ hoàn thiện phần thân vào tháng 12/2026 và chính thức bàn giao cho khách hàng vào Quý 4/2027."
+      },
+      {
+        "id": 6,
+        "question": "Khoảng cách giữa hai block (tháp) của dự án là bao nhiêu?",
+        "options": [
+          "A. Dưới 10m",
+          "B. Đúng 12m",
+          "C. Từ 15m trở lên",
+          "D. Trên 25m"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Khoảng cách giữa 2 tháp được thiết kế ≥ 15m để đảm bảo độ thông thoáng và an toàn phòng cháy chữa cháy."
+      },
+      {
+        "id": 7,
+        "question": "Tiện ích Hồ Bơi người lớn có kích thước bao nhiêu?",
+        "options": [
+          "A. Dài 20m, Rộng 5m",
+          "B. Dài 25m, Rộng 6m",
+          "C. Dài 29m, Rộng 6m",
+          "D. Dài 50m (chuẩn Olympic)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Hồ bơi người lớn tại tầng 2 có kích thước: Sâu 1.2m x Rộng 6m x Dài 29m."
+      },
+      {
+        "id": 8,
+        "question": "Kính ở cửa đi lùa ra logia và cửa sổ được sử dụng loại vật liệu nào?",
+        "options": [
+          "A. Kính thường dày 5mm",
+          "B. Kính cường lực 10mm",
+          "C. Kính cách âm chuyên dụng",
+          "D. Kính dán an toàn dày 8.38mm"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Các loại kính ở cửa lùa ban công và cửa sổ đều là kính dán an toàn dày 8.38mm (không có tính năng cách âm cách nhiệt chuyên dụng)."
+      },
+      {
+        "id": 9,
+        "question": "Khách hàng có được phép thay đổi thiết kế bên trong căn hộ không?",
+        "options": [
+          "A. Tuyệt đối không",
+          "B. Có, tự do đập vỡ tường chịu lực",
+          "C. Có, nếu không ảnh hưởng kết cấu chung và được BQL chấp thuận",
+          "D. Có, và có thể thay đổi cả thiết kế kiến trúc bên ngoài"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Chủ nhà được phép thay đổi trang trí bên trong với điều kiện tự chịu chi phí, phải được BQL duyệt và không thay đổi kết cấu cũng như kiến trúc ngoài."
+      },
+      {
+        "id": 10,
+        "question": "Chiều sâu của ban công (balcony) là bao nhiêu mét?",
+        "options": [
+          "A. 0.9m",
+          "B. 1.0m",
+          "C. 1.1m",
+          "D. 1.5m"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Chiều sâu balcony tiêu chuẩn tại các căn hộ Fenica là 1.1m."
+      },
+      {
+        "id": 11,
+        "question": "Phí Đăng ký (Booking) của dự án Fenica là bao nhiêu?",
+        "options": [
+          "A. 20.000.000 đồng",
+          "B. 30.000.000 đồng",
+          "C. 35.000.000 đồng",
+          "D. 50.000.000 đồng"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Mức phí Booking là 35.000.000 đồng, dùng để nhận thông tin và tham dự sự kiện mở bán."
+      },
+      {
+        "id": 12,
+        "question": "Khách hàng sẽ ký Hợp Đồng Mua Bán khi thanh toán tối thiểu bao nhiêu %?",
+        "options": [
+          "A. 10%",
+          "B. 20%",
+          "C. 25%",
+          "D. 30%"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Khi thanh toán 10% khách hàng sẽ ký Thỏa Thuận Tư Vấn, và khi đạt đủ 20% trở lên sẽ tiến hành ký Hợp Đồng Mua Bán."
+      },
+      {
+        "id": 13,
+        "question": "Dự án Fenica liên kết với những ngân hàng nào?",
+        "options": [
+          "A. Vietcombank, Techcombank, ACB",
+          "B. Techcombank, Sacombank, VPBank",
+          "C. Agribank, SHB, OCB",
+          "D. Vietcombank, Vietinbank, ACB, BIDV, MB Bank, Nam Á Bank"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Dự án hiện đang liên kết với các ngân hàng uy tín: ACB, BIDV, MB Bank, Nam Á Bank, Vietcombank, Vietinbank."
+      },
+      {
+        "id": 14,
+        "question": "Dự án Fenica bao gồm bao nhiêu tầng hầm?",
+        "options": [
+          "A. 1 tầng hầm",
+          "B. 2 tầng hầm",
+          "C. 3 tầng hầm",
+          "D. Không có tầng hầm"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dự án có 2 tầng hầm với tổng diện tích để xe lên tới 6.061,35m2, đáp ứng dư dả nhu cầu đậu xe cho cư dân."
+      },
+      {
+        "id": 15,
+        "question": "Khối tháp của dự án có mật độ xây dựng là bao nhiêu?",
+        "options": [
+          "A. 30.15%",
+          "B. 39.20%",
+          "C. 45.50%",
+          "D. 52.32%"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Mật độ xây dựng khối tháp chỉ chiếm 39,20%, trong khi khối đế là 52,32%."
+      }
+    ]
   },
   {
-    "id": 2,
-    "question": "Thời hạn sở hữu căn hộ tại dự án Fenica đối với người nước ngoài là bao lâu?",
-    "options": [
-      "A. Sở hữu lâu dài",
-      "B. 30 năm",
-      "C. 50 năm (có thể gia hạn)",
-      "D. 70 năm"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Theo quy định pháp luật Việt Nam, người nước ngoài được sở hữu 50 năm (có thể gia hạn), còn công dân Việt Nam là sở hữu lâu dài."
+    "topicId": "phap-ly",
+    "topicName": "Pháp lý & Thanh toán",
+    "description": "Nắm vững pháp lý, hợp đồng, lộ trình thanh toán và vay vốn.",
+    "icon": "Scale",
+    "color": "bg-emerald-500",
+    "questions": [
+      {
+        "id": 16,
+        "question": "Dự kiến khi nào đủ điều kiện ký Hợp Đồng Mua Bán (HĐMB)?",
+        "options": [
+          "A. 04/2026",
+          "B. 07/2026",
+          "C. 12/2026",
+          "D. 01/2027"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Theo kế hoạch thi công, dự án hoàn thành móng vào tháng 04/2026 và đủ điều kiện ký HĐMB vào tháng 07/2026."
+      },
+      {
+        "id": 17,
+        "question": "Tốc độ của thang máy dành cho hành khách là bao nhiêu?",
+        "options": [
+          "A. 1.5 m/s",
+          "B. 1.75 m/s",
+          "C. 2.0 m/s",
+          "D. 2.5 m/s"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Thang khách và thang PCCC đều có tốc độ vận hành 1.75m/s đảm bảo di chuyển nhanh chóng."
+      },
+      {
+        "id": 18,
+        "question": "Chiều cao trần nhà của phòng khách, phòng ngủ là bao nhiêu?",
+        "options": [
+          "A. 2.4 m",
+          "B. 2.6 m",
+          "C. 2.8 m",
+          "D. 3.0 m"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Chiều cao trần phòng khách, bếp và ngủ là 2.6m, riêng phòng vệ sinh là 2.4m để đi trần thạch cao che kỹ thuật."
+      },
+      {
+        "id": 19,
+        "question": "Có bao nhiêu căn hộ trên mỗi tầng điển hình của mỗi block?",
+        "options": [
+          "A. 12 căn",
+          "B. 15 căn",
+          "C. 18 căn",
+          "D. 20 căn"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Mỗi tầng điển hình của một block được bố trí 15 căn hộ."
+      },
+      {
+        "id": 20,
+        "question": "Tại Dự án Fenica, có căn hộ Penthouse không?",
+        "options": [
+          "A. Có 2 căn ở mỗi block",
+          "B. Có 4 căn ở mỗi block",
+          "C. Không có",
+          "D. Chỉ có tại Block A"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Dự án Fenica hoàn toàn không có loại hình căn hộ Penthouse."
+      },
+      {
+        "id": 21,
+        "question": "Hệ thống xử lý nước thải của tòa nhà được đặt ở đâu?",
+        "options": [
+          "A. Đặt tại sân thượng",
+          "B. Đặt tại Tầng hầm 1",
+          "C. Đặt tại Tầng hầm 2",
+          "D. Đặt bên ngoài dự án"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Nước thải được thu gom vào bể tự hoại đặt tại Tầng hầm 1 trước khi bơm ra hệ thống xử lý tập trung."
+      },
+      {
+        "id": 22,
+        "question": "Diện tích thông thủy của căn hộ 2 phòng ngủ điển hình là bao nhiêu?",
+        "options": [
+          "A. 55.20 m2",
+          "B. 60.05 m2",
+          "C. 66.31 m2",
+          "D. 72.15 m2"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Căn hộ 2 phòng ngủ có diện tích tim tường là 66.31m2 và diện tích thông thủy là 60.05m2."
+      },
+      {
+        "id": 23,
+        "question": "Khách hàng có thể ghép 2 căn hộ liền kề thành 1 căn không?",
+        "options": [
+          "A. Hoàn toàn không được phép",
+          "B. Được phép nhưng phải do CĐT thi công",
+          "C. Được phép nếu BQL chấp thuận và không ảnh hưởng kết cấu",
+          "D. Tự do ghép mà không cần xin phép"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Việc đập thông ghép căn được phép thực hiện nhưng bắt buộc phải xin phép, được Ban quản lý duyệt và đảm bảo an toàn kết cấu chung."
+      },
+      {
+        "id": 24,
+        "question": "Nếu không ký lựa chọn giao dịch, Phí Booking sẽ được hoàn trả trong bao lâu?",
+        "options": [
+          "A. 7 ngày làm việc",
+          "B. 14 ngày làm việc",
+          "C. 30 ngày làm việc",
+          "D. Không được hoàn trả"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Nếu khách hàng quyết định không mua, tiền Booking sẽ được hoàn trả lại trong vòng 14 ngày làm việc."
+      },
+      {
+        "id": 25,
+        "question": "Chủ đầu tư của Dự án Fenica là ai?",
+        "options": [
+          "A. Công ty CP Địa ốc Đà Lạt (DLR)",
+          "B. NK Properties",
+          "C. CT TNHH Đầu tư dự án Phượng Hoàng",
+          "D. NAGECCO"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Dự án được phát triển bởi liên doanh, trong đó Chủ Đầu Tư chính là Công ty TNHH Đầu tư dự án Phượng Hoàng."
+      }
+    ]
   },
   {
-    "id": 3,
-    "question": "Mỗi block tại dự án có bao nhiêu thang máy?",
-    "options": [
-      "A. 2 thang khách, 1 thang hàng",
-      "B. 3 thang khách, 1 thang hàng",
-      "C. 4 thang khách",
-      "D. 3 thang khách, 2 thang hàng"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Mỗi tháp được trang bị 3 thang máy khách và 1 thang hàng (kiêm thang PCCC) rộng hơn dùng để vận chuyển."
-  },
-  {
-    "id": 4,
-    "question": "Phí bảo trì khi mua căn hộ được tính như thế nào?",
-    "options": [
-      "A. 1% giá bán trước VAT",
-      "B. 2% giá bán trước VAT",
-      "C. 2% giá bán sau VAT",
-      "D. 5% giá bán trước VAT"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Kinh phí bảo trì theo quy định là 2% tính trên giá bán căn hộ chưa bao gồm thuế GTGT (VAT)."
-  },
-  {
-    "id": 5,
-    "question": "Thời gian bàn giao nhà dự kiến của dự án Fenica là khi nào?",
-    "options": [
-      "A. Quý 4/2026",
-      "B. Quý 1/2027",
-      "C. Quý 4/2027",
-      "D. Quý 2/2028"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Theo lộ trình, dự án sẽ hoàn thiện phần thân vào tháng 12/2026 và chính thức bàn giao cho khách hàng vào Quý 4/2027."
-  },
-  {
-    "id": 6,
-    "question": "Khoảng cách giữa hai block (tháp) của dự án là bao nhiêu?",
-    "options": [
-      "A. Dưới 10m",
-      "B. Đúng 12m",
-      "C. Từ 15m trở lên",
-      "D. Trên 25m"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Khoảng cách giữa 2 tháp được thiết kế ≥ 15m để đảm bảo độ thông thoáng và an toàn phòng cháy chữa cháy."
-  },
-  {
-    "id": 7,
-    "question": "Tiện ích Hồ Bơi người lớn có kích thước bao nhiêu?",
-    "options": [
-      "A. Dài 20m, Rộng 5m",
-      "B. Dài 25m, Rộng 6m",
-      "C. Dài 29m, Rộng 6m",
-      "D. Dài 50m (chuẩn Olympic)"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Hồ bơi người lớn tại tầng 2 có kích thước: Sâu 1.2m x Rộng 6m x Dài 29m."
-  },
-  {
-    "id": 8,
-    "question": "Kính ở cửa đi lùa ra logia và cửa sổ được sử dụng loại vật liệu nào?",
-    "options": [
-      "A. Kính thường dày 5mm",
-      "B. Kính cường lực 10mm",
-      "C. Kính cách âm chuyên dụng",
-      "D. Kính dán an toàn dày 8.38mm"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Các loại kính ở cửa lùa ban công và cửa sổ đều là kính dán an toàn dày 8.38mm (không có tính năng cách âm cách nhiệt chuyên dụng)."
-  },
-  {
-    "id": 9,
-    "question": "Khách hàng có được phép thay đổi thiết kế bên trong căn hộ không?",
-    "options": [
-      "A. Tuyệt đối không",
-      "B. Có, tự do đập vỡ tường chịu lực",
-      "C. Có, nếu không ảnh hưởng kết cấu chung và được BQL chấp thuận",
-      "D. Có, và có thể thay đổi cả thiết kế kiến trúc bên ngoài"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Chủ nhà được phép thay đổi trang trí bên trong với điều kiện tự chịu chi phí, phải được BQL duyệt và không thay đổi kết cấu cũng như kiến trúc ngoài."
-  },
-  {
-    "id": 10,
-    "question": "Chiều sâu của ban công (balcony) là bao nhiêu mét?",
-    "options": [
-      "A. 0.9m",
-      "B. 1.0m",
-      "C. 1.1m",
-      "D. 1.5m"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Chiều sâu balcony tiêu chuẩn tại các căn hộ Fenica là 1.1m."
-  },
-  {
-    "id": 11,
-    "question": "Phí Đăng ký (Booking) của dự án Fenica là bao nhiêu?",
-    "options": [
-      "A. 20.000.000 đồng",
-      "B. 30.000.000 đồng",
-      "C. 35.000.000 đồng",
-      "D. 50.000.000 đồng"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Mức phí Booking là 35.000.000 đồng, dùng để nhận thông tin và tham dự sự kiện mở bán."
-  },
-  {
-    "id": 12,
-    "question": "Khách hàng sẽ ký Hợp Đồng Mua Bán khi thanh toán tối thiểu bao nhiêu %?",
-    "options": [
-      "A. 10%",
-      "B. 20%",
-      "C. 25%",
-      "D. 30%"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Khi thanh toán 10% khách hàng sẽ ký Thỏa Thuận Tư Vấn, và khi đạt đủ 20% trở lên sẽ tiến hành ký Hợp Đồng Mua Bán."
-  },
-  {
-    "id": 13,
-    "question": "Dự án Fenica liên kết với những ngân hàng nào?",
-    "options": [
-      "A. Vietcombank, Techcombank, ACB",
-      "B. Techcombank, Sacombank, VPBank",
-      "C. Agribank, SHB, OCB",
-      "D. Vietcombank, Vietinbank, ACB, BIDV, MB Bank, Nam Á Bank"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Dự án hiện đang liên kết với các ngân hàng uy tín: ACB, BIDV, MB Bank, Nam Á Bank, Vietcombank, Vietinbank."
-  },
-  {
-    "id": 14,
-    "question": "Dự án Fenica bao gồm bao nhiêu tầng hầm?",
-    "options": [
-      "A. 1 tầng hầm",
-      "B. 2 tầng hầm",
-      "C. 3 tầng hầm",
-      "D. Không có tầng hầm"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Dự án có 2 tầng hầm với tổng diện tích để xe lên tới 6.061,35m2, đáp ứng dư dả nhu cầu đậu xe cho cư dân."
-  },
-  {
-    "id": 15,
-    "question": "Khối tháp của dự án có mật độ xây dựng là bao nhiêu?",
-    "options": [
-      "A. 30.15%",
-      "B. 39.20%",
-      "C. 45.50%",
-      "D. 52.32%"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Mật độ xây dựng khối tháp chỉ chiếm 39,20%, trong khi khối đế là 52,32%."
-  },
-  {
-    "id": 16,
-    "question": "Dự kiến khi nào đủ điều kiện ký Hợp Đồng Mua Bán (HĐMB)?",
-    "options": [
-      "A. 04/2026",
-      "B. 07/2026",
-      "C. 12/2026",
-      "D. 01/2027"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Theo kế hoạch thi công, dự án hoàn thành móng vào tháng 04/2026 và đủ điều kiện ký HĐMB vào tháng 07/2026."
-  },
-  {
-    "id": 17,
-    "question": "Tốc độ của thang máy dành cho hành khách là bao nhiêu?",
-    "options": [
-      "A. 1.5 m/s",
-      "B. 1.75 m/s",
-      "C. 2.0 m/s",
-      "D. 2.5 m/s"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Thang khách và thang PCCC đều có tốc độ vận hành 1.75m/s đảm bảo di chuyển nhanh chóng."
-  },
-  {
-    "id": 18,
-    "question": "Chiều cao trần nhà của phòng khách, phòng ngủ là bao nhiêu?",
-    "options": [
-      "A. 2.4 m",
-      "B. 2.6 m",
-      "C. 2.8 m",
-      "D. 3.0 m"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Chiều cao trần phòng khách, bếp và ngủ là 2.6m, riêng phòng vệ sinh là 2.4m để đi trần thạch cao che kỹ thuật."
-  },
-  {
-    "id": 19,
-    "question": "Có bao nhiêu căn hộ trên mỗi tầng điển hình của mỗi block?",
-    "options": [
-      "A. 12 căn",
-      "B. 15 căn",
-      "C. 18 căn",
-      "D. 20 căn"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Mỗi tầng điển hình của một block được bố trí 15 căn hộ."
-  },
-  {
-    "id": 20,
-    "question": "Tại Dự án Fenica, có căn hộ Penthouse không?",
-    "options": [
-      "A. Có 2 căn ở mỗi block",
-      "B. Có 4 căn ở mỗi block",
-      "C. Không có",
-      "D. Chỉ có tại Block A"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Dự án Fenica hoàn toàn không có loại hình căn hộ Penthouse."
-  },
-  {
-    "id": 21,
-    "question": "Hệ thống xử lý nước thải của tòa nhà được đặt ở đâu?",
-    "options": [
-      "A. Đặt tại sân thượng",
-      "B. Đặt tại Tầng hầm 1",
-      "C. Đặt tại Tầng hầm 2",
-      "D. Đặt bên ngoài dự án"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Nước thải được thu gom vào bể tự hoại đặt tại Tầng hầm 1 trước khi bơm ra hệ thống xử lý tập trung."
-  },
-  {
-    "id": 22,
-    "question": "Diện tích thông thủy của căn hộ 2 phòng ngủ điển hình là bao nhiêu?",
-    "options": [
-      "A. 55.20 m2",
-      "B. 60.05 m2",
-      "C. 66.31 m2",
-      "D. 72.15 m2"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Căn hộ 2 phòng ngủ có diện tích tim tường là 66.31m2 và diện tích thông thủy là 60.05m2."
-  },
-  {
-    "id": 23,
-    "question": "Khách hàng có thể ghép 2 căn hộ liền kề thành 1 căn không?",
-    "options": [
-      "A. Hoàn toàn không được phép",
-      "B. Được phép nhưng phải do CĐT thi công",
-      "C. Được phép nếu BQL chấp thuận và không ảnh hưởng kết cấu",
-      "D. Tự do ghép mà không cần xin phép"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Việc đập thông ghép căn được phép thực hiện nhưng bắt buộc phải xin phép, được Ban quản lý duyệt và đảm bảo an toàn kết cấu chung."
-  },
-  {
-    "id": 24,
-    "question": "Nếu không ký lựa chọn giao dịch, Phí Booking sẽ được hoàn trả trong bao lâu?",
-    "options": [
-      "A. 7 ngày làm việc",
-      "B. 14 ngày làm việc",
-      "C. 30 ngày làm việc",
-      "D. Không được hoàn trả"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Nếu khách hàng quyết định không mua, tiền Booking sẽ được hoàn trả lại trong vòng 14 ngày làm việc."
-  },
-  {
-    "id": 25,
-    "question": "Chủ đầu tư của Dự án Fenica là ai?",
-    "options": [
-      "A. Công ty CP Địa ốc Đà Lạt (DLR)",
-      "B. NK Properties",
-      "C. CT TNHH Đầu tư dự án Phượng Hoàng",
-      "D. NAGECCO"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Dự án được phát triển bởi liên doanh, trong đó Chủ Đầu Tư chính là Công ty TNHH Đầu tư dự án Phượng Hoàng."
+    "topicId": "nghiep-vu",
+    "topicName": "Nghiệp vụ Sales",
+    "description": "Kỹ năng chốt sale, tư vấn đầu tư, xử lý từ chối hiệu quả.",
+    "icon": "Briefcase",
+    "color": "bg-amber-500",
+    "questions": [
+      {
+        "id": 26,
+        "question": "Khi khách hàng hỏi về rủi ro pháp lý của dự án đang xây dựng, Sale nên trả lời thế nào là tốt nhất?",
+        "options": [
+          "A. Khẳng định dự án hoàn toàn không có rủi ro",
+          "B. Đưa ra các giấy tờ pháp lý hiện có (1/500, GPXD) và giải thích tiến độ pháp lý minh bạch",
+          "C. Chuyển hướng sang nói về tiện ích dự án để khách hàng quên đi",
+          "D. Tránh né và nói rằng chủ đầu tư uy tín nên không cần lo"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Khách hàng mua dự án hình thành trong tương lai luôn có rủi ro. Việc cung cấp minh chứng pháp lý hiện có và giải thích lộ trình là cách chuyên nghiệp nhất để tạo niềm tin."
+      },
+      {
+        "id": 27,
+        "question": "Thuật ngữ 'Tỷ suất sinh lời cho thuê' (Rental Yield) được tính như thế nào?",
+        "options": [
+          "A. Tổng doanh thu tiền thuê 1 năm chia cho Giá trị căn hộ",
+          "B. Lợi nhuận tiền thuê 1 tháng chia cho Giá trị căn hộ",
+          "C. Lợi nhuận tiền thuê 1 năm trừ đi Lãi suất ngân hàng",
+          "D. Tổng doanh thu tiền thuê 1 năm nhân với Tỷ lệ lạm phát"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Rental Yield = (Doanh thu cho thuê 1 năm / Giá trị bất động sản) x 100%. Đây là chỉ số quan trọng khách đầu tư thường quan tâm."
+      },
+      {
+        "id": 28,
+        "question": "Chênh lệch giữa Diện tích Thông thuỷ và Diện tích Tim tường thường rơi vào khoảng bao nhiêu phần trăm?",
+        "options": [
+          "A. 1% - 3%",
+          "B. 5% - 8%",
+          "C. 10% - 15%",
+          "D. 20% - 25%"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Thông thường, diện tích thông thuỷ nhỏ hơn diện tích tim tường khoảng 5% đến 8%, tuỳ thuộc vào độ dày của tường bao và cột trong nhà."
+      },
+      {
+        "id": 29,
+        "question": "Phương thức thanh toán theo tiến độ xây dựng mang lại lợi ích gì cho khách hàng?",
+        "options": [
+          "A. Được chiết khấu cao nhất có thể",
+          "B. Không cần phải vay ngân hàng",
+          "C. Giảm áp lực tài chính và an toàn hơn vì trả tiền theo tiến độ thực tế",
+          "D. Được nhận nhà sớm hơn dự kiến"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Thanh toán theo tiến độ xây dựng giúp khách hàng dàn trải dòng tiền và giảm rủi ro vì tiền đóng tương ứng với hạng mục đã hoàn thành."
+      },
+      {
+        "id": 30,
+        "question": "Theo Luật Kinh doanh Bất động sản mới, chủ đầu tư được thu tối đa bao nhiêu % giá trị Hợp đồng mua bán trước khi bàn giao nhà đối với khách hàng trong nước?",
+        "options": [
+          "A. 50%",
+          "B. 70%",
+          "C. 95%",
+          "D. 100%"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Theo quy định, CĐT chỉ được thu tối đa 70% giá trị hợp đồng trước khi bàn giao nhà (trừ trường hợp thoả thuận đặc biệt hoặc khách hàng nước ngoài thu tối đa 50%)."
+      },
+      {
+        "id": 31,
+        "question": "Khi bán căn hộ, khoản thuế Thu nhập cá nhân (TNCN) do ai chịu trách nhiệm đóng theo luật định?",
+        "options": [
+          "A. Người mua",
+          "B. Người bán",
+          "C. Chia đều cho 2 bên",
+          "D. Môi giới"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Theo quy định, bên chuyển nhượng (người bán) là người phát sinh thu nhập nên phải chịu thuế TNCN (2% giá trị chuyển nhượng), trừ khi 2 bên có thoả thuận khác."
+      },
+      {
+        "id": 32,
+        "question": "Trong trường hợp bàn giao trễ hạn so với HĐMB, Chủ đầu tư thường phải chịu chế tài gì?",
+        "options": [
+          "A. Phạt lãi suất tính trên số tiền khách hàng đã thanh toán cho những ngày chậm trễ",
+          "B. Phạt 10% giá trị căn hộ",
+          "C. Phải trả lại toàn bộ tiền kèm 20% tiền bồi thường",
+          "D. Không bị chế tài nếu là lý do chủ quan"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Các HĐMB chuẩn đều có điều khoản phạt lãi suất chậm bàn giao (thường bằng lãi suất quá hạn của ngân hàng) tính trên tổng số tiền khách đã đóng."
+      },
+      {
+        "id": 33,
+        "question": "Tiện ích 'Shophouse khối đế' mang lại giá trị gia tăng gì cho dự án căn hộ?",
+        "options": [
+          "A. Làm đẹp cảnh quan bên ngoài",
+          "B. Cung cấp tiện ích mua sắm, dịch vụ thiết yếu ngay dưới chân nhà, tăng tính tiện lợi và thanh khoản",
+          "C. Chỉ dành cho người ngoài dự án vào mua sắm",
+          "D. Tăng diện tích đỗ xe cho cư dân"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Shophouse khối đế tạo nên sự sầm uất, cung cấp tiện ích tại chỗ giúp cư dân không phải đi xa, từ đó nâng tầm giá trị sống và giá trị bất động sản."
+      },
+      {
+        "id": 34,
+        "question": "Mức chiết khấu khi thanh toán nhanh thường được chủ đầu tư tính toán dựa trên cơ sở nào?",
+        "options": [
+          "A. Chi phí marketing",
+          "B. Chi phí lãi vay ngân hàng mà CĐT tiết kiệm được khi khách ứng trước tiền",
+          "C. Lợi nhuận từ việc cho thuê căn hộ",
+          "D. Lạm phát hàng năm"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Khi khách thanh toán nhanh (thanh toán vượt tiến độ 70-95%), CĐT có sẵn dòng tiền để xây dựng mà không cần vay ngân hàng, phần lãi suất tiết kiệm được này sẽ dùng làm chiết khấu cho khách."
+      },
+      {
+        "id": 35,
+        "question": "Để chốt sales thành công đối với tệp khách hàng mua đầu tư, yếu tố nào quan trọng nhất cần nhấn mạnh?",
+        "options": [
+          "A. Thiết kế phòng ngủ đẹp",
+          "B. Gần trường mẫu giáo cho con nhỏ",
+          "C. Tiềm năng tăng giá, hạ tầng giao thông tương lai và tính thanh khoản",
+          "D. Phong thuỷ căn hộ"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Khách hàng đầu tư quan tâm nhất đến tỷ suất lợi nhuận (tăng giá vốn + dòng tiền cho thuê) và tính thanh khoản (dễ bán lại), do đó hạ tầng và quy hoạch là điểm chốt."
+      }
+    ]
   }
 ]
