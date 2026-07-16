@@ -4,6 +4,30 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  server: {
+    proxy: {
+      '/api/overpass': {
+        target: 'https://overpass-api.de/api/interpreter',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/overpass/, '')
+      },
+      '/api/overpass-lz4': {
+        target: 'https://lz4.overpass-api.de/api/interpreter',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/overpass-lz4/, '')
+      },
+      '/api/overpass-z': {
+        target: 'https://z.overpass-api.de/api/interpreter',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/overpass-z/, '')
+      },
+      '/api/overpass-kumi': {
+        target: 'https://overpass.kumi.systems/api/interpreter',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api\/overpass-kumi/, '')
+      }
+    }
+  },
   plugins: [
     tailwindcss(),
     react(),

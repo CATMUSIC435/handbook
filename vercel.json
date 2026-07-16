@@ -1,0 +1,24 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/overpass",
+      "destination": "https://overpass-api.de/api/interpreter"
+    },
+    {
+      "source": "/api/overpass-lz4",
+      "destination": "https://lz4.overpass-api.de/api/interpreter"
+    },
+    {
+      "source": "/api/overpass-z",
+      "destination": "https://z.overpass-api.de/api/interpreter"
+    },
+    {
+      "source": "/api/overpass-kumi",
+      "destination": "https://overpass.kumi.systems/api/interpreter"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
