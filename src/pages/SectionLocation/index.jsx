@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import L from "leaflet";
-import { Map, Image as ImageIcon, Navigation } from "lucide-react";
+import { Map, Image as ImageIcon, Navigation, Box } from "lucide-react";
 import osmtogeojson from 'osmtogeojson';
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
@@ -21,6 +21,9 @@ import MapToolbar from "./components/MapToolbar";
 import AmenitiesSidebar from "./components/AmenitiesSidebar";
 import PropertySidebar from "./components/PropertySidebar";
 import OverpassModal from "./components/OverpassModal";
+import Tower3DViewer from "./components/Tower3D";
+
+import Mapbox3DViewer from "./components/Mapbox3DViewer";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -132,7 +135,7 @@ export default function SectionLocation() {
         <div className="flex-1 relative bg-white shadow-xl overflow-hidden border border-slate-200">
           
           {/* Toggle buttons */}
-          <div className="absolute top-4 left-16 flex flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md max-w-[calc(100vw-80px)] overflow-x-auto">
+          <div className="absolute top-4 left-16 flex flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md max-w-[calc(100vw-80px)] overflow-x-auto hide-scrollbar">
             <button
               onClick={() => setMapMode("interactive")}
               className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
@@ -144,6 +147,13 @@ export default function SectionLocation() {
               className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <ImageIcon size={16} /> <span className="hidden sm:inline">Bản đồ đồ họa</span><span className="sm:hidden">Đồ họa</span>
+            </button>
+            <button
+              onClick={() => setMapMode("mapbox3d")}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "mapbox3d" ? "bg-blue-500 text-white shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg> 
+              <span className="hidden sm:inline">Mapbox 3D</span><span className="sm:hidden">Mapbox</span>
             </button>
           </div>
 
@@ -217,38 +227,46 @@ export default function SectionLocation() {
             </div>
           )}
 
-          <div className="absolute bottom-6 right-6 flex gap-4 z-[400]">
-            <button 
-              onClick={() => saveDrawings(featureGroupRef)}
-              className="bg-white p-3 shadow-lg text-slate-700 hover:text-green-600 transition-colors rounded-full"
-              title="Lưu lại nét vẽ"
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-            </button>
-            <button 
-              onClick={() => {
-                if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition(
-                    (position) => {
-                      const { latitude, longitude } = position.coords;
-                      const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${centerPosition[0]},${centerPosition[1]}`;
-                      window.open(url, '_blank');
-                    },
-                    (error) => {
-                      console.error("Lỗi lấy vị trí:", error);
-                      alert("Không thể lấy vị trí hiện tại của bạn. Vui lòng cho phép truy cập vị trí trong trình duyệt.");
-                    }
-                  );
-                } else {
-                  alert("Trình duyệt của bạn không hỗ trợ định vị.");
-                }
-              }}
-              className="bg-white p-3 shadow-lg text-slate-700 hover:text-[#d4ae6f] transition-colors rounded-full"
-              title="Chỉ đường đến dự án"
-            >
-              <Navigation size={24} />
-            </button>
-          </div>
+          {mapMode === "mapbox3d" && (
+            <div className="w-full h-full relative z-[300]">
+              <Mapbox3DViewer centerPosition={centerPosition} />
+            </div>
+          )}
+
+          {mapMode !== "mapbox3d" && (
+            <div className="absolute bottom-6 right-6 flex gap-4 z-[400]">
+              <button 
+                onClick={() => saveDrawings(featureGroupRef)}
+                className="bg-white p-3 shadow-lg text-slate-700 hover:text-green-600 transition-colors rounded-full"
+                title="Lưu lại nét vẽ"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              </button>
+              <button 
+                onClick={() => {
+                  if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                      (position) => {
+                        const { latitude, longitude } = position.coords;
+                        const url = `https://www.google.com/maps/dir/?api=1&origin=${latitude},${longitude}&destination=${centerPosition[0]},${centerPosition[1]}`;
+                        window.open(url, '_blank');
+                      },
+                      (error) => {
+                        console.error("Lỗi lấy vị trí:", error);
+                        alert("Không thể lấy vị trí hiện tại của bạn. Vui lòng cho phép truy cập vị trí trong trình duyệt.");
+                      }
+                    );
+                  } else {
+                    alert("Trình duyệt của bạn không hỗ trợ định vị.");
+                  }
+                }}
+                className="bg-white p-3 shadow-lg text-slate-700 hover:text-[#d4ae6f] transition-colors rounded-full"
+                title="Chỉ đường đến dự án"
+              >
+                <Navigation size={24} />
+              </button>
+            </div>
+          )}
         </div>
 
         <PropertySidebar

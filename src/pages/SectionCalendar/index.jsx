@@ -55,10 +55,10 @@ export default function SectionCalendar() {
   const [newType, setNewType] = useState("meeting");
 
   // Selected date for Agenda view
-  const [selectedDateStr, setSelectedDateStr] = useState("2026-07-14");
+  const [selectedDateStr, setSelectedDateStr] = useState(format(new Date(), "yyyy-MM-dd"));
 
   // Calendar controlled state
-  const [currentDate, setCurrentDate] = useState(new Date(2026, 6, 14));
+  const [currentDate, setCurrentDate] = useState(new Date());
   const [currentView, setCurrentView] = useState("month");
 
   const events = appointments.map((apt) => {
@@ -85,6 +85,7 @@ export default function SectionCalendar() {
   });
 
   const handleSelectSlot = (slotInfo) => {
+    setSelectedDateStr(format(slotInfo.start, "yyyy-MM-dd"));
     setEditingEventId(null);
     setNewTitle("");
     setNewCustomer("");
@@ -302,7 +303,7 @@ export default function SectionCalendar() {
           <div className="bg-white p-6 shadow-xl shadow-slate-200/50 border border-slate-100 flex-1">
             <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
               <Clock className="text-indigo-500" /> Lịch Trình{" "}
-              {selectedDateStr === "2026-07-14" ? "Hôm Nay" : selectedDateStr}
+              {selectedDateStr === format(new Date(), "yyyy-MM-dd") ? "Hôm Nay" : selectedDateStr}
             </h3>
 
             <div className="flex flex-col gap-4 relative">

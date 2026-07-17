@@ -3,8 +3,9 @@
     { "id": "title-1", "type": "title", "label": "Dự Án" },
     { "id": "intro", "label": "Giới Thiệu", "icon": "Home", "path": "/" },
     { "id": "location", "label": "Vị Trí", "icon": "Map", "path": "/location" },
-    { "id": "amenities", "label": "Tiện Ích", "icon": "Coffee", "path": "/amenities" },
+    { "id": "3d-model", "label": "Mô hình 3D", "icon": "Box", "path": "/3d-model" },
     { "id": "masterplan", "label": "Mặt Bằng", "icon": "Building2", "path": "/masterplan" },
+    { "id": "amenities", "label": "Tiện Ích", "icon": "Coffee", "path": "/amenities" },
     
     { "id": "title-2", "type": "title", "label": "Trải Nghiệm" },
     { "id": "panorama", "label": "Sa bàn 360", "icon": "Camera", "path": "/panorama" },

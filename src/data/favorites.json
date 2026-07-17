@@ -1,17 +1,6 @@
 {
-  "units": [
-    { "id": "A-1205", "code": "A-1205", "beds": 2, "area": 75.5, "price": 3.5, "direction": "Đông Nam", "image": "/assets/images/anh-du-an-fenica-can-ho.jpg" },
-    { "id": "B-2003", "code": "B-2003", "beds": 2, "area": 78.0, "price": 3.8, "direction": "Đông", "image": "/assets/images/anh-du-an-fenica-phong-ngu.jpg" }
-  ],
-  "images": [
-    { "id": 1, "src": "/assets/images/anh-du-an-fenica-anh-tong-the.jpg", "title": "Phối cảnh tổng thể" },
-    { "id": 8, "src": "/assets/images/ho-boi-fenica.webp", "title": "Hồ bơi vô cực" }
-  ],
-  "documents": [
-    { "id": 1, "title": "Brochure Dự án Fenica 2026", "type": "PDF", "size": "15.4 MB" },
-    { "id": 2, "title": "Bảng giá chi tiết Block A & B", "type": "Excel", "size": "2.1 MB" }
-  ],
-  "videos": [
-    { "id": 1, "title": "Flycam toàn cảnh dự án", "thumbnail": "/assets/images/anh-du-an-fenica-view-tu-tren-cao.jpg" }
-  ]
+  "units": [],
+  "images": [],
+  "documents": [],
+  "videos": []
 }

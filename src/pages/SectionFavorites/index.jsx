@@ -20,7 +20,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 export default function SectionFavorites() {
   const [activeTab, setActiveTab] = useState("units");
   const [favorites, setFavorites] = useLocalStorage(
-    "fenica_favorites",
+    "fenica_favorites_v2",
     favoritesData,
   );
 

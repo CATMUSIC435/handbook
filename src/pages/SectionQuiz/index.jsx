@@ -436,7 +436,7 @@ export default function SectionQuiz() {
         
         {/* Progress bar below header */}
         {!isReviewing && (
-          <div className="w-full max-w-6xl mx-auto mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
             <div 
               className="h-full bg-emerald-500 transition-all duration-300"
               style={{ width: (answeredCount / quizData.length * 100) + '%' }}
@@ -446,10 +446,10 @@ export default function SectionQuiz() {
       </div>
 
       {/* Main Content Area - 2 Columns on Desktop */}
-      <div className={"max-w-6xl mx-auto w-full p-4 sm:p-6 mt-4 flex flex-col lg:flex-row gap-8 items-start " + (showCheatModal ? "blur-md pointer-events-none" : "")}>
+      <div className={"max-w-7xl mx-auto w-full p-4 sm:p-6 mt-4 flex flex-col lg:flex-row gap-6 items-start " + (showCheatModal ? "blur-md pointer-events-none" : "")}>
         
         {/* Left Column: Questions List */}
-        <div className="flex-1 w-full flex flex-col gap-8 sm:gap-12">
+        <div className="flex-1 w-full flex flex-col gap-6 sm:gap-8">
           {quizData.map((q, qIndex) => {
             const selected = answers[qIndex];
             let isCorrect = false;
@@ -458,17 +458,17 @@ export default function SectionQuiz() {
             }
 
             return (
-              <div key={qIndex} className={"bg-white p-5 md:p-8 lg:p-10 rounded-3xl shadow-sm border " + (isReviewing ? (isCorrect ? "border-emerald-200" : "border-rose-200") : "border-slate-200")} id={"question-" + qIndex}>
-                <div className="flex items-start gap-4 sm:gap-6 mb-8">
-                  <div className={"w-10 h-10 sm:w-12 sm:h-12 shrink-0 rounded-full flex items-center justify-center font-black text-white text-lg sm:text-xl shadow-sm " + (isReviewing ? (isCorrect ? "bg-emerald-500" : "bg-rose-500") : "bg-primary")}>
+              <div key={qIndex} className={"bg-white p-4 md:p-6 lg:p-8 rounded-2xl shadow-sm border " + (isReviewing ? (isCorrect ? "border-emerald-200" : "border-rose-200") : "border-slate-200")} id={"question-" + qIndex}>
+                <div className="flex items-start gap-3 sm:gap-4 mb-6">
+                  <div className={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center font-black text-white text-base sm:text-lg shadow-sm " + (isReviewing ? (isCorrect ? "bg-emerald-500" : "bg-rose-500") : "bg-primary")}>
                     {qIndex + 1}
                   </div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-800 leading-snug pt-0.5 sm:pt-1">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 leading-snug pt-0.5 sm:pt-1">
                     {q.question}
                   </h2>
                 </div>
 
-                <div className="flex flex-col gap-4 sm:pl-16">
+                <div className="flex flex-col gap-3 sm:pl-14">
                   {q.options.map((option, optIndex) => {
                     const isSelected = selected === optIndex;
                     
@@ -494,15 +494,15 @@ export default function SectionQuiz() {
                       <button
                         key={optIndex}
                         onClick={() => handleSelectOption(qIndex, optIndex)}
-                        className={"w-full text-left p-4 sm:p-5 lg:p-6 rounded-2xl border-2 transition-all flex justify-between items-center group " + btnClass}
+                        className={"w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all flex justify-between items-center group " + btnClass}
                       >
-                        <span className={"font-medium text-base sm:text-lg lg:text-xl leading-relaxed"}>
+                        <span className={"font-medium text-sm sm:text-base leading-relaxed"}>
                           {option}
                         </span>
                         
                         {!isReviewing ? (
-                           <div className={"w-7 h-7 rounded-full border-2 flex items-center justify-center shrink-0 ml-4 transition-colors " + iconClass}>
-                             {isSelected && <CheckCircle size={16} strokeWidth={3} />}
+                           <div className={"w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-4 transition-colors " + iconClass}>
+                             {isSelected && <CheckCircle size={14} strokeWidth={3} />}
                            </div>
                         ) : (
                            <div className="shrink-0 ml-4">
@@ -516,11 +516,11 @@ export default function SectionQuiz() {
                 </div>
 
                 {isReviewing && q.explanation && (
-                  <div className="mt-6 sm:mt-8 sm:ml-16 p-4 sm:p-5 lg:p-6 rounded-2xl bg-sky-50 border border-sky-100 shadow-inner">
-                    <div className="flex items-center gap-2 text-sky-700 font-bold mb-2 text-base sm:text-lg">
-                      <AlertCircle size={18} className="sm:w-5 sm:h-5" /> Giải thích:
+                  <div className="mt-4 sm:mt-6 sm:ml-14 p-3 sm:p-4 rounded-xl bg-sky-50 border border-sky-100 shadow-inner">
+                    <div className="flex items-center gap-2 text-sky-700 font-bold mb-2 text-sm sm:text-base">
+                      <AlertCircle size={16} className="sm:w-4 sm:h-4" /> Giải thích:
                     </div>
-                    <p className="text-sky-800 text-sm sm:text-base lg:text-lg leading-relaxed">
+                    <p className="text-sky-800 text-sm sm:text-base leading-relaxed">
                       {q.explanation}
                     </p>
                   </div>
@@ -531,7 +531,7 @@ export default function SectionQuiz() {
         </div>
 
         {/* Right Column: Question Navigator (Sticky on Desktop) */}
-        <div className="hidden lg:block w-80 shrink-0 sticky top-24">
+        <div className="hidden lg:block w-72 shrink-0 sticky top-24">
            {renderQuestionGrid()}
         </div>
 

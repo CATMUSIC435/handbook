@@ -10,6 +10,25 @@
   --color-surface: #ffffff;
 
   --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Giảm kích thước chữ toàn bộ hệ thống */
+  --text-xs: 0.65rem;
+  --text-sm: 0.75rem; 
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.125rem;
+  --text-2xl: 1.25rem;
+  --text-3xl: 1.5rem;
+  --text-4xl: 1.875rem;
+
+  /* Ép toàn bộ các thẻ bo góc về góc vuông (0px) */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  /* (Giữ lại --radius-full nguyên bản) */
 }
 
 @layer base {

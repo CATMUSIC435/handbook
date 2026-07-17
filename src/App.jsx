@@ -28,6 +28,7 @@ import { useAppStore } from "./store/useAppStore";
 import Navigation from "./components/ui/Navigation";
 import SectionIntro from "./pages/SectionIntro";
 import SectionLocation from "./pages/SectionLocation";
+import Section3DModel from "./pages/Section3DModel";
 import SectionMasterPlan from "./pages/SectionMasterPlan";
 import SectionFilter from "./pages/SectionFilter";
 import SectionPanorama from "./pages/SectionPanorama";
@@ -190,6 +191,7 @@ function App() {
             <Routes>
               <Route path="/" element={<SectionIntro />} />
               <Route path="/location" element={<SectionLocation />} />
+              <Route path="/3d-model" element={<Section3DModel />} />
               <Route path="/masterplan" element={<SectionMasterPlan />} />
               <Route path="/panorama" element={<SectionPanorama />} />
               <Route path="/gallery" element={<SectionGallery />} />
@@ -233,7 +235,7 @@ function App() {
             exit={{ opacity: 0, y: 50 }}
             className="absolute bottom-6 left-1/2 -translate-x-1/2 z-40"
           >
-            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 px-2 py-2 flex items-center gap-1 sm:gap-2 shadow-2xl shadow-slate-900/50 max-w-[95vw] sm:max-w-[85vw] overflow-x-auto hide-scrollbar rounded-[2rem]">
+            <div className="bg-slate-900/90 backdrop-blur-xl border border-white/10 px-2 py-2 flex items-center gap-1 sm:gap-2 shadow-2xl shadow-slate-900/50 max-w-[95vw] sm:max-w-[85vw] overflow-x-auto hide-scrollbar rounded-none">
               {SALES_TABS.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = location.pathname === tab.path;
@@ -241,7 +243,7 @@ function App() {
                   <button
                     key={tab.id}
                     onClick={() => navigate(tab.path)}
-                    className={`flex items-center justify-center gap-2 p-3 sm:px-4 sm:py-2.5 font-bold text-sm transition-all duration-300 whitespace-nowrap shrink-0 rounded-2xl ${
+                    className={`flex items-center justify-center gap-2 p-3 sm:px-4 sm:py-2.5 font-bold text-sm transition-all duration-300 whitespace-nowrap shrink-0 rounded-none ${
                       isActive
                         ? "bg-primary text-slate-900 shadow-lg shadow-primary/30 border border-[#d4ae6f]"
                         : "text-slate-400 hover:text-white hover:bg-white/10 border border-transparent"
@@ -281,7 +283,7 @@ function App() {
               onClick={handleInstallClick}
               className="flex items-center gap-2 bg-primary text-white px-5 py-3 font-bold shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all rounded-md"
             >
-              <Download size={20} /> <span className="hidden sm:inline">Cài đặt Ứng dụng</span>
+              <Download size={20} />
             </button>
           </motion.div>
         )}

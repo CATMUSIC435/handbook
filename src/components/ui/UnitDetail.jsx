@@ -12,23 +12,33 @@ import {
   Image as ImageIcon,
   Home,
 } from "lucide-react";
+import { mockFloors, translateDirection, translateView } from "../../pages/SectionLocation/components/Tower3D/data";
+
 export default function UnitDetail({ unitId, onBack }) {
-  const [activeImageTab, setActiveImageTab] = useState("layout");
-  /* We use mock data for the selected unit */ const unitDetails = {
+  const [activeImageTab, setActiveImageTab] = useState("3d");
+  
+  // Find unit details from data
+  const realUnitData = mockFloors[0].units.find(u => u.code === unitId) || {};
+  const is2PN = realUnitData.type?.includes("2 PN");
+
+  const unitDetails = {
     id: unitId,
-    area: "72 m²",
-    type: "2 Phòng ngủ, 2 WC",
-    price: "Từ 3.5 Tỷ",
-    direction: "Đông Nam",
-    view: "Hồ bơi nội khu",
-    balcony: "Có (Đông Nam)",
+    area: `${realUnitData.builtUpArea || 72} m²`,
+    type: realUnitData.type || "2 Phòng ngủ, 2 WC",
+    price: realUnitData.price || "Từ 3.5 Tỷ",
+    direction: translateDirection(realUnitData.direction || "Đông Nam"),
+    view: translateView(realUnitData.view || "Hồ bơi nội khu"),
+    balcony: `Có (${translateDirection(realUnitData.direction || "Đông Nam")})`,
     furniture: "Hoàn thiện cơ bản",
-    status: "Đang mở bán",
+    status: realUnitData.status === 'available' ? 'Đang mở bán' : (realUnitData.status === 'sold' ? 'Đã bán' : 'Booking'),
   };
+
   const images = {
-    layout: "/assets/images/mau-mat-bang-tang-03.png",
-    "3d": "/assets/images/anh-du-an-fenica-phong-ngu.jpg",
-    furniture: "/assets/images/anh-du-an-fenica-can-ho.jpg",
+    layout: realUnitData.room3dImage || "/assets/images/room3d/2pn.png",
+    "3d": realUnitData.room3dImage || "/assets/images/room3d/2pn.png",
+    furniture: is2PN 
+      ? "/assets/images/2pn/nha-mau-can-ho-fenica-2pn-dsc01973-hdr.jpg"
+      : "/assets/images/1pn/nha-mau-can-ho-fenica-1pn-plus-dsc01755-hdr.jpg",
   };
   return (
     <div className="absolute inset-0 bg-slate-50 p-4 lg:p-8 flex flex-col z-50 overflow-y-auto cursor-auto">

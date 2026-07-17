@@ -25,6 +25,7 @@ import {
   Bell,
   Settings,
   X,
+  Box,
 } from "lucide-react";
 import tabsData from "../../data/tabs.json";
 const iconMap = {
@@ -51,6 +52,7 @@ const iconMap = {
   Bell,
   Settings,
   X,
+  Box,
 };
 const tabs = tabsData.tabs.map((tab) => ({ ...tab, icon: iconMap[tab.icon] }));
 export default function Navigation({ isMobileMenuOpen, setIsMobileMenuOpen }) {
