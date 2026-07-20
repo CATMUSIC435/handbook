@@ -21,6 +21,13 @@ import { useAppStore } from "../../store/useAppStore";
 import CustomSelect from "../../components/ui/CustomSelect";
 export default function SectionSettings() {
   const { isSalesLoggedIn, logout } = useAppStore();
+  const [hasUpdate, setHasUpdate] = useState(window.pwaUpdateAvailable || false);
+
+  useEffect(() => {
+    const handleUpdate = () => setHasUpdate(true);
+    window.addEventListener('pwa-update-available', handleUpdate);
+    return () => window.removeEventListener('pwa-update-available', handleUpdate);
+  }, []);
   const [isDarkMode, setIsDarkMode] = useLocalStorage(
     "fenica_theme_dark",
     false,
@@ -249,6 +256,35 @@ export default function SectionSettings() {
                   className={`absolute top-1 left-1 w-6 h-6 bg-white shadow-sm transition-transform duration-300 ${offlineCache ? "translate-x-6" : "translate-x-0"}`}
                 ></div>
               </button>
+            </div>
+            {""}
+            {/* Cập nhật ứng dụng */}
+            {""}
+            <div className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                  <RefreshCw size={20} className={hasUpdate ? "animate-spin" : ""} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 text-lg flex items-center gap-2">
+                    Cập nhật ứng dụng
+                    {hasUpdate && <span className="bg-rose-500 text-white text-[10px] uppercase font-bold px-2 py-0.5 animate-pulse">Mới</span>}
+                  </h4>
+                  <p className="text-sm text-slate-500">
+                    {hasUpdate ? "Có phiên bản mới, vui lòng cập nhật." : "Ứng dụng đang ở phiên bản mới nhất."}
+                  </p>
+                </div>
+              </div>
+              {hasUpdate && (
+                <button
+                  onClick={() => {
+                     if (window.updateSW) window.updateSW(true);
+                  }}
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 shadow-md transition-colors text-sm"
+                >
+                  Cập nhật ngay
+                </button>
+              )}
             </div>
             {""}
             {/* Clear Cache */}
