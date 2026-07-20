@@ -28,7 +28,7 @@ import {
 } from "@dnd-kit/core";
 import { useDraggable, useDroppable } from "@dnd-kit/core";
 
-const initialNotes = notesData;
+const initialNotes = [];
 
 const defaultColumns = [
   {
@@ -204,7 +204,7 @@ export default function SectionNotes() {
     "fenica_kanban_columns",
     defaultColumns,
   );
-  const [notes, setNotes] = useLocalStorage("fenica_notes", initialNotes);
+  const [notes, setNotes] = useLocalStorage("fenica_notes_v2", initialNotes);
   const [searchTerm, setSearchTerm] = useState("");
   const [isAdding, setIsAdding] = useState(false);
   const [viewMode, setViewMode] = useState("grid");

@@ -77,6 +77,7 @@ export default function SectionMasterPlan() {
         <UnitDetail
           unitId={selectedUnit}
           onBack={() => setSelectedUnit(null)}
+          isUpdating={true}
         />
       </div>
     );
@@ -201,7 +202,7 @@ export default function SectionMasterPlan() {
                       {/* Popup chi tiết khi click */}
                       {isSelected && unitData && (
                         <div 
-                          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-white w-[280px] rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-[100] origin-bottom animate-in fade-in zoom-in duration-200"
+                          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 bg-white w-[280px]  shadow-2xl border border-slate-200 overflow-hidden z-[100] origin-bottom animate-in fade-in zoom-in duration-200"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <div className="h-40 bg-slate-100 relative">
@@ -214,14 +215,14 @@ export default function SectionMasterPlan() {
                                 e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
                               }}
                             />
-                            <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur rounded text-xs font-black text-slate-900 shadow-sm">
+                            <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur  text-xs font-black text-slate-900 shadow-sm">
                               {point.id}
                             </div>
                           </div>
                           <div className="p-4 cursor-default">
                             <div className="flex justify-between items-start mb-3">
                               <h4 className="font-bold text-slate-900 text-base">{unitData.type}</h4>
-                              <span className={`text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${
+                              <span className={`text-[10px] font-bold px-2 py-1  uppercase tracking-wider ${
                                 unitData.status === 'available' ? 'bg-emerald-100 text-emerald-700' :
                                 unitData.status === 'sold' ? 'bg-rose-100 text-rose-700' :
                                 'bg-amber-100 text-amber-700'

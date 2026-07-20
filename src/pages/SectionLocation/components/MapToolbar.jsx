@@ -27,7 +27,7 @@ export default function MapToolbar({
           <Palette size={16} /> Tùy chỉnh
         </button>
         {showStyleMenu && (
-          <div className="absolute right-0 mt-2 w-64 bg-white shadow-xl border border-slate-100 transition-all rounded-md overflow-hidden p-4">
+          <div className="absolute right-0 mt-2 w-64 bg-white shadow-xl border border-slate-100 transition-all  overflow-hidden p-4">
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Màu viền</label>
@@ -35,7 +35,7 @@ export default function MapToolbar({
                   type="color" 
                   value={drawStyle.color} 
                   onChange={(e) => handleDrawStyleChange('color', e.target.value)}
-                  className="w-full h-8 cursor-pointer rounded-sm"
+                  className="w-full h-8 cursor-pointer "
                 />
               </div>
               <div>
@@ -44,7 +44,7 @@ export default function MapToolbar({
                   type="color" 
                   value={drawStyle.fillColor} 
                   onChange={(e) => handleDrawStyleChange('fillColor', e.target.value)}
-                  className="w-full h-8 cursor-pointer rounded-sm"
+                  className="w-full h-8 cursor-pointer "
                 />
               </div>
               <div>
@@ -84,7 +84,7 @@ export default function MapToolbar({
           <Download size={16} /> Xuất
         </button>
         {showExportMenu && (
-          <div className="absolute right-0 mt-2 w-40 bg-white shadow-xl border border-slate-100 transition-all rounded-md overflow-hidden">
+          <div className="absolute right-0 mt-2 w-40 bg-white shadow-xl border border-slate-100 transition-all  overflow-hidden">
             <button onClick={() => { exportGeoJSON(); setShowExportMenu(false); }} className="w-full text-left px-4 py-3 hover:bg-slate-50 text-sm font-medium text-slate-700">Dữ liệu (JSON)</button>
             <button onClick={() => { exportImage(); setShowExportMenu(false); }} className="w-full text-left px-4 py-3 hover:bg-slate-50 text-sm font-medium text-slate-700 border-t border-slate-100">Hình ảnh (PNG)</button>
           </div>

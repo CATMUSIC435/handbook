@@ -13,7 +13,7 @@ export default function UnitHotspot3D({ selectedFloor }) {
 
   return (
     <Html position={selectedFloor.point} zIndexRange={[100, 0]} distanceFactor={600} center>
-      <div className="bg-white w-[260px] rounded-xl shadow-2xl border border-slate-200 overflow-hidden origin-bottom animate-in fade-in zoom-in duration-200 -mt-[320px]">
+      <div className="bg-white w-[260px]  shadow-2xl border border-slate-200 overflow-hidden origin-bottom animate-in fade-in zoom-in duration-200 -mt-[320px]">
         <div className="h-36 bg-slate-100 relative">
           <img 
             src={unitData.room3dImage} 
@@ -29,7 +29,7 @@ export default function UnitHotspot3D({ selectedFloor }) {
         <div className="p-4">
           <div className="flex justify-between items-start mb-3">
             <h4 className="font-bold text-slate-900 text-base">{unitData.type}</h4>
-            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider ${
+            <span className={`text-[9px] font-bold px-1.5 py-0.5  uppercase tracking-wider ${
               unitData.status === 'available' ? 'bg-emerald-100 text-emerald-700' :
               unitData.status === 'sold' ? 'bg-rose-100 text-rose-700' :
               'bg-amber-100 text-amber-700'

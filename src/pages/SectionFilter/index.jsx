@@ -47,6 +47,7 @@ export default function SectionFilter() {
         <UnitDetail
           unitId={selectedUnit}
           onBack={() => setSelectedUnit(null)}
+          isUpdating={true}
         />
       </div>
     );
@@ -57,6 +58,7 @@ export default function SectionFilter() {
         <UnitCompare
           unitIds={compareList}
           onBack={() => setIsComparing(false)}
+          isUpdating={true}
         />
       </div>
     );
@@ -256,13 +258,13 @@ export default function SectionFilter() {
                     <div className="flex items-center gap-2">
                       <MapPin size={18} className="text-slate-400" />
                       <span className="text-sm font-semibold text-slate-700">
-                        {unit.direction}
+                        Đang cập nhật
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Eye size={18} className="text-slate-400" />
                       <span className="text-sm font-semibold text-slate-700 truncate">
-                        {unit.view}
+                        Đang cập nhật
                       </span>
                     </div>
                   </div>
@@ -271,7 +273,7 @@ export default function SectionFilter() {
                       Giá dự kiến
                     </span>
                     <span className="text-lg lg:text-xl font-bold text-accent">
-                      {unit.price} Tỷ
+                      Đang cập nhật
                     </span>
                   </div>
                 </motion.div>

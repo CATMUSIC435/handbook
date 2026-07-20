@@ -22,6 +22,7 @@ import {
   ArrowDownUp,
 } from "lucide-react";
 import mockCustomers from "../../data/customers.json";
+import mockAppointments from "../../data/appointments.json";
 import { Input } from "../../components/ui/Input";
 import { Button } from "../../components/ui/Button";
 import CustomSelect from "../../components/ui/CustomSelect";
@@ -34,10 +35,14 @@ const ACTIVITY_TYPES = [
 ];
 export default function SectionCustomerProfile() {
   const [customers, setCustomers] = useLocalStorage(
-    "fenica_customers",
-    mockCustomers,
+    "fenica_customers_v2",
+    [],
   );
-  const [selectedId, setSelectedId] = useState(mockCustomers[0]?.id);
+  const [appointments] = useLocalStorage(
+    "fenica_appointments_v2",
+    [],
+  );
+  const [selectedId, setSelectedId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeTab, setActiveTab] = useState("history");
   /* history, info, notes */ const [showAddModal, setShowAddModal] =
@@ -603,8 +608,39 @@ export default function SectionCustomerProfile() {
                             </h4>
                             <p className="text-slate-600 leading-relaxed">
                               {" "}
-                              (Chưa có thông tin yêu cầu đặc biệt){" "}
+                              {selectedCustomer.notes || "(Chưa có thông tin yêu cầu đặc biệt)"}{" "}
                             </p>
+                          </div>
+                          
+                          <div className="md:col-span-2 bg-white p-4 lg:p-6 border border-slate-100 shadow-sm">
+                            <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                              <Calendar
+                                size={16}
+                                className="text-amber-500"
+                              />{" "}
+                              Lịch Hẹn Sắp Tới{" "}
+                            </h4>
+                            <div className="flex flex-col gap-3">
+                              {appointments.filter(a => a.customerId === selectedCustomer.id).length > 0 ? (
+                                appointments
+                                  .filter(a => a.customerId === selectedCustomer.id)
+                                  .map(apt => (
+                                    <div key={apt.id} className="p-3 border border-slate-100 bg-slate-50 flex justify-between items-center">
+                                      <div>
+                                        <p className="font-bold text-slate-900">{apt.title}</p>
+                                        <p className="text-sm text-slate-500 flex items-center gap-2 mt-1">
+                                          <Clock size={12} /> {apt.time} - {apt.date}
+                                        </p>
+                                      </div>
+                                      <div className="text-xs font-bold px-2 py-1 uppercase border bg-white  text-slate-600 shadow-sm">
+                                        {apt.type}
+                                      </div>
+                                    </div>
+                                  ))
+                              ) : (
+                                <p className="text-slate-500 italic">Khách hàng chưa có lịch hẹn nào sắp tới.</p>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </motion.div>

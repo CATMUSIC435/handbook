@@ -1,9 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Center } from '@react-three/drei';
 import { AnimatePresence } from 'motion/react';
-import { AlertTriangle } from 'lucide-react';
-import { Leva } from 'leva';
+import { AlertTriangle, RefreshCcw } from 'lucide-react';
 
 import { useTower3D } from './useTower3D';
 import TowerModel from './TowerModel';
@@ -25,10 +24,10 @@ class ErrorBoundary extends React.Component {
     if (this.state.hasError) {
       return (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-rose-50 text-rose-600 p-4">
-          <div className="max-w-md bg-white p-6 rounded-xl shadow-xl">
+          <div className="max-w-md bg-white p-6  shadow-xl">
             <AlertTriangle size={32} className="mb-4" />
             <h2 className="font-bold text-lg mb-2">Canvas Crash:</h2>
-            <pre className="text-xs overflow-auto bg-slate-100 p-2 rounded">{this.state.error?.toString()}</pre>
+            <pre className="text-xs overflow-auto bg-slate-100 p-2 ">{this.state.error?.toString()}</pre>
           </div>
         </div>
       );
@@ -38,6 +37,7 @@ class ErrorBoundary extends React.Component {
 }
 
 export default function Tower3DViewer() {
+  const [isAutoRotate, setIsAutoRotate] = useState(true);
   const { selectedFloor, cameraControls, handleFloorSelect, handleCloseSideSheet } = useTower3D();
   const { camX, camY, camZ, farPlane } = cameraControls;
 
@@ -45,9 +45,6 @@ export default function Tower3DViewer() {
 
   return (
     <div className="w-full h-full bg-slate-100 flex items-center justify-center relative overflow-hidden cursor-move">
-      <div className="absolute top-4 left-4 z-[500] hidden md:block">
-        <Leva hidden theme={{ colors: { accent1: '#d4ae6f', accent2: '#d4ae6f' } }} />
-      </div>
       <ErrorBoundary>
         <Canvas 
           camera={{ position: [camX, camY, camZ], fov: 45, near: 1, far: farPlane }}
@@ -74,12 +71,13 @@ export default function Tower3DViewer() {
 
           {/* Controls */}
           <OrbitControls 
-            target={[0, 0, 0]}
+            target={[100, 0, 1000]}
             makeDefault
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
-            autoRotate={false}
+            autoRotate={isAutoRotate}
+            autoRotateSpeed={1.5}
             enableDamping={true}
             dampingFactor={0.05}
             maxDistance={10000}
@@ -89,8 +87,17 @@ export default function Tower3DViewer() {
         </Canvas>
       </ErrorBoundary>
 
-      <div className={`absolute top-4 transition-all duration-500 ${selectedFloor ? 'right-4 md:right-[26rem]' : 'right-4'} bg-white/90 backdrop-blur px-3 py-1.5 md:px-4 md:py-2 rounded-lg shadow-sm text-xs md:text-sm font-medium text-slate-700 z-[300]`}>
-        Cuộn để thu phóng • Kéo để xoay
+      <div className={`absolute top-4 transition-all duration-500 ${selectedFloor ? 'right-4 md:right-[26rem]' : 'right-4'} flex flex-col items-end gap-2 z-[300]`}>
+        <button 
+          onClick={() => setIsAutoRotate(!isAutoRotate)}
+          className={`flex items-center justify-center gap-2 px-3 py-1.5 md:px-4 md:py-2  shadow-sm font-bold transition-colors ${isAutoRotate ? 'bg-primary text-white hover:bg-primary/90' : 'bg-white text-slate-700 hover:bg-slate-50'}`}
+        >
+          <RefreshCcw size={16} />
+          {isAutoRotate ? 'Đang tự xoay' : 'Tự động xoay'}
+        </button>
+        <div className="bg-white/90 backdrop-blur px-3 py-1.5 md:px-4 md:py-2  shadow-sm text-xs md:text-sm font-medium text-slate-700">
+          Cuộn để thu phóng • Kéo để xoay
+        </div>
       </div>
 
       {/* Side Sheet */}

@@ -86,14 +86,14 @@ function PopupContent({ item }) {
   return (
     <div className="flex flex-col">
       {item.image && !imageError ? (
-        <div className="-m-4 mb-3 rounded-t-lg overflow-hidden relative">
+        <div className="-m-4 mb-3 -lg overflow-hidden relative">
           <img 
             src={item.image} 
             alt={item.name} 
             className="w-full h-32 object-cover"
             onError={() => setImageError(true)}
           />
-          <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-md text-[10px] font-bold text-indigo-600 uppercase">
+          <div className="absolute top-2 left-2 bg-white/90 backdrop-blur-sm px-2 py-1  text-[10px] font-bold text-indigo-600 uppercase">
             {item.type || "Tiện ích"}
           </div>
         </div>

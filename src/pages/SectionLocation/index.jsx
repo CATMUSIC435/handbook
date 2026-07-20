@@ -135,22 +135,22 @@ export default function SectionLocation() {
         <div className="flex-1 relative bg-white shadow-xl overflow-hidden border border-slate-200">
           
           {/* Toggle buttons */}
-          <div className="absolute top-4 left-16 flex flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400] rounded-md max-w-[calc(100vw-80px)] overflow-x-auto hide-scrollbar">
+          <div className="absolute top-4 left-16 flex flex-row bg-white shadow-lg border border-slate-100 p-1 z-[400]  max-w-[calc(100vw-80px)] overflow-x-auto hide-scrollbar">
             <button
               onClick={() => setMapMode("interactive")}
-              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors  whitespace-nowrap ${mapMode === "interactive" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <Map size={16} /> <span className="hidden sm:inline">Bản đồ tương tác</span><span className="sm:hidden">Tương tác</span>
             </button>
             <button
               onClick={() => setMapMode("svg")}
-              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors  whitespace-nowrap ${mapMode === "svg" ? "bg-[#d4ae6f] text-slate-900 shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <ImageIcon size={16} /> <span className="hidden sm:inline">Bản đồ đồ họa</span><span className="sm:hidden">Đồ họa</span>
             </button>
             <button
               onClick={() => setMapMode("mapbox3d")}
-              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors rounded-md whitespace-nowrap ${mapMode === "mapbox3d" ? "bg-blue-500 text-white shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
+              className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium transition-colors  whitespace-nowrap ${mapMode === "mapbox3d" ? "bg-blue-500 text-white shadow-sm" : "text-slate-600 hover:bg-slate-50"}`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg> 
               <span className="hidden sm:inline">Mapbox 3D</span><span className="sm:hidden">Mapbox</span>

@@ -14,7 +14,7 @@ export default function FloorPlanImage({ src, floor }) {
   }, [src]);
 
   return (
-    <div className="relative w-full rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500 bg-white">
+    <div className="relative w-full  overflow-hidden group-hover:scale-105 transition-transform duration-500 bg-white">
       <img 
         ref={imgRef}
         src={src} 
@@ -44,7 +44,7 @@ export default function FloorPlanImage({ src, floor }) {
           >
             {/* Tooltip khi chưa click */}
             {!isSelected && (
-              <div className="absolute opacity-0 group-hover/pin:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-1.5 bg-slate-900 text-white text-[10px] font-bold px-2 py-1 rounded pointer-events-none transition-opacity whitespace-nowrap z-30">
+              <div className="absolute opacity-0 group-hover/pin:opacity-100 bottom-full left-1/2 -translate-x-1/2 mb-1.5 bg-slate-900 text-white text-[10px] font-bold px-2 py-1  pointer-events-none transition-opacity whitespace-nowrap z-30">
                 {point.id}
               </div>
             )}
@@ -52,7 +52,7 @@ export default function FloorPlanImage({ src, floor }) {
             {/* Popup chi tiết khi click */}
             {isSelected && unitData && (
               <div 
-                className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-white w-[260px] rounded-xl shadow-2xl border border-slate-200 overflow-hidden z-[100] origin-bottom animate-in fade-in zoom-in duration-200"
+                className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 bg-white w-[260px]  shadow-2xl border border-slate-200 overflow-hidden z-[100] origin-bottom animate-in fade-in zoom-in duration-200"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="h-36 bg-slate-100 relative">
@@ -65,14 +65,14 @@ export default function FloorPlanImage({ src, floor }) {
                       e.target.src = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80";
                     }}
                   />
-                  <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur rounded text-xs font-black text-slate-900 shadow-sm">
+                  <div className="absolute top-2 right-2 px-2 py-1 bg-white/90 backdrop-blur  text-xs font-black text-slate-900 shadow-sm">
                     {point.id}
                   </div>
                 </div>
                 <div className="p-4">
                   <div className="flex justify-between items-start mb-3">
                     <h4 className="font-bold text-slate-900 text-base">{unitData.type}</h4>
-                    <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider ${
+                    <span className={`text-[9px] font-bold px-1.5 py-0.5  uppercase tracking-wider ${
                       unitData.status === 'available' ? 'bg-emerald-100 text-emerald-700' :
                       unitData.status === 'sold' ? 'bg-rose-100 text-rose-700' :
                       'bg-amber-100 text-amber-700'

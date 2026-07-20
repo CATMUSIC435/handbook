@@ -30,7 +30,7 @@ export default function AmenitiesSidebar({
 
       {/* Bảng Danh mục tiện ích */}
       <div className={`
-        absolute z-[400] bg-white/95 backdrop-blur-sm shadow-xl rounded-xl border border-slate-100 flex flex-col overflow-hidden transition-all duration-300
+        absolute z-[400] bg-white/95 backdrop-blur-sm shadow-xl  border border-slate-100 flex flex-col overflow-hidden transition-all duration-300
         ${isExpanded 
           ? 'top-32 right-4 w-[calc(100vw-32px)] max-h-[60vh] opacity-100 visible origin-top-right' 
           : 'opacity-0 invisible md:opacity-100 md:visible md:top-16 md:right-6 md:w-[280px] md:max-h-[70vh] scale-95 md:scale-100 origin-top-right'}
@@ -53,7 +53,7 @@ export default function AmenitiesSidebar({
                min="1" max="20" 
                value={searchRadius / 1000} 
                onChange={(e) => setSearchRadius(parseInt(e.target.value) * 1000)}
-               className="w-24 h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer"
+               className="w-24 h-1 bg-slate-200  appearance-none cursor-pointer"
              />
            </div>
            <div className="flex items-center justify-between">

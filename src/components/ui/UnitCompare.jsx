@@ -1,6 +1,6 @@
 import { ArrowLeft, Check, X } from "lucide-react";
 import mockUnits from "../../data/units.json";
-export default function UnitCompare({ unitIds, onBack }) {
+export default function UnitCompare({ unitIds, onBack, isUpdating }) {
   const units = unitIds
     .map((id) => mockUnits.find((u) => u.id === id))
     .filter(Boolean);
@@ -56,10 +56,10 @@ export default function UnitCompare({ unitIds, onBack }) {
                         {unit.id}
                       </h4>
                       <span
-                        className={`px-2 py-1 md:px-3 text-[10px] font-bold uppercase tracking-wider ${unit.status === "Đang mở bán" ? "bg-emerald-100 text-emerald-700" : unit.status === "Đã bán" ? "bg-slate-100 text-slate-500" : "bg-amber-100 text-amber-700"}`}
+                        className={`px-2 py-1 md:px-3 text-[10px] font-bold uppercase tracking-wider ${isUpdating ? "bg-slate-100 text-slate-500" : (unit.status === "Đang mở bán" ? "bg-emerald-100 text-emerald-700" : unit.status === "Đã bán" ? "bg-slate-100 text-slate-500" : "bg-amber-100 text-amber-700")}`}
                       >
                         {""}
-                        {unit.status}
+                        {isUpdating ? "Đang cập nhật" : unit.status}
                         {""}
                       </span>
                     </div>
@@ -89,10 +89,10 @@ export default function UnitCompare({ unitIds, onBack }) {
                       {""}
                       {attr.key === "price" ? (
                         <span className="text-lg font-black text-accent">
-                          {unit[attr.key]}
+                          {isUpdating ? "Đang cập nhật" : unit[attr.key]}
                         </span>
                       ) : (
-                        unit[attr.key]
+                        (isUpdating && ["direction", "view", "status"].includes(attr.key)) ? "Đang cập nhật" : unit[attr.key]
                       )}
                       {""}
                     </td>

@@ -17,7 +17,7 @@ export default function PropertySidebar({ selectedLayer, setSelectedLayer, sideb
             <label className="block text-sm font-medium text-slate-700 mb-1">Tiêu đề</label>
             <input 
               type="text"
-              className="w-full px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#d4ae6f]/50"
+              className="w-full px-3 py-2 border border-slate-200  focus:outline-none focus:ring-2 focus:ring-[#d4ae6f]/50"
               placeholder="Ví dụ: Khu đất A"
               value={sidebarData.title}
               onChange={(e) => handleSidebarChange('title', e.target.value)}
@@ -31,7 +31,7 @@ export default function PropertySidebar({ selectedLayer, setSelectedLayer, sideb
                 type="color" 
                 value={sidebarData.color} 
                 onChange={(e) => handleSidebarChange('color', e.target.value)}
-                className="w-full h-8 cursor-pointer rounded-sm"
+                className="w-full h-8 cursor-pointer "
               />
            </div>
            <div>
@@ -40,7 +40,7 @@ export default function PropertySidebar({ selectedLayer, setSelectedLayer, sideb
                 type="color" 
                 value={sidebarData.fillColor} 
                 onChange={(e) => handleSidebarChange('fillColor', e.target.value)}
-                className="w-full h-8 cursor-pointer rounded-sm"
+                className="w-full h-8 cursor-pointer "
               />
            </div>
          </div>
@@ -59,7 +59,7 @@ export default function PropertySidebar({ selectedLayer, setSelectedLayer, sideb
          <div>
             <label className="block text-sm font-medium text-slate-700 mb-1">Mô tả chi tiết</label>
             <textarea 
-              className="w-full px-3 py-2 border border-slate-200 rounded-md h-40 focus:outline-none focus:ring-2 focus:ring-[#d4ae6f]/50 resize-none"
+              className="w-full px-3 py-2 border border-slate-200  h-40 focus:outline-none focus:ring-2 focus:ring-[#d4ae6f]/50 resize-none"
               placeholder="Nhập thông tin chi tiết về khu vực này..."
               value={sidebarData.description}
               onChange={(e) => handleSidebarChange('description', e.target.value)}

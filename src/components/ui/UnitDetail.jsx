@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { mockFloors, translateDirection, translateView } from "../../pages/SectionLocation/components/Tower3D/data";
 
-export default function UnitDetail({ unitId, onBack }) {
+export default function UnitDetail({ unitId, onBack, isUpdating }) {
   const [activeImageTab, setActiveImageTab] = useState("3d");
   
   // Find unit details from data
@@ -25,12 +25,12 @@ export default function UnitDetail({ unitId, onBack }) {
     id: unitId,
     area: `${realUnitData.builtUpArea || 72} m²`,
     type: realUnitData.type || "2 Phòng ngủ, 2 WC",
-    price: realUnitData.price || "Từ 3.5 Tỷ",
-    direction: translateDirection(realUnitData.direction || "Đông Nam"),
-    view: translateView(realUnitData.view || "Hồ bơi nội khu"),
-    balcony: `Có (${translateDirection(realUnitData.direction || "Đông Nam")})`,
-    furniture: "Hoàn thiện cơ bản",
-    status: realUnitData.status === 'available' ? 'Đang mở bán' : (realUnitData.status === 'sold' ? 'Đã bán' : 'Booking'),
+    price: isUpdating ? "Đang cập nhật" : (realUnitData.price || "Từ 3.5 Tỷ"),
+    direction: isUpdating ? "Đang cập nhật" : translateDirection(realUnitData.direction || "Đông Nam"),
+    view: isUpdating ? "Đang cập nhật" : translateView(realUnitData.view || "Hồ bơi nội khu"),
+    balcony: isUpdating ? "Đang cập nhật" : `Có (${translateDirection(realUnitData.direction || "Đông Nam")})`,
+    furniture: isUpdating ? "Đang cập nhật" : "Hoàn thiện cơ bản",
+    status: isUpdating ? "Đang cập nhật" : (realUnitData.status === 'available' ? 'Đang mở bán' : (realUnitData.status === 'sold' ? 'Đã bán' : 'Booking')),
   };
 
   const images = {

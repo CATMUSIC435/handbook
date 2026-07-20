@@ -166,7 +166,7 @@ export default function SectionQuiz() {
         <motion.div 
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          className="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl"
+          className="bg-white  p-8 max-w-md w-full text-center shadow-2xl"
         >
           <div className="w-24 h-24 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-6">
             <EyeOff size={48} />
@@ -175,13 +175,13 @@ export default function SectionQuiz() {
           <p className="text-slate-600 text-lg mb-6 font-medium">
             Phát hiện bạn vừa chuyển sang ứng dụng hoặc tab khác. Đây là hành vi không hợp lệ trong lúc thi.
           </p>
-          <div className="bg-rose-50 text-rose-800 font-bold p-4 rounded-xl mb-8 border border-rose-200">
+          <div className="bg-rose-50 text-rose-800 font-bold p-4  mb-8 border border-rose-200">
             Vi phạm lần: {cheatCount} / 3 <br/>
             <span className="text-sm font-normal">(Nếu vi phạm 3 lần sẽ tự động thu bài)</span>
           </div>
           <button
             onClick={() => setShowCheatModal(false)}
-            className="w-full py-4 rounded-xl bg-slate-900 text-white font-bold text-lg hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/30"
+            className="w-full py-4  bg-slate-900 text-white font-bold text-lg hover:bg-slate-800 transition-all shadow-lg shadow-slate-900/30"
           >
             Tôi đã hiểu, Quay lại làm bài
           </button>
@@ -212,9 +212,9 @@ export default function SectionQuiz() {
                   key={topic.topicId}
                   whileHover={{ y: -5 }}
                   onClick={() => handleSelectTopic(topic.topicId)}
-                  className="bg-white rounded-2xl p-6 shadow-lg shadow-slate-200/50 border border-slate-100 cursor-pointer hover:border-primary/30 transition-all flex flex-col h-full"
+                  className="bg-white  p-6 shadow-lg shadow-slate-200/50 border border-slate-100 cursor-pointer hover:border-primary/30 transition-all flex flex-col h-full"
                 >
-                  <div className={"w-14 h-14 " + topic.color + " text-white rounded-xl flex items-center justify-center mb-6 shadow-md"}>
+                  <div className={"w-14 h-14 " + topic.color + " text-white  flex items-center justify-center mb-6 shadow-md"}>
                     <Icon size={28} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-2">{topic.topicName}</h3>
@@ -244,28 +244,28 @@ export default function SectionQuiz() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white p-8 max-w-lg w-full text-center shadow-xl shadow-slate-200/50 border border-slate-100 rounded-3xl"
+          className="bg-white p-8 max-w-lg w-full text-center shadow-xl shadow-slate-200/50 border border-slate-100 "
         >
-          <div className="w-20 h-20 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6 rounded-2xl">
+          <div className="w-20 h-20 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-6 ">
             <Timer size={40} />
           </div>
           <h2 className="text-3xl font-black text-slate-900 mb-2">
             {currentTopic.topicName}
           </h2>
-          <div className="bg-slate-100 rounded-xl p-4 inline-block mb-6">
+          <div className="bg-slate-100  p-4 inline-block mb-6">
             <div className="text-slate-500 text-sm font-medium">Thời gian làm bài</div>
             <div className="text-3xl font-black text-slate-800">{quizData.length} Phút</div>
           </div>
           <p className="text-slate-500 mb-4 leading-relaxed px-4">
             Bài kiểm tra gồm {quizData.length} câu hỏi. Tất cả câu hỏi sẽ hiển thị cùng lúc. Hệ thống sẽ tự động nộp bài khi hết thời gian.
           </p>
-          <div className="bg-rose-50 border border-rose-100 rounded-xl p-4 mb-8 text-rose-600 text-sm font-bold flex items-start gap-2 text-left">
+          <div className="bg-rose-50 border border-rose-100  p-4 mb-8 text-rose-600 text-sm font-bold flex items-start gap-2 text-left">
             <AlertCircle size={20} className="shrink-0 mt-0.5" />
             <p>Lưu ý: Không tải lại trang hoặc chuyển sang tab khác trong quá trình thi. Hệ thống sẽ bắt lỗi gian lận tự động thu bài nếu vi phạm 3 lần.</p>
           </div>
           <button
             onClick={handleStartQuiz}
-            className="w-full py-4 rounded-xl bg-primary text-white font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2"
+            className="w-full py-4  bg-primary text-white font-bold text-lg hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2"
           >
             <Play size={20} /> Bắt Đầu Tính Giờ
           </button>
@@ -288,7 +288,7 @@ export default function SectionQuiz() {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-white p-8 rounded-3xl max-w-md w-full text-center shadow-xl shadow-slate-200/50 border border-slate-100 my-8"
+          className="bg-white p-8  max-w-md w-full text-center shadow-xl shadow-slate-200/50 border border-slate-100 my-8"
         >
           {cheatCount >= 3 ? (
             <div className="w-24 h-24 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -316,19 +316,19 @@ export default function SectionQuiz() {
           <div className="flex flex-col gap-3">
             <button
               onClick={() => setIsReviewing(true)}
-              className="w-full py-4 rounded-xl bg-slate-100 text-slate-700 font-bold hover:bg-slate-200 transition-all flex items-center justify-center gap-2"
+              className="w-full py-4  bg-slate-100 text-slate-700 font-bold hover:bg-slate-200 transition-all flex items-center justify-center gap-2"
             >
               <AlertCircle size={20} /> Xem lại đáp án
             </button>
             <button
               onClick={handleRestart}
-              className="w-full py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2"
+              className="w-full py-4  bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/30 flex items-center justify-center gap-2"
             >
               <RotateCcw size={20} /> Làm lại chủ đề này
             </button>
             <button
               onClick={handleBackToTopics}
-              className="w-full py-4 mt-2 text-primary font-bold hover:bg-primary/5 rounded-xl transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 mt-2 text-primary font-bold hover:bg-primary/5  transition-all flex items-center justify-center gap-2"
             >
               Chọn chủ đề khác
             </button>
@@ -343,7 +343,7 @@ export default function SectionQuiz() {
 
   // Render bảng điều hướng câu hỏi (Navigation Palette)
   const renderQuestionGrid = () => (
-    <div className="bg-white p-6 rounded-3xl shadow-sm border border-slate-200">
+    <div className="bg-white p-6  shadow-sm border border-slate-200">
       <div className="flex items-center gap-2 text-slate-700 font-bold mb-4">
         <ListOrdered size={20} className="text-primary" />
         <span>Danh sách câu hỏi</span>
@@ -351,7 +351,7 @@ export default function SectionQuiz() {
       <div className="grid grid-cols-5 gap-2 sm:gap-3">
         {quizData.map((_, idx) => {
           const hasAnswered = answers[idx] !== undefined;
-          let btnClass = "w-10 h-10 sm:w-12 sm:h-12 rounded-xl text-sm sm:text-base font-bold transition-all flex items-center justify-center ";
+          let btnClass = "w-10 h-10 sm:w-12 sm:h-12  text-sm sm:text-base font-bold transition-all flex items-center justify-center ";
           
           if (isReviewing) {
             const isCorrect = answers[idx] === quizData[idx].correctAnswer;
@@ -379,7 +379,7 @@ export default function SectionQuiz() {
           </div>
           <button
             onClick={handleSubmit}
-            className="w-full mt-2 py-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-2"
+            className="w-full mt-2 py-4  bg-primary text-white font-bold hover:bg-primary/90 transition-all shadow-md shadow-primary/20 flex items-center justify-center gap-2"
           >
             Nộp bài ngay <Send size={18} />
           </button>
@@ -458,7 +458,7 @@ export default function SectionQuiz() {
             }
 
             return (
-              <div key={qIndex} className={"bg-white p-4 md:p-6 lg:p-8 rounded-2xl shadow-sm border " + (isReviewing ? (isCorrect ? "border-emerald-200" : "border-rose-200") : "border-slate-200")} id={"question-" + qIndex}>
+              <div key={qIndex} className={"bg-white p-4 md:p-6 lg:p-8  shadow-sm border " + (isReviewing ? (isCorrect ? "border-emerald-200" : "border-rose-200") : "border-slate-200")} id={"question-" + qIndex}>
                 <div className="flex items-start gap-3 sm:gap-4 mb-6">
                   <div className={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center font-black text-white text-base sm:text-lg shadow-sm " + (isReviewing ? (isCorrect ? "bg-emerald-500" : "bg-rose-500") : "bg-primary")}>
                     {qIndex + 1}
@@ -494,7 +494,7 @@ export default function SectionQuiz() {
                       <button
                         key={optIndex}
                         onClick={() => handleSelectOption(qIndex, optIndex)}
-                        className={"w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all flex justify-between items-center group " + btnClass}
+                        className={"w-full text-left p-3 sm:p-4  border-2 transition-all flex justify-between items-center group " + btnClass}
                       >
                         <span className={"font-medium text-sm sm:text-base leading-relaxed"}>
                           {option}
@@ -516,7 +516,7 @@ export default function SectionQuiz() {
                 </div>
 
                 {isReviewing && q.explanation && (
-                  <div className="mt-4 sm:mt-6 sm:ml-14 p-3 sm:p-4 rounded-xl bg-sky-50 border border-sky-100 shadow-inner">
+                  <div className="mt-4 sm:mt-6 sm:ml-14 p-3 sm:p-4  bg-sky-50 border border-sky-100 shadow-inner">
                     <div className="flex items-center gap-2 text-sky-700 font-bold mb-2 text-sm sm:text-base">
                       <AlertCircle size={16} className="sm:w-4 sm:h-4" /> Giải thích:
                     </div>
@@ -540,7 +540,7 @@ export default function SectionQuiz() {
           <div className="flex items-center gap-2 pb-2 min-w-max">
             {quizData.map((_, idx) => {
               const hasAnswered = answers[idx] !== undefined;
-              let btnClass = "w-10 h-10 shrink-0 rounded-lg text-sm font-bold flex items-center justify-center transition-colors ";
+              let btnClass = "w-10 h-10 shrink-0  text-sm font-bold flex items-center justify-center transition-colors ";
               if (isReviewing) {
                 const isCorrect = answers[idx] === quizData[idx].correctAnswer;
                 btnClass += (isCorrect ? "bg-emerald-100 text-emerald-700 border border-emerald-300" : "bg-rose-100 text-rose-700 border border-rose-300");

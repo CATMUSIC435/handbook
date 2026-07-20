@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   Calendar as CalendarIcon,
@@ -15,9 +15,11 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import mockAppointments from "../../data/appointments.json";
+import mockCustomers from "../../data/customers.json";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import CustomSelect from "../../components/ui/CustomSelect";
+import MapboxLocationPicker from "./components/MapboxLocationPicker";
+import MapboxOverview from "./components/MapboxOverview";
 
 const locales = {
   vi: vi,
@@ -39,19 +41,25 @@ const DnDCalendar = withDragAndDrop(Calendar);
 export default function SectionCalendar() {
   const [appointments, setAppointments] = useLocalStorage(
     "fenica_appointments",
-    mockAppointments,
+    [],
+  );
+
+  const [customers] = useLocalStorage(
+    "fenica_customers",
+    mockCustomers,
   );
 
   // Custom Modal State
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingEventId, setEditingEventId] = useState(null);
   const [newTitle, setNewTitle] = useState("");
-  const [newCustomer, setNewCustomer] = useState("");
+  const [newCustomerId, setNewCustomerId] = useState("");
   const [newDateTime, setNewDateTime] = useState(new Date());
   const [newEndDateTime, setNewEndDateTime] = useState(
     new Date(new Date().getTime() + 60 * 60 * 1000),
   );
   const [newLocation, setNewLocation] = useState("");
+  const [newCoordinates, setNewCoordinates] = useState(null);
   const [newType, setNewType] = useState("meeting");
 
   // Selected date for Agenda view
@@ -60,36 +68,50 @@ export default function SectionCalendar() {
   // Calendar controlled state
   const [currentDate, setCurrentDate] = useState(new Date());
   const [currentView, setCurrentView] = useState("month");
+  const [isCalendarCollapsed, setIsCalendarCollapsed] = useState(false);
 
-  const events = appointments.map((apt) => {
-    const [year, month, day] = (
-      apt.date || format(new Date(), "yyyy-MM-dd")
-    ).split("-");
-    const [hour, minute] = (apt.time || "00:00").split(":");
-    const start = new Date(year, month - 1, day, hour, minute);
+  const events = useMemo(() => {
+    return appointments.map((apt) => {
+      const [year, month, day] = (
+        apt.date || format(new Date(), "yyyy-MM-dd")
+      ).split("-");
+      const [hour, minute] = (apt.time || "00:00").split(":");
+      const start = new Date(year, month - 1, day, hour, minute);
 
-    let end;
-    if (apt.endDate && apt.endTime) {
-      const [eYear, eMonth, eDay] = apt.endDate.split("-");
-      const [eHour, eMinute] = apt.endTime.split(":");
-      end = new Date(eYear, eMonth - 1, eDay, eHour, eMinute);
-    } else {
-      end = new Date(year, month - 1, day, parseInt(hour) + 1, minute);
-    }
+      let end;
+      if (apt.endDate && apt.endTime) {
+        const [eYear, eMonth, eDay] = apt.endDate.split("-");
+        const [eHour, eMinute] = apt.endTime.split(":");
+        end = new Date(eYear, eMonth - 1, eDay, eHour, eMinute);
+      } else {
+        end = new Date(year, month - 1, day, parseInt(hour) + 1, minute);
+      }
 
-    return {
-      ...apt,
-      start,
-      end,
-    };
-  });
+      return {
+        ...apt,
+        start,
+        end,
+      };
+    });
+  }, [appointments]);
+
+  const selectedDayAppointments = useMemo(() => {
+    return [...appointments]
+      .filter((a) => a.date === selectedDateStr)
+      .sort((a, b) => {
+        const timeA = (a.time || "00:00").split(':').map(Number);
+        const timeB = (b.time || "00:00").split(':').map(Number);
+        return (timeA[0] * 60 + timeA[1]) - (timeB[0] * 60 + timeB[1]);
+      });
+  }, [appointments, selectedDateStr]);
 
   const handleSelectSlot = (slotInfo) => {
     setSelectedDateStr(format(slotInfo.start, "yyyy-MM-dd"));
     setEditingEventId(null);
     setNewTitle("");
-    setNewCustomer("");
+    setNewCustomerId("");
     setNewLocation("");
+    setNewCoordinates(null);
     setNewDateTime(slotInfo.start);
     setNewEndDateTime(
       slotInfo.end || new Date(slotInfo.start.getTime() + 60 * 60 * 1000),
@@ -101,8 +123,9 @@ export default function SectionCalendar() {
     setSelectedDateStr(event.date);
     setEditingEventId(event.id);
     setNewTitle(event.title);
-    setNewCustomer(event.customer);
+    setNewCustomerId(event.customerId || event.customer); // Support old data fallback
     setNewLocation(event.location);
+    setNewCoordinates(event.coordinates || null);
     setNewType(event.type);
     setNewDateTime(event.start);
     setNewEndDateTime(event.end);
@@ -111,7 +134,7 @@ export default function SectionCalendar() {
 
   const handleAddAppointment = (e) => {
     e.preventDefault();
-    if (!newTitle || !newCustomer || !newDateTime) return;
+    if (!newTitle || !newCustomerId || !newDateTime) return;
 
     if (editingEventId) {
       const updated = appointments.map((apt) => {
@@ -119,12 +142,13 @@ export default function SectionCalendar() {
           return {
             ...apt,
             title: newTitle,
-            customer: newCustomer,
+            customerId: newCustomerId,
             date: format(newDateTime, "yyyy-MM-dd"),
             time: format(newDateTime, "HH:mm"),
             endDate: format(newEndDateTime, "yyyy-MM-dd"),
             endTime: format(newEndDateTime, "HH:mm"),
             location: newLocation,
+            coordinates: newCoordinates,
             type: newType,
           };
         }
@@ -135,12 +159,13 @@ export default function SectionCalendar() {
       const newApt = {
         id: Date.now(),
         title: newTitle,
-        customer: newCustomer,
+        customerId: newCustomerId,
         date: format(newDateTime, "yyyy-MM-dd"),
         time: format(newDateTime, "HH:mm"),
         endDate: format(newEndDateTime, "yyyy-MM-dd"),
         endTime: format(newEndDateTime, "HH:mm"),
         location: newLocation,
+        coordinates: newCoordinates,
         type: newType,
         status: "upcoming",
       };
@@ -150,8 +175,9 @@ export default function SectionCalendar() {
     setShowAddModal(false);
     setEditingEventId(null);
     setNewTitle("");
-    setNewCustomer("");
+    setNewCustomerId("");
     setNewLocation("");
+    setNewCoordinates(null);
   };
 
   const handleDeleteAppointment = () => {
@@ -229,8 +255,13 @@ export default function SectionCalendar() {
     };
   };
 
+  const getCustomerName = (customerId) => {
+    const cust = customers.find((c) => c.id === customerId);
+    return cust ? cust.name : customerId; // Fallback to raw ID if not found (legacy data)
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50 overflow-y-auto relative">
+    <div className="min-h-screen bg-slate-50 overflow-y-auto relative flex flex-col">
       {/* Top Header */}
       <div className="max-w-7xl mx-auto w-full mb-8 mt-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 px-6 lg:px-8">
         <div>
@@ -241,11 +272,24 @@ export default function SectionCalendar() {
 
         <div className="flex items-center gap-4">
           <button
+            onClick={() => setIsCalendarCollapsed(!isCalendarCollapsed)}
+            className={`flex items-center gap-2 px-4 py-3 font-bold border transition-colors ${
+              isCalendarCollapsed 
+                ? "bg-slate-900 text-white border-slate-900 hover:bg-slate-800"
+                : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
+            }`}
+          >
+            <MapPin size={20} />
+            <span className="hidden sm:inline">{isCalendarCollapsed ? "Mở Bảng Lịch" : "Bản Đồ Lộ Trình"}</span>
+          </button>
+
+          <button
             onClick={() => {
               setEditingEventId(null);
               setNewTitle("");
-              setNewCustomer("");
+              setNewCustomerId("");
               setNewLocation("");
+              setNewCoordinates(null);
               setNewDateTime(new Date());
               setNewEndDateTime(
                 new Date(new Date().getTime() + 60 * 60 * 1000),
@@ -260,99 +304,127 @@ export default function SectionCalendar() {
       </div>
 
       {/* Main Layout */}
-      <div className="mx-auto w-full pb-20 flex flex-col lg:flex-row gap-8">
+      <div className="mx-auto w-full pb-20 flex flex-col lg:flex-row gap-8 flex-1">
         {/* LEFT: React Big Calendar */}
-        <div className="flex-1 bg-white p-6 shadow-xl shadow-slate-200/50 border border-slate-100 min-h-[600px] overflow-hidden calendar-container">
-          <DnDCalendar
-            localizer={localizer}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            culture="vi"
-            onSelectSlot={handleSelectSlot}
-            onSelectEvent={handleSelectEvent}
-            selectable
-            resizable
-            onEventDrop={handleEventDrop}
-            onEventResize={handleEventResize}
-            messages={{
-              next: "Tiếp",
-              previous: "Trước",
-              today: "Hôm nay",
-              month: "Tháng",
-              week: "Tuần",
-              day: "Ngày",
-              agenda: "Lịch trình",
-              date: "Ngày",
-              time: "Thời gian",
-              event: "Sự kiện",
-            }}
-            date={currentDate}
-            onNavigate={(newDate) => setCurrentDate(newDate)}
-            view={currentView}
-            onView={(newView) => setCurrentView(newView)}
-            eventPropGetter={eventStyleGetter}
-            className="font-sans"
-            style={{ height: "600px" }}
-          />
-        </div>
+        {!isCalendarCollapsed && (
+          <div className="flex-1 bg-white p-6 shadow-xl shadow-slate-200/50 border border-slate-100 min-h-[600px] overflow-hidden calendar-container">
+            <DnDCalendar
+              localizer={localizer}
+              events={events}
+              startAccessor="start"
+              endAccessor="end"
+              culture="vi"
+              onSelectSlot={handleSelectSlot}
+              onSelectEvent={handleSelectEvent}
+              selectable
+              resizable
+              onEventDrop={handleEventDrop}
+              onEventResize={handleEventResize}
+              messages={{
+                next: "Tiếp",
+                previous: "Trước",
+                today: "Hôm nay",
+                month: "Tháng",
+                week: "Tuần",
+                day: "Ngày",
+                agenda: "Lịch trình",
+                date: "Ngày",
+                time: "Thời gian",
+                event: "Sự kiện",
+              }}
+              date={currentDate}
+              onNavigate={(newDate) => setCurrentDate(newDate)}
+              view={currentView}
+              onView={(newView) => setCurrentView(newView)}
+              eventPropGetter={eventStyleGetter}
+              className="font-sans"
+              style={{ height: "600px" }}
+            />
+          </div>
+        )}
 
         {/* RIGHT: Notifications & Upcoming */}
-        <div className="lg:w-[400px] shrink-0 flex flex-col gap-6">
+        <div className={`${isCalendarCollapsed ? 'flex-1' : 'lg:w-[400px] shrink-0'} flex flex-col gap-6`}>
           {/* Selected Day's Agenda */}
-          <div className="bg-white p-6 shadow-xl shadow-slate-200/50 border border-slate-100 flex-1">
-            <h3 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
-              <Clock className="text-indigo-500" /> Lịch Trình{" "}
-              {selectedDateStr === format(new Date(), "yyyy-MM-dd") ? "Hôm Nay" : selectedDateStr}
-            </h3>
+          <div className={`bg-white shadow-xl shadow-slate-200/50 border border-slate-100 flex overflow-hidden ${isCalendarCollapsed ? 'flex-col lg:flex-row min-h-[80vh] lg:min-h-[600px] flex-1' : 'flex-col p-6 flex-1'}`}>
+            
+            {/* AGENDA LIST */}
+            <div className={`${isCalendarCollapsed ? 'w-full lg:w-[350px] shrink-0 p-6 border-r border-slate-100 overflow-y-auto h-[40vh] lg:h-auto lg:max-h-[800px] bg-white z-10 order-2 lg:order-1' : ''}`}>
+              <h3 className="text-lg font-black text-slate-900 mb-4 flex items-center gap-2">
+                <Clock className="text-indigo-500" /> Lịch Trình{" "}
+                {selectedDateStr === format(new Date(), "yyyy-MM-dd") ? "Hôm Nay" : selectedDateStr}
+              </h3>
 
-            <div className="flex flex-col gap-4 relative">
-              <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-100 z-0"></div>
-
-              {appointments
-                .filter((a) => a.date === selectedDateStr)
-                .map((apt) => (
-                  <div key={apt.id} className="relative z-10 flex gap-4">
-                    <div className="mt-1.5 w-6 h-6 bg-white border-4 border-indigo-500 shrink-0 flex items-center justify-center shadow-sm"></div>
-
-                    <div
-                      className={`flex-1 p-4 border ${apt.status === "completed" ? "bg-slate-50 border-slate-100 opacity-60" : "bg-white border-slate-100 shadow-sm hover:border-indigo-200 hover:shadow-md transition-all"}`}
-                    >
-                      <div className="flex justify-between items-start mb-2">
-                        <span className="text-sm font-black text-indigo-600">
-                          {apt.time}
-                        </span>
-                        <span
-                          className={`text-xs font-bold px-2 py-1 uppercase tracking-wider border ${getTypeColor(apt.type)}`}
-                        >
-                          {apt.type}
-                        </span>
-                      </div>
-                      <h4
-                        className={`font-bold text-slate-900 mb-3 ${apt.status === "completed" && "line-through"}`}
-                      >
-                        {apt.title}
-                      </h4>
-
-                      <div className="flex flex-col gap-1.5">
-                        <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
-                          <User size={14} /> {apt.customer}
-                        </div>
-                        <div className="flex items-center gap-2 text-sm font-medium text-slate-500">
-                          <MapPin size={14} /> {apt.location}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-
-              {appointments.filter((a) => a.date === selectedDateStr).length ===
-                0 && (
-                <div className="text-center text-slate-400 py-8 relative z-10 bg-white">
-                  Không có lịch trình nào.
+              {!isCalendarCollapsed && (
+                <div className="mb-6  overflow-hidden shadow-sm">
+                  <MapboxOverview appointments={selectedDayAppointments} />
                 </div>
               )}
+
+              <div className="flex flex-col gap-4 relative">
+                <div className="absolute left-[15px] top-4 bottom-4 w-0.5 bg-slate-200 z-0"></div>
+
+                {selectedDayAppointments
+                  .map((apt, index) => {
+                    let markerBg = "bg-indigo-500";
+                    if (apt.type === "meeting") markerBg = "bg-blue-500";
+                    if (apt.type === "contract") markerBg = "bg-emerald-500";
+                    if (apt.type === "call") markerBg = "bg-purple-500";
+                    if (apt.type === "reminder") markerBg = "bg-amber-500";
+
+                    return (
+                      <div key={apt.id} className="relative z-10 flex gap-4">
+                        <div className={`mt-2 w-8 h-8 rounded-full shrink-0 flex items-center justify-center shadow-sm text-sm font-bold text-white border-2 border-white ${markerBg}`}>
+                          {index + 1}
+                        </div>
+
+                        <div
+                          className={`flex-1 p-4 border  ${apt.status === "completed" ? "bg-slate-50 border-slate-100 opacity-60" : "bg-white border-slate-200 shadow-sm hover:border-indigo-300 hover:shadow-md transition-all cursor-pointer"}`}
+                          onClick={() => handleSelectEvent(apt)}
+                        >
+                          <div className="flex justify-between items-start mb-2">
+                            <span className="text-sm font-black text-slate-800">
+                              {apt.time}
+                            </span>
+                            <span
+                              className={`text-[10px] font-bold px-2 py-1 uppercase tracking-wider  border ${getTypeColor(apt.type)}`}
+                            >
+                              {apt.type}
+                            </span>
+                          </div>
+                          <h4
+                            className={`font-bold text-slate-900 mb-3 ${apt.status === "completed" && "line-through"}`}
+                          >
+                            {apt.title}
+                          </h4>
+
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                              <User size={14} className="text-slate-400" /> {getCustomerName(apt.customerId || apt.customer)}
+                            </div>
+                            <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+                              <MapPin size={14} className="text-slate-400" /> {apt.location || "Chưa có địa điểm"}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+
+                {selectedDayAppointments.length === 0 && (
+                  <div className="text-center text-slate-400 py-8 relative z-10 bg-white">
+                    Không có lịch trình nào.
+                  </div>
+                )}
+              </div>
             </div>
+
+            {/* FULL MAP VIEW */}
+            {isCalendarCollapsed && (
+              <div className="flex-1 bg-slate-100 relative min-h-[50vh] lg:min-h-0 flex flex-col w-full h-full order-1 lg:order-2">
+                <MapboxOverview appointments={selectedDayAppointments} isFullScreen />
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -404,13 +476,13 @@ export default function SectionCalendar() {
                   <label className="text-xs font-bold text-slate-400 mb-1 block">
                     Khách hàng *
                   </label>
-                  <input
-                    required
-                    type="text"
-                    value={newCustomer}
-                    onChange={(e) => setNewCustomer(e.target.value)}
-                    className="w-full p-3 border border-slate-200 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none"
-                    placeholder="Tên khách hàng"
+                  <CustomSelect
+                    value={newCustomerId}
+                    onChange={setNewCustomerId}
+                    options={[
+                      { value: "", label: "Chọn khách hàng..." },
+                      ...customers.map(c => ({ value: c.id, label: `${c.name} - ${c.phone}` }))
+                    ]}
                   />
                 </div>
                 <div className="flex gap-4">
@@ -448,16 +520,14 @@ export default function SectionCalendar() {
                     />
                   </div>
                 </div>
-                <div>
-                  <label className="text-xs font-bold text-slate-400 mb-1 block">
-                    Địa điểm
-                  </label>
-                  <input
-                    type="text"
-                    value={newLocation}
-                    onChange={(e) => setNewLocation(e.target.value)}
-                    className="w-full p-3 border border-slate-200 bg-slate-50 focus:bg-white focus:border-amber-500 outline-none"
-                    placeholder="Nhà mẫu / Gọi thoại..."
+                <div className="z-10">
+                  <MapboxLocationPicker 
+                    locationName={newLocation}
+                    coordinates={newCoordinates}
+                    onChange={({ location, coordinates }) => {
+                      setNewLocation(location);
+                      setNewCoordinates(coordinates);
+                    }}
                   />
                 </div>
                 <div>

@@ -56,19 +56,31 @@ const iconMap = {
 };
 const tabs = tabsData.tabs.map((tab) => ({ ...tab, icon: iconMap[tab.icon] }));
 export default function Navigation({ isMobileMenuOpen, setIsMobileMenuOpen }) {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    const saved = localStorage.getItem("fenica-nav-collapsed");
+    if (saved !== null) {
+      return JSON.parse(saved);
+    }
+    return window.innerWidth < 1024;
+  });
+
   const location = useLocation();
   const navigate = useNavigate();
-  // Auto-collapse on small screens
+
+  const toggleCollapse = () => {
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    localStorage.setItem("fenica-nav-collapsed", JSON.stringify(newState));
+  };
+
+  // Tự động thu gọn trên màn hình nhỏ nếu người dùng chưa từng lưu tuỳ chọn
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 1024) {
-        setIsCollapsed(true);
-      } else {
-        setIsCollapsed(false);
+      const saved = localStorage.getItem("fenica-nav-collapsed");
+      if (saved === null) {
+        setIsCollapsed(window.innerWidth < 1024);
       }
     };
-    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -112,7 +124,7 @@ export default function Navigation({ isMobileMenuOpen, setIsMobileMenuOpen }) {
         {/* Collapse Toggle Button (Desktop Only) */}
         {""}
         <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={toggleCollapse}
           className="hidden md:flex absolute -right-4 top-8 w-8 h-8 bg-white border border-slate-200 items-center justify-center text-slate-500 hover:text-primary hover:border-primary shadow-md z-50 transition-colors"
         >
           {""}

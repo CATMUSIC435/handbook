@@ -47,7 +47,7 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
         
         {/* Floor Plan Image */}
         <div 
-          className="w-full bg-slate-100 rounded-2xl p-4 border border-slate-200/60 shadow-inner group overflow-hidden relative cursor-pointer"
+          className="w-full bg-slate-100  p-4 border border-slate-200/60 shadow-inner group overflow-hidden relative cursor-pointer"
           onClick={() => navigate('/masterplan')}
         >
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10 flex items-end p-4">
@@ -58,11 +58,11 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
 
         {/* Quick Info Grid */}
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div className="bg-slate-50 p-4  border border-slate-100">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Độ cao</p>
             <p className="text-lg font-black text-slate-800">{selectedFloor.y} <span className="text-sm text-slate-500 font-medium">mét</span></p>
           </div>
-          <div className="bg-slate-50 p-4 rounded-xl border border-slate-100">
+          <div className="bg-slate-50 p-4  border border-slate-100">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Diện tích</p>
             <p className="text-lg font-black text-slate-800">1,240 <span className="text-sm text-slate-500 font-medium">m²</span></p>
           </div>
@@ -74,23 +74,23 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
             <Home size={16} className="text-[#d4ae6f]" /> Phân bổ căn hộ
           </h3>
           <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl hover:border-[#d4ae6f] transition-colors cursor-pointer group">
+            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs group-hover:bg-blue-600 group-hover:text-white transition-colors">1PN</div>
+                <div className="w-8 h-8  bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs group-hover:bg-blue-600 group-hover:text-white transition-colors">1PN</div>
                 <span className="font-medium text-slate-700">Studio & 1 Phòng ngủ</span>
               </div>
               <span className="font-bold text-slate-900">4 căn</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl hover:border-[#d4ae6f] transition-colors cursor-pointer group">
+            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs group-hover:bg-emerald-600 group-hover:text-white transition-colors">2PN</div>
+                <div className="w-8 h-8  bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs group-hover:bg-emerald-600 group-hover:text-white transition-colors">2PN</div>
                 <span className="font-medium text-slate-700">2 Phòng ngủ</span>
               </div>
               <span className="font-bold text-slate-900">8 căn</span>
             </div>
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100 rounded-xl hover:border-[#d4ae6f] transition-colors cursor-pointer group">
+            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs group-hover:bg-amber-600 group-hover:text-white transition-colors">3PN</div>
+                <div className="w-8 h-8  bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs group-hover:bg-amber-600 group-hover:text-white transition-colors">3PN</div>
                 <span className="font-medium text-slate-700">3 Phòng ngủ (Góc)</span>
               </div>
               <span className="font-bold text-slate-900">2 căn</span>
@@ -102,7 +102,7 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
 
       {/* Footer Action */}
       <div className="p-6 border-t border-slate-100 bg-white">
-        <button className="w-full py-4 bg-slate-900 hover:bg-[#d4ae6f] text-white font-bold rounded-xl shadow-xl shadow-slate-900/20 hover:shadow-[#d4ae6f]/30 transition-all flex items-center justify-center gap-2">
+        <button className="w-full py-4 bg-slate-900 hover:bg-[#d4ae6f] text-white font-bold  shadow-xl shadow-slate-900/20 hover:shadow-[#d4ae6f]/30 transition-all flex items-center justify-center gap-2">
           <Info size={18} /> Xem bảng giá chi tiết
         </button>
       </div>

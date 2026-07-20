@@ -86,6 +86,14 @@ function App() {
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
 
+  // Splash screen state
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   // PWA Install state
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstallBtn, setShowInstallBtn] = useState(false);
@@ -163,6 +171,40 @@ function App() {
 
   return (
     <div className="flex h-screen bg-surface overflow-hidden relative">
+      {/* Splash Screen */}
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center"
+          >
+            <motion.img 
+              src="/favicon-dxmd-vietnam.png" 
+              alt="Logo"
+              className="w-32 h-32 md:w-48 md:h-48 object-contain mb-8"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5, type: "spring" }}
+            />
+            <motion.div 
+              className="w-48 h-1 bg-slate-100 rounded-full overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.div 
+                className="h-full bg-primary"
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 1.5, ease: "easeInOut" }}
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Sidebar Navigation */}
       <Navigation
         isMobileMenuOpen={isMobileMenuOpen}
@@ -281,7 +323,7 @@ function App() {
           >
             <button
               onClick={handleInstallClick}
-              className="flex items-center gap-2 bg-primary text-white px-5 py-3 font-bold shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all rounded-md"
+              className="flex items-center gap-2 bg-primary text-white px-5 py-3 font-bold shadow-xl shadow-primary/30 hover:bg-primary/90 transition-all "
             >
               <Download size={20} />
             </button>
@@ -302,7 +344,7 @@ function App() {
               initial={{ scale: 0.9, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 50 }}
-              className="w-full max-w-sm bg-white p-6 shadow-2xl relative rounded-t-3xl sm:rounded-3xl"
+              className="w-full max-w-sm bg-white p-6 shadow-2xl relative -3xl sm:"
             >
               <button
                 onClick={() => setShowIosInstructions(false)}
@@ -334,7 +376,7 @@ function App() {
                 </div>
                 <button
                   onClick={() => setShowIosInstructions(false)}
-                  className="w-full mt-8 py-3 bg-slate-900 text-white font-bold rounded-xl"
+                  className="w-full mt-8 py-3 bg-slate-900 text-white font-bold "
                 >
                   Đã hiểu
                 </button>

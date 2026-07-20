@@ -1,42 +1,35 @@
 [
   {
     "id": 1,
-    "title": "Dẫn khách xem sa bàn",
-    "customer": "Anh Tuấn",
-    "date": "2026-07-14",
+    "title": "Gặp khách tại quán cafe",
+    "customerId": "KH001",
+    "date": "2026-07-17",
     "time": "09:00",
-    "location": "Nhà mẫu Fenica",
+    "location": "The Coffee House, Quận 1",
+    "coordinates": { "lat": 10.7725, "lng": 106.6980 },
     "type": "meeting",
     "status": "upcoming"
   },
   {
     "id": 2,
-    "title": "Ký cọc căn A-1205",
-    "customer": "Chị Mai",
-    "date": "2026-07-14",
+    "title": "Tham quan sa bàn dự án",
+    "customerId": "KH002",
+    "date": "2026-07-17",
     "time": "14:30",
-    "location": "Văn phòng bán hàng",
-    "type": "contract",
+    "location": "Khu đô thị mới, Thủ Đức",
+    "coordinates": { "lat": 10.7950, "lng": 106.7200 },
+    "type": "meeting",
     "status": "upcoming"
   },
   {
     "id": 3,
-    "title": "Gọi điện tư vấn lãi suất",
-    "customer": "Chú Bình",
-    "date": "2026-07-15",
-    "time": "10:00",
-    "location": "Gọi thoại",
-    "type": "call",
-    "status": "upcoming"
-  },
-  {
-    "id": 4,
-    "title": "Nhắc khách chuyển tiền",
-    "customer": "Cô Hương",
-    "date": "2026-07-13",
+    "title": "Ký hợp đồng cọc",
+    "customerId": "KH003",
+    "date": "2026-07-17",
     "time": "16:00",
-    "location": "Zalo",
-    "type": "reminder",
-    "status": "completed"
+    "location": "Văn phòng công ty",
+    "coordinates": { "lat": 10.7810, "lng": 106.7000 },
+    "type": "contract",
+    "status": "upcoming"
   }
 ]
