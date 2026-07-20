@@ -52,11 +52,11 @@ export default function UnitHotspot3D({ selectedFloor }) {
             <div className="grid grid-cols-2 gap-3 text-xs">
               <div>
                 <span className="text-slate-400 block mb-0.5">Hướng</span>
-                <span className="font-bold text-slate-700">{translateDirection(unitData.direction)}</span>
+                <span className="font-medium italic text-slate-500">Đang cập nhật</span>
               </div>
               <div>
                 <span className="text-slate-400 block mb-0.5">View</span>
-                <span className="font-bold text-slate-700">{translateView(unitData.view)}</span>
+                <span className="font-medium italic text-slate-500">Đang cập nhật</span>
               </div>
             </div>
           </div>

@@ -60,43 +60,15 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
         <div className="grid grid-cols-2 gap-3">
           <div className="bg-slate-50 p-4  border border-slate-100">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Độ cao</p>
-            <p className="text-lg font-black text-slate-800">{selectedFloor.y} <span className="text-sm text-slate-500 font-medium">mét</span></p>
+            <p className="text-sm font-medium italic text-slate-500 mt-1">Đang cập nhật</p>
           </div>
           <div className="bg-slate-50 p-4  border border-slate-100">
             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Diện tích</p>
-            <p className="text-lg font-black text-slate-800">1,240 <span className="text-sm text-slate-500 font-medium">m²</span></p>
+            <p className="text-sm font-medium italic text-slate-500 mt-1">Đang cập nhật</p>
           </div>
         </div>
 
-        {/* Apartment Types */}
-        <div>
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3 flex items-center gap-2">
-            <Home size={16} className="text-[#d4ae6f]" /> Phân bổ căn hộ
-          </h3>
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8  bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xs group-hover:bg-blue-600 group-hover:text-white transition-colors">1PN</div>
-                <span className="font-medium text-slate-700">Studio & 1 Phòng ngủ</span>
-              </div>
-              <span className="font-bold text-slate-900">4 căn</span>
-            </div>
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8  bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs group-hover:bg-emerald-600 group-hover:text-white transition-colors">2PN</div>
-                <span className="font-medium text-slate-700">2 Phòng ngủ</span>
-              </div>
-              <span className="font-bold text-slate-900">8 căn</span>
-            </div>
-            <div className="flex items-center justify-between p-3 bg-white border border-slate-100  hover:border-[#d4ae6f] transition-colors cursor-pointer group">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8  bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-xs group-hover:bg-amber-600 group-hover:text-white transition-colors">3PN</div>
-                <span className="font-medium text-slate-700">3 Phòng ngủ (Góc)</span>
-              </div>
-              <span className="font-bold text-slate-900">2 căn</span>
-            </div>
-          </div>
-        </div>
+
 
       </div>
 
