@@ -168,7 +168,7 @@ export default function SectionQuiz() {
           animate={{ scale: 1, opacity: 1, y: 0 }}
           className="bg-white  p-8 max-w-md w-full text-center shadow-2xl"
         >
-          <div className="w-24 h-24 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-24 h-24 bg-rose-100 text-rose-600 flex items-center justify-center mx-auto mb-6">
             <EyeOff size={48} />
           </div>
           <h2 className="text-2xl font-black text-rose-600 mb-2 uppercase">Cảnh báo gian lận!</h2>
@@ -197,7 +197,7 @@ export default function SectionQuiz() {
       <div className="min-h-screen bg-slate-50 p-6 md:p-12">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <div className="w-16 h-16 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4 rounded-full">
+            <div className="w-16 h-16 bg-primary/10 text-primary flex items-center justify-center mx-auto mb-4">
               <BookOpenCheck size={32} />
             </div>
             <h1 className="text-4xl font-black text-slate-900 mb-4">Trắc Nghiệm Kiến Thức</h1>
@@ -237,7 +237,7 @@ export default function SectionQuiz() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6 relative">
         <button 
           onClick={handleBackToTopics}
-          className="absolute top-6 left-6 flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-semibold bg-white px-4 py-2 rounded-full shadow-sm"
+          className="absolute top-6 left-6 flex items-center gap-2 text-slate-500 hover:text-primary transition-colors font-semibold bg-white px-4 py-2 shadow-sm"
         >
           <ChevronLeft size={20} /> Chủ đề khác
         </button>
@@ -291,11 +291,11 @@ export default function SectionQuiz() {
           className="bg-white p-8  max-w-md w-full text-center shadow-xl shadow-slate-200/50 border border-slate-100 my-8"
         >
           {cheatCount >= 3 ? (
-            <div className="w-24 h-24 bg-rose-100 text-rose-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-rose-100 text-rose-500 flex items-center justify-center mx-auto mb-6">
               <EyeOff size={48} />
             </div>
           ) : (
-            <div className="w-24 h-24 bg-amber-100 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-amber-100 text-amber-500 flex items-center justify-center mx-auto mb-6">
               <Trophy size={48} />
             </div>
           )}
@@ -399,7 +399,7 @@ export default function SectionQuiz() {
           <div className="flex items-center gap-4">
             <button 
               onClick={handleBackToTopics}
-              className="p-2 bg-slate-100 rounded-full text-slate-500 hover:text-primary transition-colors flex items-center justify-center"
+              className="p-2 bg-slate-100 text-slate-500 hover:text-primary transition-colors flex items-center justify-center"
             >
               <ChevronLeft size={20} />
             </button>
@@ -418,7 +418,7 @@ export default function SectionQuiz() {
           ) : (
             <button
               onClick={handleRestart}
-              className="px-4 py-2 bg-white text-slate-700 font-bold hover:bg-slate-100 rounded-full border border-slate-200 shadow-sm flex items-center justify-center gap-2 text-sm"
+              className="px-4 py-2 bg-white text-slate-700 font-bold hover:bg-slate-100 border border-slate-200 shadow-sm flex items-center justify-center gap-2 text-sm"
             >
               <RotateCcw size={16} /> Làm lại
             </button>
@@ -427,7 +427,7 @@ export default function SectionQuiz() {
           {!isReviewing ? (
             <button
               onClick={handleSubmit}
-              className="px-4 py-2 bg-primary text-white font-bold rounded-full hover:bg-primary/90 shadow-md flex lg:hidden items-center gap-2 text-sm"
+              className="px-4 py-2 bg-primary text-white font-bold hover:bg-primary/90 shadow-md flex lg:hidden items-center gap-2 text-sm"
             >
               Nộp <Send size={14} />
             </button>
@@ -436,7 +436,7 @@ export default function SectionQuiz() {
         
         {/* Progress bar below header */}
         {!isReviewing && (
-          <div className="w-full max-w-7xl mx-auto mt-3 h-1.5 bg-slate-100 rounded-full overflow-hidden">
+          <div className="w-full max-w-7xl mx-auto mt-3 h-1.5 bg-slate-100 overflow-hidden">
             <div 
               className="h-full bg-emerald-500 transition-all duration-300"
               style={{ width: (answeredCount / quizData.length * 100) + '%' }}
@@ -460,7 +460,7 @@ export default function SectionQuiz() {
             return (
               <div key={qIndex} className={"bg-white p-4 md:p-6 lg:p-8  shadow-sm border " + (isReviewing ? (isCorrect ? "border-emerald-200" : "border-rose-200") : "border-slate-200")} id={"question-" + qIndex}>
                 <div className="flex items-start gap-3 sm:gap-4 mb-6">
-                  <div className={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center font-black text-white text-base sm:text-lg shadow-sm " + (isReviewing ? (isCorrect ? "bg-emerald-500" : "bg-rose-500") : "bg-primary")}>
+                  <div className={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center font-black text-white text-base sm:text-lg shadow-sm " + (isReviewing ? (isCorrect ? "bg-emerald-500" : "bg-rose-500") : "bg-primary")}>
                     {qIndex + 1}
                   </div>
                   <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-800 leading-snug pt-0.5 sm:pt-1">
@@ -501,7 +501,7 @@ export default function SectionQuiz() {
                         </span>
                         
                         {!isReviewing ? (
-                           <div className={"w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-4 transition-colors " + iconClass}>
+                           <div className={"w-6 h-6 border-2 flex items-center justify-center shrink-0 ml-4 transition-colors " + iconClass}>
                              {isSelected && <CheckCircle size={14} strokeWidth={3} />}
                            </div>
                         ) : (

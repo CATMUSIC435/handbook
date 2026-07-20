@@ -212,7 +212,7 @@ export default function SectionLocation() {
           />
 
           {mapMode === "svg" && (
-            <div className="w-full h-full bg-slate-50 flex items-center justify-center relative">
+            <div className="w-full h-full bg-[#05051a] flex items-center justify-center relative">
               <img
                 src="/assets/images/vi-tri.svg"
                 alt="Map Location"

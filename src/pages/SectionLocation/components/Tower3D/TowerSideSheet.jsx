@@ -28,10 +28,10 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
       <div className="flex items-center justify-between p-6 border-b border-slate-100 bg-slate-50/50">
         <div>
           <h2 className="text-2xl font-black text-slate-900">
-            Tầng {selectedFloor.floor}
+            Tầng: Đang cập nhật
           </h2>
           <p className="text-sm font-medium text-[#d4ae6f] flex items-center gap-1 mt-1">
-            <CheckCircle2 size={14} /> Trạng thái: Đang mở bán
+            <CheckCircle2 size={14} /> Trạng thái: Đang cập nhật
           </p>
         </div>
         <button 
@@ -72,12 +72,7 @@ export default function TowerSideSheet({ selectedFloor, onClose }) {
 
       </div>
 
-      {/* Footer Action */}
-      <div className="p-6 border-t border-slate-100 bg-white">
-        <button className="w-full py-4 bg-slate-900 hover:bg-[#d4ae6f] text-white font-bold  shadow-xl shadow-slate-900/20 hover:shadow-[#d4ae6f]/30 transition-all flex items-center justify-center gap-2">
-          <Info size={18} /> Xem bảng giá chi tiết
-        </button>
-      </div>
+
     </motion.div>
   );
 }
