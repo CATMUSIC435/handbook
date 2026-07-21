@@ -1,22 +1,22 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Bot, Send, Sparkles, User, MessageCircle, ClipboardList, Copy, CheckCircle2, PenTool } from "lucide-react";
+import { Bot, Send, Sparkles, User, MessageCircle } from "lucide-react";
 import faqs from "../../data/faqs.json";
 import Fuse from "fuse.js";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import CustomSelect from "../../components/ui/CustomSelect";
+
 
 const INITIAL_MESSAGE = {
   id: 1,
   sender: "ai",
-  text: "Xin chào! Tôi là Trợ lý AI của dự án Fenica. Tôi nắm rõ toàn bộ thông tin về rổ hàng, giá bán, chính sách và tiến độ dự án. Tôi có thể giúp gì cho bạn hôm nay?",
+  text: "Xin chào! Tôi là Trợ lý ảo của dự án Fenica. Tôi nắm rõ thông tin về Chủ đầu tư, thiết kế, tiện ích, tiến độ, và pháp lý dự án. Tôi có thể giúp gì cho bạn hôm nay?",
 };
 
 const SUGGESTIONS = [
-  "Giá căn hộ 2PN bao nhiêu?",
-  "Chính sách thanh toán mới nhất",
-  "Pháp lý dự án ra sao?",
-  "So sánh Block A và C",
+  "Giá căn hộ 1PN khoảng bao nhiêu?",
+  "So sánh Block A và Block C",
+  "Khi nào dự án bàn giao?",
+  "Có những ngân hàng nào hỗ trợ vay?",
 ];
 
 const removeVietnameseTones = (str) => {
@@ -53,7 +53,6 @@ const fuse = new Fuse(indexedFaqs, {
 });
 
 export default function SectionAIAssistant() {
-  const [activeTab, setActiveTab] = useState("chat"); // 'chat' or 'script'
 
   // Chat State
   const [messages, setMessages] = useState([INITIAL_MESSAGE]);
@@ -63,12 +62,6 @@ export default function SectionAIAssistant() {
   const contextRef = useRef({ bedroom: null, budget: null });
   const [chatHistory, setChatHistory] = useState([]);
 
-  // Script Generator State
-  const [customerInfo, setCustomerInfo] = useState("");
-  const [scriptType, setScriptType] = useState("zalo");
-  const [generatedScript, setGeneratedScript] = useState("");
-  const [isGeneratingScript, setIsGeneratingScript] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
 
   // Initialize Gemini API
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
@@ -79,10 +72,8 @@ export default function SectionAIAssistant() {
   };
 
   useEffect(() => {
-    if (activeTab === "chat") {
-      scrollToBottom();
-    }
-  }, [messages, isTyping, activeTab]);
+    scrollToBottom();
+  }, [messages, isTyping]);
 
   const extractEntities = (text) => {
     let bedroom = null;
@@ -229,52 +220,6 @@ Dữ liệu đặc biệt:
     });
   };
 
-  const generateSalesScript = async () => {
-    if (!customerInfo.trim()) return;
-    if (!genAI) {
-      alert("Tính năng này yêu cầu Gemini API Key để hoạt động. Vui lòng cấu hình API Key trong file .env");
-      return;
-    }
-    
-    setIsGeneratingScript(true);
-    setGeneratedScript("");
-    
-    try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const formatStr = scriptType === 'zalo' 
-        ? 'tin nhắn Zalo ngắn gọn, chân thành, dùng icon hợp lý' 
-        : scriptType === 'phone' 
-          ? 'kịch bản gọi điện thoại telesale mạch lạc, có xử lý từ chối' 
-          : 'email chào hàng trang trọng, chuyên nghiệp, cấu trúc rõ ràng';
-
-      const prompt = `Bạn là một siêu Cò Bất Động Sản (Chuyên gia chốt sale) xuất sắc nhất khu vực, đang bán căn hộ cao cấp dự án Fenica.
-Tôi có một khách hàng với thông tin sau: "${customerInfo}".
-
-Nhiệm vụ của bạn: Hãy viết một kịch bản chốt sale dạng ${formatStr} để tôi gửi/nói với khách hàng này.
-Yêu cầu bắt buộc:
-- Tuyệt đối khéo léo, thấu hiểu tâm lý, không dùng từ ngữ quá "sale-y" hay chèo kéo thô thiển.
-- Nhấn mạnh vào đúng nhu cầu hoặc giải quyết nỗi lo sợ (pain point) của khách hàng từ thông tin tôi cung cấp.
-- Tập trung vào sự khan hiếm, đẳng cấp hoặc giá trị đầu tư của dự án Fenica (Block A nghỉ dưỡng, Block B/C thương mại).
-- Có một lời kêu gọi hành động (Call to Action) thật tự nhiên (ví dụ: mời đi xem sa bàn, mời nhận báo giá, mời chốt cọc).
-- Không tự bịa ra chính sách giảm giá hoặc quà tặng nếu không có thật.
-- Định dạng kết quả dễ đọc (markdown). Không tự giới thiệu bản thân là AI.`;
-
-      const result = await model.generateContent(prompt);
-      setGeneratedScript(result.response.text());
-    } catch (error) {
-      console.error("Gemini API Error:", error);
-      setGeneratedScript("Xin lỗi, hệ thống AI đang bận hoặc cấu hình API Key chưa chính xác. Vui lòng thử lại sau.");
-    } finally {
-      setIsGeneratingScript(false);
-    }
-  };
-
-  const handleCopy = () => {
-    if (!generatedScript) return;
-    navigator.clipboard.writeText(generatedScript);
-    setIsCopied(true);
-    setTimeout(() => setIsCopied(false), 2000);
-  };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center p-4">
@@ -301,26 +246,11 @@ Yêu cầu bắt buộc:
             </div>
           </div>
           
-          <div className="flex border-t border-slate-800">
-            <button 
-              onClick={() => setActiveTab('chat')}
-              className={`flex-1 py-3 font-bold text-sm transition-colors flex items-center justify-center gap-2 ${activeTab === 'chat' ? 'bg-primary text-slate-900' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-            >
-              <MessageCircle size={16}/> Hỏi Đáp Khách Hàng
-            </button>
-            <button 
-              onClick={() => setActiveTab('script')}
-              className={`flex-1 py-3 font-bold text-sm transition-colors flex items-center justify-center gap-2 ${activeTab === 'script' ? 'bg-primary text-slate-900' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-            >
-              <PenTool size={16}/> Sinh Kịch Bản Chốt Sale
-            </button>
-          </div>
         </div>
 
         {/* CONTENT AREA */}
-        {activeTab === 'chat' ? (
-          <>
-            {/* CHAT AREA */}
+        <>
+          {/* CHAT AREA */}
             <div className="flex-1 overflow-y-auto p-4 lg:p-6 flex flex-col gap-4 lg:gap-6" style={{ scrollbarWidth: "thin" }}>
               <AnimatePresence initial={false}>
                 {messages.map((msg) => (
@@ -382,7 +312,7 @@ Yêu cầu bắt buộc:
                   type="text"
                   value={inputText}
                   onChange={(e) => setInputText(e.target.value)}
-                  placeholder={genAI ? "Hỏi Trợ lý Fenica AI bất cứ điều gì..." : "Hỏi AI về rổ hàng, giá bán, so sánh block..."}
+                  placeholder={genAI ? "Hỏi Trợ lý Fenica AI bất cứ điều gì..." : "Hỏi AI về chủ đầu tư, tiến độ, tiện ích..."}
                   className="w-full bg-slate-50 border border-slate-200 text-slate-900 py-4 pl-6 pr-16 outline-none focus:border-primary focus:bg-white transition-all shadow-inner"
                 />
                 <button
@@ -395,84 +325,6 @@ Yêu cầu bắt buộc:
               </form>
             </div>
           </>
-        ) : (
-          /* SCRIPT GENERATOR AREA */
-          <div className="flex-1 overflow-y-auto p-4 lg:p-6 flex flex-col md:flex-row gap-6 bg-slate-50/50">
-            {/* Input Form */}
-            <div className="flex-1 flex flex-col gap-4">
-              <div className="bg-white p-5 border border-slate-200 shadow-sm">
-                <h3 className="font-black text-slate-900 mb-4 text-lg flex items-center gap-2">
-                  <ClipboardList className="text-primary"/> Thông tin khách hàng
-                </h3>
-                
-                <div className="flex flex-col gap-4">
-                  <div>
-                    <label className="text-xs font-bold text-slate-500 mb-1 block">Tình trạng / Chân dung khách hàng *</label>
-                    <textarea 
-                      value={customerInfo}
-                      onChange={(e) => setCustomerInfo(e.target.value)}
-                      placeholder="VD: Khách hàng 45 tuổi, đang phân vân về giá, thích mua để đầu tư lướt sóng..."
-                      className="w-full h-32 bg-slate-50 border border-slate-200 p-4 outline-none focus:border-primary focus:bg-white resize-none"
-                    ></textarea>
-                  </div>
-                  
-                  <div>
-                    <label className="text-xs font-bold text-slate-500 mb-1 block">Định dạng kịch bản</label>
-                    <CustomSelect 
-                      value={scriptType} 
-                      onChange={setScriptType} 
-                      options={[
-                        { value: 'zalo', label: 'Tin nhắn Zalo' },
-                        { value: 'phone', label: 'Kịch bản Gọi điện' },
-                        { value: 'email', label: 'Email chào hàng' }
-                      ]} 
-                    />
-                  </div>
-                  
-                  <button 
-                    onClick={generateSalesScript}
-                    disabled={isGeneratingScript || !customerInfo.trim()}
-                    className="w-full py-4 mt-2 bg-slate-900 text-white font-bold hover:bg-primary hover:text-slate-900 transition-colors disabled:opacity-50 flex items-center justify-center gap-2 shadow-lg shadow-slate-900/20"
-                  >
-                    {isGeneratingScript ? (
-                      <span className="flex items-center gap-2"><Sparkles className="animate-pulse"/> Đang phân tích tâm lý & Sinh kịch bản...</span>
-                    ) : (
-                      <span className="flex items-center gap-2"><Sparkles /> Sinh Kịch Bản Chốt Sale</span>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Output Result */}
-            <div className="flex-1 flex flex-col">
-              <div className="bg-white p-5 border border-slate-200 shadow-sm flex-1 flex flex-col relative">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-black text-slate-900 text-lg">Kết quả Kịch Bản</h3>
-                  {generatedScript && (
-                    <button 
-                      onClick={handleCopy}
-                      className="px-4 py-1.5 text-xs font-bold flex items-center gap-1.5 border border-slate-200 hover:bg-slate-100 transition-colors text-slate-600"
-                    >
-                      {isCopied ? <><CheckCircle2 size={14} className="text-emerald-500"/> Đã sao chép</> : <><Copy size={14}/> Sao chép</>}
-                    </button>
-                  )}
-                </div>
-                
-                <div className="flex-1 bg-slate-50 border border-slate-100 p-5 overflow-y-auto text-slate-700 leading-relaxed whitespace-pre-wrap min-h-[300px]">
-                  {generatedScript ? (
-                    generatedScript
-                  ) : (
-                    <div className="h-full flex flex-col items-center justify-center text-slate-400 opacity-50">
-                      <Bot size={48} className="mb-4"/>
-                      <p>Nhập thông tin khách hàng để AI giúp bạn chốt sale.</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

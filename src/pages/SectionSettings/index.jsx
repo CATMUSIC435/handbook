@@ -103,7 +103,7 @@ export default function SectionSettings() {
  Cá nhân hoá trải nghiệm và quản lý dữ liệu của bạn.
  </p> */}
       </div>
-      <div className="max-w-screen mx-auto px-6 lg:px-8 w-full pb-20 flex flex-col gap-4 lg:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-20 flex flex-col gap-4 lg:gap-8">
         {""}
         {/* HỆ THỐNG (System) */}
         {""}
@@ -117,10 +117,10 @@ export default function SectionSettings() {
             {""}
             {/* Dark Mode */}
             {""}
-            <div className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors gap-4 sm:gap-0">
               <div className="flex items-center gap-4">
                 <div
-                  className={`w-10 h-10 flex items-center justify-center ${isDarkMode ? "bg-slate-900 text-amber-400" : "bg-slate-100 text-slate-600"}`}
+                  className={`w-10 h-10 shrink-0 flex items-center justify-center ${isDarkMode ? "bg-slate-900 text-amber-400" : "bg-slate-100 text-slate-600"}`}
                 >
                   {""}
                   {isDarkMode ? <Moon size={20} /> : <Sun size={20} />}
@@ -137,7 +137,7 @@ export default function SectionSettings() {
               </div>
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className={`w-14 h-8 relative transition-colors duration-300 ${isDarkMode ? "bg-emerald-500" : "bg-slate-200"}`}
+                className={`w-14 h-8 shrink-0 relative transition-colors duration-300 self-end sm:self-auto ${isDarkMode ? "bg-emerald-500" : "bg-slate-200"}`}
               >
                 <div
                   className={`absolute top-1 left-1 w-6 h-6 bg-white shadow-sm transition-transform duration-300 ${isDarkMode ? "translate-x-6" : "translate-x-0"}`}
@@ -147,9 +147,9 @@ export default function SectionSettings() {
             {""}
             {/* Language */}
             {""}
-            <div className="flex items-center justify-between p-4 lg:p-6 hover:bg-slate-50/50 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 hover:bg-slate-50/50 transition-colors gap-4 sm:gap-0">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-50 text-blue-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 bg-blue-50 text-blue-500 flex items-center justify-center">
                   <Globe size={20} />
                 </div>
                 <div>
@@ -161,8 +161,8 @@ export default function SectionSettings() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-40">
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <div className="w-full sm:w-40">
                   <CustomSelect
                     value={language}
                     onChange={handleLanguageChange}
@@ -194,9 +194,9 @@ export default function SectionSettings() {
             {""}
             {/* Auto Sync */}
             {""}
-            <div className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors gap-4 sm:gap-0">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-indigo-50 text-indigo-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 bg-indigo-50 text-indigo-500 flex items-center justify-center">
                   <RefreshCw
                     size={20}
                     className={isSyncing ? "animate-spin" : ""}
@@ -211,7 +211,7 @@ export default function SectionSettings() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center justify-between sm:justify-end gap-4 w-full sm:w-auto">
                 <button
                   onClick={handleSync}
                   disabled={isSyncing}
@@ -223,7 +223,7 @@ export default function SectionSettings() {
                 </button>
                 <button
                   onClick={() => setAutoSync(!autoSync)}
-                  className={`w-14 h-8 relative transition-colors duration-300 ${autoSync ? "bg-emerald-500" : "bg-slate-200"}`}
+                  className={`w-14 h-8 shrink-0 relative transition-colors duration-300 ${autoSync ? "bg-emerald-500" : "bg-slate-200"}`}
                 >
                   <div
                     className={`absolute top-1 left-1 w-6 h-6 bg-white shadow-sm transition-transform duration-300 ${autoSync ? "translate-x-6" : "translate-x-0"}`}
@@ -234,9 +234,9 @@ export default function SectionSettings() {
             {""}
             {/* Offline Cache */}
             {""}
-            <div className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors gap-4 sm:gap-0">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-amber-50 text-amber-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 bg-amber-50 text-amber-500 flex items-center justify-center">
                   <HardDrive size={20} />
                 </div>
                 <div>
@@ -250,7 +250,7 @@ export default function SectionSettings() {
               </div>
               <button
                 onClick={() => setOfflineCache(!offlineCache)}
-                className={`w-14 h-8 relative transition-colors duration-300 ${offlineCache ? "bg-emerald-500" : "bg-slate-200"}`}
+                className={`w-14 h-8 shrink-0 relative transition-colors duration-300 self-end sm:self-auto ${offlineCache ? "bg-emerald-500" : "bg-slate-200"}`}
               >
                 <div
                   className={`absolute top-1 left-1 w-6 h-6 bg-white shadow-sm transition-transform duration-300 ${offlineCache ? "translate-x-6" : "translate-x-0"}`}
@@ -260,9 +260,9 @@ export default function SectionSettings() {
             {""}
             {/* Cập nhật ứng dụng */}
             {""}
-            <div className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors gap-4 sm:gap-0">
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-emerald-50 text-emerald-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 bg-emerald-50 text-emerald-500 flex items-center justify-center">
                   <RefreshCw size={20} className={hasUpdate ? "animate-spin" : ""} />
                 </div>
                 <div>
@@ -280,7 +280,7 @@ export default function SectionSettings() {
                   onClick={() => {
                      if (window.updateSW) window.updateSW(true);
                   }}
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 shadow-md transition-colors text-sm"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 shadow-md transition-colors text-sm w-full sm:w-auto self-end sm:self-auto"
                 >
                   Cập nhật ngay
                 </button>
@@ -294,7 +294,7 @@ export default function SectionSettings() {
               onClick={clearCache}
             >
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-rose-50 text-rose-500 flex items-center justify-center">
+                <div className="w-10 h-10 shrink-0 bg-rose-50 text-rose-500 flex items-center justify-center">
                   <Smartphone size={20} />
                 </div>
                 <div>
@@ -321,30 +321,30 @@ export default function SectionSettings() {
               </h3>
             </div>
             <div className="flex flex-col">
-              <div className="p-4 lg:p-6 border-b border-slate-50 flex items-center gap-4 lg:gap-6">
-                <div className="w-20 h-20 bg-slate-100 border-4 border-white shadow-md flex items-center justify-center text-slate-400 shrink-0 relative overflow-hidden">
+              <div className="p-4 lg:p-6 border-b border-slate-50 flex flex-col sm:flex-row items-center sm:items-center gap-4 lg:gap-6 text-center sm:text-left">
+                <div className="w-20 h-20 shrink-0 bg-slate-100 border-4 border-white shadow-md flex items-center justify-center text-slate-400 shrink-0 relative overflow-hidden">
                   <img
                     src="https://i.pravatar.cc/150?img=11"
                     alt="Avatar"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 flex flex-col items-center sm:items-start w-full">
                   <h4 className="font-black text-lg lg:text-xl text-slate-900">
                     Sale Manager 01
                   </h4>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 text-xs font-bold">
+                  <div className="flex flex-wrap justify-center sm:justify-start items-center gap-2 mt-1">
+                    <span className="flex items-center gap-1 text-emerald-600 bg-emerald-50 px-2 py-1 text-xs font-bold whitespace-nowrap">
                       <CheckCircle2 size={12} /> Đã xác thực{""}
                     </span>
-                    <span className="text-slate-500 text-sm font-medium">
+                    <span className="text-slate-500 text-sm font-medium whitespace-nowrap">
                       Chuyên viên tư vấn cấp cao
                     </span>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowEditModal(true)}
-                  className="px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-colors"
+                  className="w-full sm:w-auto px-6 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition-colors whitespace-nowrap"
                 >
                   {""}
                   Chỉnh sửa{""}
@@ -357,7 +357,7 @@ export default function SectionSettings() {
                 className="flex items-center justify-between p-4 lg:p-6 border-b border-slate-50 hover:bg-slate-50/50 transition-colors cursor-pointer"
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <div className="w-10 h-10 shrink-0 bg-slate-100 text-slate-600 flex items-center justify-center">
                     <Shield size={20} />
                   </div>
                   <div>
@@ -373,7 +373,7 @@ export default function SectionSettings() {
                 onClick={logout}
               >
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-rose-100 text-rose-600 flex items-center justify-center">
+                  <div className="w-10 h-10 shrink-0 bg-rose-100 text-rose-600 flex items-center justify-center">
                     <LogOut size={20} />
                   </div>
                   <div>

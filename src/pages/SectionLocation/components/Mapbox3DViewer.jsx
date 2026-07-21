@@ -151,7 +151,28 @@ export default function Mapbox3DViewer({ centerPosition }) {
               antialias: true
             });
             this.renderer.autoClear = false;
-            this.renderer.setPixelRatio(window.devicePixelRatio);
+            // Limit pixel ratio to max 2 to prevent extreme memory usage on mobile devices (which often have 3x or 4x pixel ratios)
+            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+          },
+          onRemove: function (map, gl) {
+            // Dispose of Three.js resources to prevent memory leaks and WebGL context loss on mobile
+            if (this.scene) {
+              this.scene.traverse((child) => {
+                if (child.isMesh) {
+                  if (child.geometry) child.geometry.dispose();
+                  if (child.material) {
+                    if (Array.isArray(child.material)) {
+                      child.material.forEach(m => m.dispose());
+                    } else {
+                      child.material.dispose();
+                    }
+                  }
+                }
+              });
+            }
+            if (this.renderer) {
+              this.renderer.dispose();
+            }
           },
           render: function (gl, matrix) {
             const rotationX = new THREE.Matrix4().makeRotationAxis(new THREE.Vector3(1, 0, 0), modelTransform.rotateX);

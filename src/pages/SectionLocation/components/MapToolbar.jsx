@@ -63,7 +63,7 @@ export default function MapToolbar({
       </div>
       <button
         onClick={() => setShowOverpassModal(true)}
-        className="flex items-center gap-2 px-4 py-2 bg-white text-slate-700 hover:text-indigo-600 shadow-lg border border-slate-100 font-medium transition-colors"
+        className="hidden items-center gap-2 px-4 py-2 bg-white text-slate-700 hover:text-indigo-600 shadow-lg border border-slate-100 font-medium transition-colors"
         title="Chạy lệnh Overpass Turbo"
       >
         <Terminal size={16} /> Lệnh Overpass

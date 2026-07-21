@@ -20,25 +20,28 @@ export default function SectionCalculator() {
     const monthlyRate = interestRate / 100 / 12;
     const totalMonths = loanTerm * 12;
 
-    let monthlyPayment = 0;
+    let firstMonthPayment = 0;
     let totalPayment = 0;
     let totalInterest = 0;
 
     if (monthlyRate === 0) {
-      monthlyPayment = loanAmount / totalMonths;
+      firstMonthPayment = loanAmount / totalMonths;
       totalPayment = loanAmount;
     } else {
-      // Amortization formula: M = P [ i(1 + i)^n ] / [ (1 + i)^n - 1]
-      monthlyPayment =
-        (loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalMonths))) /
-        (Math.pow(1 + monthlyRate, totalMonths) - 1);
-      totalPayment = monthlyPayment * totalMonths;
-      totalInterest = totalPayment - loanAmount;
+      // Dư nợ giảm dần (Declining balance) - Phổ biến tại ngân hàng VN
+      const principalPerMonth = loanAmount / totalMonths;
+      
+      // Tháng đầu tiên (Tháng cao nhất) = Gốc + Lãi tháng đầu
+      firstMonthPayment = principalPerMonth + (loanAmount * monthlyRate);
+      
+      // Tổng tiền lãi = Tiền vay * lãi tháng * (số tháng + 1) / 2
+      totalInterest = loanAmount * monthlyRate * (totalMonths + 1) / 2;
+      totalPayment = loanAmount + totalInterest;
     }
 
     return {
       loanAmount, // Tiền gốc (Triệu VNĐ)
-      monthlyPayment, // Trả hàng tháng (Triệu VNĐ)
+      monthlyPayment: firstMonthPayment, // Trả tháng đầu (Triệu VNĐ)
       totalInterest, // Tổng lãi (Triệu VNĐ)
       totalPayment, // Tổng trả (Triệu VNĐ)
     };
@@ -46,9 +49,9 @@ export default function SectionCalculator() {
 
   const formatCurrency = (value) => {
     if (value >= 1000) {
-      return (value / 1000).toFixed(2) + " Tỷ";
+      return (value / 1000).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + " Tỷ";
     }
-    return Math.round(value).toLocaleString() + " Triệu";
+    return value.toLocaleString('vi-VN', { maximumFractionDigits: 1 }) + " Triệu";
   };
 
   return (
@@ -62,7 +65,7 @@ export default function SectionCalculator() {
       <div className="max-w-7xl mx-auto w-full pb-20">
         <div className="bg-white shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden flex flex-col lg:flex-row">
           {/* LEFT: Inputs */}
-          <div className="flex-1 p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-slate-100">
+          <div className="flex-1 p-6 md:p-8 lg:p-12 border-b lg:border-b-0 lg:border-r border-slate-100">
             <h3 className="text-xl font-bold text-slate-900 mb-8 flex items-center gap-2">
               Thông số khoản vay
             </h3>
@@ -73,15 +76,15 @@ export default function SectionCalculator() {
                 <div className="flex justify-between items-center mb-4">
                   <label className="text-sm font-bold text-slate-500 uppercase tracking-wider flex items-center gap-2">
                     <DollarSign size={16} className="text-emerald-500" /> Giá
-                    trị căn hộ (Triệu VNĐ)
+                    trị căn hộ
                   </label>
                   <span className="font-black text-xl text-slate-900">
-                    {propertyValue.toLocaleString()} Triệu
+                    {formatCurrency(propertyValue)}
                   </span>
                 </div>
                 <input
                   type="range"
-                  min="1000"
+                  min="100"
                   max="20000"
                   step="100"
                   value={propertyValue}
@@ -159,7 +162,7 @@ export default function SectionCalculator() {
           </div>
 
           {/* RIGHT: Results */}
-          <div className="lg:w-[450px] shrink-0 bg-slate-900 text-white p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
+          <div className="lg:w-[450px] shrink-0 bg-slate-900 text-white p-6 md:p-8 lg:p-12 flex flex-col justify-center relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/20 blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
 
@@ -170,7 +173,7 @@ export default function SectionCalculator() {
             <div className="flex flex-col gap-6 relative z-10">
               <div className="bg-white/10 backdrop-blur border border-white/10 p-6">
                 <p className="text-emerald-400 font-bold uppercase tracking-wider text-sm mb-2">
-                  Thanh toán hàng tháng
+                  Trả tháng đầu (Dư nợ giảm dần)
                 </p>
                 <p className="text-xl font-black">
                   {formatCurrency(calculation.monthlyPayment)}

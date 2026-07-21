@@ -1,16 +1,42 @@
-import { motion } from "motion/react";
-import { Download, Play, BedDouble, Bed } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { Download, Play, BedDouble, Bed, CalendarDays, Maximize2, X } from "lucide-react";
 import { Button } from "../../components/ui/Button";
 import { useNavigate } from "react-router-dom";
 
+// Lấy danh sách ảnh từ thư mục public/events
+const eventModules = import.meta.glob('/public/events/*.{jpg,jpeg,png,webp,JPG,PNG,JPEG,WEBP}', { eager: true });
+const eventImages = Object.keys(eventModules).map(key => {
+  const filename = key.split('/').pop();
+  const nameWithoutExt = filename.substring(0, filename.lastIndexOf('.'));
+  
+  // Parse ngày tháng từ tên file (VD: 20-03-2024)
+  const parts = nameWithoutExt.split('-');
+  let timestamp = 0;
+  let formattedName = nameWithoutExt;
+  
+  if (parts.length >= 3) {
+    const [day, month, year] = parts;
+    timestamp = new Date(year, month - 1, day).getTime();
+    formattedName = `${day}/${month}/${year}`;
+  }
+  
+  return {
+    url: `/events/${filename}`,
+    name: formattedName,
+    date: timestamp
+  };
+}).sort((a, b) => b.date - a.date);
+
 export default function SectionIntro() {
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(null);
   return (
     <div className="min-h-screen bg-slate-950 relative pb-20">
       {""}
       {/* Hero Section */}
       {""}
-      <div className="relative h-[85vh] overflow-hidden -[3rem] shadow-2xl">
+      <div className="relative h-[85vh] overflow-hidden shadow-2xl">
         <img
           src="/assets/images/fenica-can-ho-tod.png"
           alt="Fenica Hero"
@@ -183,9 +209,55 @@ export default function SectionIntro() {
         </motion.div>
       </div>
       {""}
+      {/* Events Carousel */}
+      {""}
+      {eventImages.length > 0 && (
+        <div className="max-w-7xl mx-auto px-4 md:px-8 mt-12 md:mt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            <h3 className="text-white/90 text-lg md:text-xl font-bold mb-6 flex items-center gap-2 uppercase tracking-wider">
+              <CalendarDays className="text-[#d4ae6f]" /> Sự kiện & Hoạt động
+            </h3>
+            <div className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory hide-scrollbar pb-6 -mx-4 px-4 md:mx-0 md:px-0">
+              {eventImages.map((event, index) => (
+                <div 
+                  key={index}
+                  onClick={() => setSelectedImage(event)}
+                  className="shrink-0 w-[85vw] sm:w-[320px] snap-center bg-white/[0.03] backdrop-blur-md border border-[#d4ae6f]/30 overflow-hidden group shadow-[0_4px_30px_rgba(0,0,0,0.1)] hover:border-[#d4ae6f]/60 transition-colors cursor-pointer"
+                >
+                  <div className="aspect-[4/3] overflow-hidden relative">
+                    <img 
+                      src={event.url} 
+                      alt={event.name} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity pointer-events-none" />
+                    <button 
+                      className="absolute top-3 right-3 bg-black/60 group-hover:bg-[#d4ae6f] text-white p-2 rounded-full opacity-100 sm:opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 shadow-lg border border-white/20 pointer-events-none"
+                      title="Phóng to ảnh"
+                    >
+                      <Maximize2 size={16} />
+                    </button>
+                  </div>
+                  <div className="p-4 border-t border-[#d4ae6f]/20 bg-black/20">
+                    <h4 className="text-[#d4ae6f] font-bold text-sm flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#d4ae6f]"></span>
+                      {event.name}
+                    </h4>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      )}
+      {""}
       {/* Media Actions */}
       {""}
-      <div className="max-w-6xl mx-auto px-8 mt-12 md:mt-20 flex flex-col sm:flex-row gap-4 lg:gap-6 items-center justify-center">
+      <div className="max-w-6xl mx-auto px-8 mt-12 flex flex-col sm:flex-row gap-4 lg:gap-6 items-center justify-center">
         <Button
           size="lg"
           icon={Play}
@@ -211,6 +283,40 @@ export default function SectionIntro() {
           Tải Brochure{""}
         </Button>
       </div>
+
+      {/* Image Popup Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <div className="fixed inset-0 z-[999] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-pointer"
+              onClick={() => setSelectedImage(null)}
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-5xl max-h-[90vh] flex flex-col items-center justify-center z-10"
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="fixed top-4 right-4 md:absolute md:-top-12 md:-right-12 text-white/70 hover:text-white bg-black/50 hover:bg-[#d4ae6f] transition-colors p-2 rounded-full z-50"
+              >
+                <X size={24} />
+              </button>
+              <img
+                src={selectedImage.url}
+                alt={selectedImage.name}
+                className="max-w-full max-h-[85vh] object-contain shadow-2xl border border-white/10 bg-black/50"
+              />
+              <p className="text-[#d4ae6f] mt-4 font-bold text-lg">{selectedImage.name}</p>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
