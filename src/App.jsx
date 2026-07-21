@@ -96,9 +96,17 @@ function App() {
 
   // PWA Install state
   const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [showInstallBtn, setShowInstallBtn] = useState(false);
+  const [showInstallBtn, setShowInstallBtn] = useState(true);
   const [isIosPrompt, setIsIosPrompt] = useState(false);
   const [showIosInstructions, setShowIosInstructions] = useState(false);
+
+  // Check if app is already installed (standalone mode)
+  useEffect(() => {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches || ('standalone' in window.navigator && window.navigator.standalone);
+    if (isStandalone) {
+      setShowInstallBtn(false);
+    }
+  }, []);
 
   useEffect(() => {
     const handler = (e) => {
@@ -137,6 +145,9 @@ function App() {
         setShowInstallBtn(false);
       }
       setDeferredPrompt(null);
+    } else {
+      // If prompt is not available, show generic instructions
+      setShowIosInstructions(true);
     }
   };
 
@@ -356,22 +367,22 @@ function App() {
                 <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Download size={32} />
                 </div>
-                <h3 className="font-bold text-xl mb-2 text-slate-900">Cài đặt trên iPhone/iPad</h3>
+                <h3 className="font-bold text-xl mb-2 text-slate-900">Hướng dẫn Cài đặt</h3>
                 <p className="text-slate-600 mb-6 text-sm">
-                  Để cài đặt ứng dụng vào màn hình chính, vui lòng làm theo các bước sau:
+                  Trình duyệt của bạn đang chặn tự động cài đặt. Vui lòng cài đặt thủ công:
                 </p>
                 <div className="flex flex-col gap-4 text-left">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">1</div>
-                    <p className="text-sm text-slate-700 pt-1.5">Nhấn vào biểu tượng <b>Chia sẻ (Share)</b> ở thanh công cụ dưới cùng của trình duyệt Safari.</p>
+                    <p className="text-sm text-slate-700 pt-1.5"><b>Trên Máy tính (Chrome/Edge):</b> Nhìn lên góc phải của thanh địa chỉ, bấm vào biểu tượng <b>Tải xuống/Cài đặt</b>.</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">2</div>
-                    <p className="text-sm text-slate-700 pt-1.5">Chọn <b>Thêm vào MH chính (Add to Home Screen)</b>.</p>
+                    <p className="text-sm text-slate-700 pt-1.5"><b>Trên iPhone (Safari):</b> Nhấn vào nút <b>Chia sẻ (Share)</b> ở dưới cùng, chọn <b>Thêm vào MH chính</b>.</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center shrink-0 font-bold text-slate-700">3</div>
-                    <p className="text-sm text-slate-700 pt-1.5">Nhấn <b>Thêm (Add)</b> ở góc trên bên phải.</p>
+                    <p className="text-sm text-slate-700 pt-1.5"><b>Trên Android (Chrome):</b> Bấm vào Menu 3 chấm góc trên phải, chọn <b>Thêm vào màn hình chính</b>.</p>
                   </div>
                 </div>
                 <button
