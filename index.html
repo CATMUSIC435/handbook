@@ -8,7 +8,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Sổ Tay Dự Án Fenica">
-    <link rel="apple-touch-icon" href="/favicon-dxmd-vietnam.png">
+    <link rel="apple-touch-icon" href="/favicon-dxmd-vietnam.png" />
+    <script>
+      window.deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        window.deferredPrompt = e;
+      });
+    </script>
     
     <!-- SEO Meta Tags -->
     <title>Sổ Tay Dự Án Fenica</title>

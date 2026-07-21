@@ -109,10 +109,15 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Check if event was captured before React mounted
+    if (window.deferredPrompt) {
+      setDeferredPrompt(window.deferredPrompt);
+    }
+
     const handler = (e) => {
       e.preventDefault();
       setDeferredPrompt(e);
-      setShowInstallBtn(true);
+      window.deferredPrompt = e;
     };
     window.addEventListener("beforeinstallprompt", handler);
 
@@ -138,13 +143,20 @@ function App() {
       setShowIosInstructions(true);
       return;
     }
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt.userChoice;
-      if (outcome === "accepted") {
-        setShowInstallBtn(false);
+    const promptEvent = deferredPrompt || window.deferredPrompt;
+    if (promptEvent) {
+      try {
+        promptEvent.prompt();
+        const { outcome } = await promptEvent.userChoice;
+        if (outcome === "accepted") {
+          setShowInstallBtn(false);
+        }
+        setDeferredPrompt(null);
+        window.deferredPrompt = null;
+      } catch (err) {
+        console.error("Install prompt error:", err);
+        setShowIosInstructions(true);
       }
-      setDeferredPrompt(null);
     } else {
       // If prompt is not available, show generic instructions
       setShowIosInstructions(true);
