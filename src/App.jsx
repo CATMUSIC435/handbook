@@ -193,7 +193,7 @@ function App() {
   };
 
   return (
-    <div className="flex h-screen bg-surface overflow-hidden relative">
+    <div className="flex h-dvh bg-surface overflow-hidden relative">
       {/* Splash Screen */}
       <AnimatePresence>
         {showSplash && (
@@ -367,7 +367,7 @@ function App() {
               initial={{ scale: 0.9, y: 50 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 50 }}
-              className="w-full max-w-sm bg-white p-6 shadow-2xl relative -3xl sm:"
+              className="w-full max-w-sm bg-white p-6 shadow-2xl relative"
             >
               <button
                 onClick={() => setShowIosInstructions(false)}
@@ -422,7 +422,7 @@ function App() {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="w-full max-w-md bg-white p-8 shadow-2xl relative"
+              className="w-full max-w-md max-h-[100dvh] overflow-y-auto bg-white p-8 shadow-2xl relative"
             >
               <button
                 onClick={() => setShowLoginModal(false)}
